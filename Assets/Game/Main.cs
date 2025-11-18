@@ -2,34 +2,60 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 using Leopotam.EcsProto.Unity;
+using Leopotam.EcsProto.Unity.Physics2D;
+using UnityEngine.InputSystem;
 
 public class Main : MonoBehaviour
 {
-    IProtoSystems _systems;
-    ProtoWorld _world;
+    private IProtoSystems _systems;
+    private IProtoSystems _physicsSystem;
+    private ProtoWorld _world;
 
     void Start()
     {
         var baseRootAspect = new BaseRootAspect();
         _world = new ProtoWorld(baseRootAspect);
+        //
+        // _physicsSystem = new ProtoSystems(_world)
+        //     .AddModule(new AutoInjectModule())
+        //     .AddModule(new UnityModule())
+        //     //.AddModule(new UnityPhysics2DModule())
+        //     ;
+            
+        //_physicsSystem.Init();
+        
         _systems = new ProtoSystems(_world)
             .AddModule(new AutoInjectModule())
             .AddModule(new UnityModule())
-            .AddModule(new PlayerModule());
+            .AddModule(new PhysicsModule())
+            .AddModule(new PlayerModule())
+            ;
         _systems.Init();
 
-        PlayerAspect playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
-        var playerAspectHealthPool = playerAspect.HealthPool;
-        var playerAspectEEE = playerAspect.InputRawPool;
+        
+        
+            
 
-        ref HealthComponent c1 = ref playerAspectHealthPool.NewEntity(out ProtoEntity entity);
-        ref InputRawComponent c2 = ref playerAspectEEE.Add (entity);
-        ref PositionComponent c3 = ref baseRootAspect.PositionPool.Add(entity);
+        var playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
+        var physicsAspect = (PhysicsAspect)_world.Aspect(typeof(PhysicsAspect));
+        var healthPool = playerAspect.HealthPool;
+        var inputRawPool = playerAspect.InputRawPool;
+
+        ref HealthComponent c1 = ref healthPool.NewEntity(out ProtoEntity entity);
+        ref InputRawComponent c2 = ref inputRawPool.Add (entity);
+        ref PositionComponent c3 = ref physicsAspect.PositionPool.Add(entity);
+        ref VelocityComponent c4 = ref physicsAspect.VelocityPool.Add(entity);
+        ref SpeedComponent c5 = ref physicsAspect.SpeedPool.Add(entity);
     }
 
     void Update()
     {
         _systems.Run();
+    }
+
+    void FixedUpdate()
+    {
+        //_physicsSystem.Run();
     }
 
     void OnDestroy()
@@ -46,17 +72,27 @@ public class Main : MonoBehaviour
     }
 }
 
-public struct HealthComponent
+internal struct HealthComponent
 {
     public float HealthValue;
 }
 
-public struct PositionComponent
+internal struct PositionComponent
 {
     public Vector2 Position;
 }
 
-public struct InputRawComponent
+internal struct VelocityComponent
+{
+    public Vector2 Velocity;
+}
+
+internal struct InputRawComponent
 {
     public Vector2 RawInput;
+}
+
+internal struct SpeedComponent
+{
+    public float Speed;
 }

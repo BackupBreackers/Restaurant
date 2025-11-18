@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsProto;
 
-class HealthSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
+public class HealthSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
     private PlayerAspect _playerAspect;
     private ProtoIt _iterator;

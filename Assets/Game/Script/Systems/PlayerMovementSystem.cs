@@ -22,9 +22,9 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
     {
         foreach (ProtoEntity entity in _iterator)
         {
-            ref InputRawComponent inputRawComponent = ref _playerAspect.InputRawPool.Get(entity);
-            ref PositionComponent posComponent = ref _baseRootAspect.PositionPool.Get(entity);
-            posComponent.Position += inputRawComponent.RawInput;
+            // ref InputRawComponent inputRawComponent = ref _playerAspect.InputRawPool.Get(entity);
+            // ref PositionComponent posComponent = ref _baseRootAspect.PositionPool.Get(entity);
+            // posComponent.Position += inputRawComponent.RawInput;
         }
     }
 

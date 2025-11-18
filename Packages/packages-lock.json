@@ -303,6 +303,13 @@
       "dependencies": {},
       "hash": "25706dfcd3017cfd43d2ae7cfb8b2da1465d50e0"
     },
+    "ru.leopotam.ecsproto.unity.physics2d": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.unity.physics2d.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "794f628208983b89784cc23ab2b0bfa5a756bdf0"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

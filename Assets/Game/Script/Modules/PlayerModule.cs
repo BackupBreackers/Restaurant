@@ -13,11 +13,11 @@ class PlayerModule : IProtoModule
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new PlayerAspect()/*, new BaseRootAspect()*/ };
+        return new IProtoAspect[] { new PlayerAspect(), new PhysicsAspect() };
     }
 
     public Type[] Dependencies()
     {
-        return null;
+        return new[] { typeof(PhysicsModule) };
     }
 }
