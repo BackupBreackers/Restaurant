@@ -18,6 +18,7 @@ class PlayerModule : IProtoModule
 
     public Type[] Dependencies()
     {
-        return /*new[] { typeof(PhysicsModule) };*/ null;
+        //return new[] { typeof(PhysicsModule) };
+        return null;
     }
 }

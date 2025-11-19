@@ -6,7 +6,9 @@ internal class PhysicsModule : IProtoModule
     public void Init(IProtoSystems systems)
     {
         systems
-            .AddSystem(new PhysicsSystem());
+            .AddSystem(new PhysicsEventsHandlerSystem())
+            .AddSystem(new PhysicsSystem())
+            .AddSystem(new SyncUnityPhysicsToEcsSystem());
     }
 
     public IProtoAspect[] Aspects()

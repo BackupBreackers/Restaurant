@@ -4,7 +4,5 @@ using Leopotam.EcsProto.QoL;
 internal class PhysicsAspect : ProtoAspectInject
 {
     public ProtoPool<PositionComponent> PositionPool;
-    public ProtoPool<VelocityComponent> VelocityPool;
-    public ProtoPool<SpeedComponent> SpeedPool;
+    public ProtoPool<Rigidbody2DComponent> Rigidbody2DPool;
 }
-

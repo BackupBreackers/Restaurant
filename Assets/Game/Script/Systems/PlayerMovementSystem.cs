@@ -1,9 +1,10 @@
 ﻿using Leopotam.EcsProto;
+using UnityEngine;
 
 class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
-    private BaseRootAspect _baseRootAspect;
     private PlayerAspect _playerAspect;
+    private PhysicsAspect _physicsAspect;
         
     private ProtoIt _iterator;
 
@@ -11,20 +12,26 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
     {
         ProtoWorld world = systems.World();
         _playerAspect = (PlayerAspect)world.Aspect(typeof(PlayerAspect));
+        _physicsAspect = (PhysicsAspect)world.Aspect(typeof(PhysicsAspect));
         
-        _iterator = new(new[] { typeof(InputRawComponent), typeof(PositionComponent) });
+        _iterator = new(new[] { typeof(PlayerInputComponent), typeof(PositionComponent) });
         _iterator.Init(world);
-        
-        //_baseRootAspect = (BaseRootAspect)world.Aspect(typeof(BaseRootAspect));
     }
 
     public void Run()
     {
         foreach (ProtoEntity entity in _iterator)
         {
-            // ref InputRawComponent inputRawComponent = ref _playerAspect.InputRawPool.Get(entity);
-            // ref PositionComponent posComponent = ref _baseRootAspect.PositionPool.Get(entity);
-            // posComponent.Position += inputRawComponent.RawInput;
+            ref var input = ref _playerAspect.InputRawPool.Get(entity);
+            ref var speed = ref _playerAspect.SpeedPool.Get(entity);
+            ref var rigidbody2D = ref _physicsAspect.Rigidbody2DPool.Get(entity);
+
+            var r = rigidbody2D.Rigidbody2D;
+
+            var moveDirection = input.MoveDirection;
+            var desiredVelocity = moveDirection * speed.Value; 
+
+            r.linearVelocity = Vector2.Lerp(r.linearVelocity, desiredVelocity, 0.2f);
         }
     }
 
@@ -32,6 +39,5 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
     {
         _playerAspect = null;
         _iterator = null;
-        _baseRootAspect = null;
     }
 }

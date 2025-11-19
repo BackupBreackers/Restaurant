@@ -3,7 +3,8 @@ using Leopotam.EcsProto.QoL;
 
 class PlayerAspect : ProtoAspectInject
 {
-    public ProtoPool<InputRawComponent> InputRawPool;
+    public ProtoPool<PlayerInputComponent> InputRawPool;
     public ProtoPool<HealthComponent> HealthPool;
+    public ProtoPool<MovementSpeedComponent> SpeedPool;
 }
 

@@ -14,7 +14,7 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
         ProtoWorld world = systems.World();
         _playerAspect = (PlayerAspect)world.Aspect(typeof(PlayerAspect));
         
-        _iterator = new(new[] { typeof(InputRawComponent) });
+        _iterator = new(new[] { typeof(PlayerInputComponent) });
         _iterator.Init(world);
     }
 
@@ -22,8 +22,8 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     {
         foreach (ProtoEntity entity in _iterator)
         {
-            ref InputRawComponent inputRawComponent = ref _playerAspect.InputRawPool.Get(entity);
-            inputRawComponent.RawInput = _inputService.MoveDirection;
+            ref PlayerInputComponent playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
+            playerInputComponent.MoveDirection = _inputService.MoveDirection;
         }
     }
 

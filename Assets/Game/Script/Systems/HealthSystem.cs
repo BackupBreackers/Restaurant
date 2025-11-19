@@ -1,4 +1,5 @@
 ﻿using Leopotam.EcsProto;
+using UnityEngine;
 
 public class HealthSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
