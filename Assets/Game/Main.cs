@@ -7,42 +7,49 @@ using UnityEngine.InputSystem;
 
 public class Main : MonoBehaviour
 {
-    private IProtoSystems _systems;
+    private IProtoSystems _mainSystems;
     private IProtoSystems _physicsSystem;
     private ProtoWorld _world;
 
     void Start()
     {
-        var baseRootAspect = new BaseRootAspect();
-        _world = new ProtoWorld(baseRootAspect);
-        //
-        // _physicsSystem = new ProtoSystems(_world)
-        //     .AddModule(new AutoInjectModule())
-        //     .AddModule(new UnityModule())
-        //     //.AddModule(new UnityPhysics2DModule())
-        //     ;
-            
-        //_physicsSystem.Init();
-        
-        _systems = new ProtoSystems(_world)
-            .AddModule(new AutoInjectModule())
-            .AddModule(new UnityModule())
-            .AddModule(new PhysicsModule())
-            .AddModule(new PlayerModule())
-            ;
-        _systems.Init();
+        var physicsSystemModules = new ProtoModules(
+            new AutoInjectModule(),
+            new UnityModule(),
+            new PhysicsModule(),
+            new UnityPhysics2DModule());
 
+        var mainSystemModules = new ProtoModules(
+            new AutoInjectModule(),
+            new UnityModule(),
+            new PlayerModule());
+
+        var combinedModules = new ProtoModules();
+
+        foreach (var m in physicsSystemModules.Modules())
+            combinedModules.AddModule(m);
+
+        foreach (var m in mainSystemModules.Modules())
+            combinedModules.AddModule(m);
         
-        
-            
+
+        _world = new ProtoWorld(combinedModules.BuildAspect());
+
+
+        _physicsSystem = new ProtoSystems(_world)
+            .AddModule(physicsSystemModules.BuildModule());
+        _physicsSystem.Init();
+
+        _mainSystems = new ProtoSystems(_world)
+            .AddModule(mainSystemModules.BuildModule());
+        _mainSystems.Init();
+
 
         var playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
         var physicsAspect = (PhysicsAspect)_world.Aspect(typeof(PhysicsAspect));
-        var healthPool = playerAspect.HealthPool;
-        var inputRawPool = playerAspect.InputRawPool;
 
-        ref HealthComponent c1 = ref healthPool.NewEntity(out ProtoEntity entity);
-        ref InputRawComponent c2 = ref inputRawPool.Add (entity);
+        ref HealthComponent c1 = ref playerAspect.HealthPool.NewEntity(out ProtoEntity entity);
+        ref InputRawComponent c2 = ref playerAspect.InputRawPool.Add(entity);
         ref PositionComponent c3 = ref physicsAspect.PositionPool.Add(entity);
         ref VelocityComponent c4 = ref physicsAspect.VelocityPool.Add(entity);
         ref SpeedComponent c5 = ref physicsAspect.SpeedPool.Add(entity);
@@ -50,19 +57,19 @@ public class Main : MonoBehaviour
 
     void Update()
     {
-        _systems.Run();
+        _mainSystems.Run();
     }
 
     void FixedUpdate()
     {
-        //_physicsSystem.Run();
+        _physicsSystem.Run();
     }
 
     void OnDestroy()
     {
         // Очистка систем.
-        _systems?.Destroy();
-        _systems = null;
+        _mainSystems?.Destroy();
+        _mainSystems = null;
 
         // Очистка дополнительных миров.
 

@@ -15,7 +15,7 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
         _iterator = new(new[] { typeof(InputRawComponent), typeof(PositionComponent) });
         _iterator.Init(world);
         
-        _baseRootAspect = (BaseRootAspect)world.Aspect(typeof(BaseRootAspect));
+        //_baseRootAspect = (BaseRootAspect)world.Aspect(typeof(BaseRootAspect));
     }
 
     public void Run()
