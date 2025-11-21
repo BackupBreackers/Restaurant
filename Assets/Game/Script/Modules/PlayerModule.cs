@@ -13,7 +13,7 @@ class PlayerModule : IProtoModule
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new PlayerAspect()};
+        return new IProtoAspect[] { new PlayerAspect() };
     }
 
     public Type[] Dependencies()
