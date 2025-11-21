@@ -1,5 +1,8 @@
 using System.Linq;
+using Game.Script.AI;
+using Game.Script.Modules;
 using Leopotam.EcsProto;
+using Leopotam.EcsProto.Ai.Utility;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 using Leopotam.EcsProto.Unity;
@@ -13,6 +16,7 @@ public class Main : MonoBehaviour
 
     private IProtoSystems _mainSystems;
     private IProtoSystems _physicsSystem;
+    private IProtoSystems _guestSystem;
     private ProtoWorld _world;
     
     private Canvas _canvas;
@@ -20,8 +24,6 @@ public class Main : MonoBehaviour
     [Inject]
     private void InitializeEcs(Canvas canvas)
     {
-        this._canvas = canvas;
-        Debug.Log(_canvas);
         var physicsSystemModules = new ProtoModules(
             new AutoInjectModule(),
             new UnityModule(),
@@ -34,8 +36,18 @@ public class Main : MonoBehaviour
             new PlayerModule(),
             new InteractionModule());
 
+        var guestSystemModules = new ProtoModules(
+            new AutoInjectModule(),
+            new UnityModule(),
+            new GuestModule(),
+            new AiUtilityModule(
+                default,
+                1,
+                new IdleWalkSolver()));
+
         var combinedModules = new ProtoModules(physicsSystemModules.Modules()
             .Concat(mainSystemModules.Modules())
+            .Concat(guestSystemModules.Modules())
             .ToArray());
 
 
@@ -49,6 +61,10 @@ public class Main : MonoBehaviour
         _mainSystems = new ProtoSystems(_world)
             .AddModule(mainSystemModules.BuildModule());
         _mainSystems.Init();
+        
+        _guestSystem = new ProtoSystems(_world)
+            .AddModule(guestSystemModules.BuildModule());
+        _guestSystem.Init();
 
 
         // var playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
@@ -72,6 +88,7 @@ public class Main : MonoBehaviour
     void FixedUpdate()
     {
         _physicsSystem.Run();
+        _guestSystem.Run();
     }
 
     void OnDestroy()

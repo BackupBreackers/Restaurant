@@ -33,12 +33,6 @@ internal struct PlayerInputComponent
     public bool InteractPressed;
 }
 
-[Serializable, ProtoUnityAuthoring("PlayerAspect/MovementSpeedComponent")]
-internal struct MovementSpeedComponent
-{
-    public float Value;
-}
-
 [Serializable, ProtoUnityAuthoring("PlayerAspect/HealthComponent")]
 internal struct HealthComponent
 {

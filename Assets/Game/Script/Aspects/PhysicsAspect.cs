@@ -11,7 +11,7 @@ internal class PhysicsAspect : ProtoAspectInject
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/PositionComponent")]
-internal struct PositionComponent
+public struct PositionComponent
 {
     public Vector2 Position;
 }
@@ -20,4 +20,10 @@ internal struct PositionComponent
 internal struct Rigidbody2DComponent
 {
     public Rigidbody2D Rigidbody2D;
+}
+
+[Serializable, ProtoUnityAuthoring("PhysicsAspect/MovementSpeedComponent")]
+public struct MovementSpeedComponent
+{
+    public float Value;
 }
