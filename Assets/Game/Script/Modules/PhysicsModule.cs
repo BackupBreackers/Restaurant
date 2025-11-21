@@ -7,7 +7,6 @@ internal class PhysicsModule : IProtoModule
     {
         systems
             .AddSystem(new PhysicsEventsHandlerSystem())
-            .AddSystem(new PhysicsSystem())
             .AddSystem(new SyncUnityPhysicsToEcsSystem());
     }
 

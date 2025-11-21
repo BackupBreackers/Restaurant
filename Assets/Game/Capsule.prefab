@@ -50,20 +50,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityAuthoring
   _worldName: 
   _authoringType: 0
-  _destroyAfterAuthoring: 1
+  _destroyAfterAuthoring: 0
   Components:
-  - rid: 8425613062871187531
   - rid: 8425613062871187532
   - rid: 8425613062871187533
   - rid: 8425613062871187534
   - rid: 8425613062871187535
+  - rid: 8425613062871187539
   references:
     version: 2
     RefIds:
-    - rid: 8425613062871187531
-      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 0, y: 0}
     - rid: 8425613062871187532
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -81,6 +77,10 @@ MonoBehaviour:
       type: {class: MovementSpeedComponent, ns: , asm: Assembly-CSharp}
       data:
         Value: 10
+    - rid: 8425613062871187539
+      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 2, y: 2}
 --- !u!212 &5118263255637697165
 SpriteRenderer:
   m_ObjectHideFlags: 0

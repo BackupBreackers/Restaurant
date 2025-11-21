@@ -23,7 +23,7 @@ class PlayerMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySys
         foreach (ProtoEntity entity in _iterator)
         {
             ref var input = ref _playerAspect.InputRawPool.Get(entity);
-            ref var speed = ref _playerAspect.SpeedPool.Get(entity);
+            ref var speed = ref _physicsAspect.MovementSpeedPool.Get(entity);
             ref var rigidbody2D = ref _physicsAspect.Rigidbody2DPool.Get(entity);
 
             var r = rigidbody2D.Rigidbody2D;

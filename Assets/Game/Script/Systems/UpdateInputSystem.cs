@@ -6,7 +6,6 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     [DIUnity ("InputService")] readonly InputService _inputService = default;
     
     private PlayerAspect _playerAspect;
-        
     private ProtoIt _iterator;
 
     public void Init(IProtoSystems systems)
@@ -24,6 +23,7 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
         {
             ref PlayerInputComponent playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
             playerInputComponent.MoveDirection = _inputService.MoveDirection;
+            playerInputComponent.InteractPressed = _inputService.InteractPressed;
         }
     }
 

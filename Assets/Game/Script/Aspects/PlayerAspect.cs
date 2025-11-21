@@ -8,14 +8,16 @@ class PlayerAspect : ProtoAspectInject
 {
     public ProtoPool<PlayerInputComponent> InputRawPool;
     public ProtoPool<HealthComponent> HealthPool;
-    public ProtoPool<MovementSpeedComponent> SpeedPool;
+    
+    public ProtoPool<InteractableComponent> InteractablePool;
+    public ProtoPool<HolderComponent> HolderPool;
 }
 
 [Serializable, ProtoUnityAuthoring("PlayerAspect/PlayerInputComponent")]
 internal struct PlayerInputComponent
 {
     public Vector2 MoveDirection;
-    public Vector2 LookDirectionOld;
+    private Vector2 LookDirectionOld;
     public Vector2 LookDirection
     {
         get
@@ -37,4 +39,16 @@ internal struct PlayerInputComponent
 internal struct HealthComponent
 {
     public float HealthValue;
+}
+
+[Serializable, ProtoUnityAuthoring("PlayerAspect/InteractableComponent")]
+internal struct InteractableComponent
+{
+    public SpriteOutlineController OutlineController;
+}
+
+[Serializable, ProtoUnityAuthoring("PlayerAspect/HolderComponent")]
+internal struct HolderComponent
+{
+    public ProtoPackedEntityWithWorld Entity;
 }

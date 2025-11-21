@@ -21,12 +21,7 @@ public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
             ref var rb = ref _physics.Rigidbody2DPool.Get(entity);
             ref var pos = ref _physics.PositionPool.Get(entity);
 
-            // ← Вот сюда пишем позицию из Unity Physics в ECS
             pos.Position = rb.Rigidbody2D.position;
-            
-            // Если хочешь — тоже синхронизируй скорость
-            // ref var vel = ref _physics.VelocityPool.Get(entity);
-            // vel.Velocity = rb.Rigidbody2D.linearVelocity;
         }
     }
 }

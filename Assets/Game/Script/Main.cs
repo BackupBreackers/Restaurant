@@ -34,7 +34,7 @@ public class Main : MonoBehaviour
             new AutoInjectModule(),
             new UnityModule(),
             new PlayerModule(),
-            new InteractionModule());
+            new WorkstationsModule());
 
         var guestSystemModules = new ProtoModules(
             new AutoInjectModule(),
@@ -61,6 +61,7 @@ public class Main : MonoBehaviour
         _mainSystems = new ProtoSystems(_world)
             .AddModule(mainSystemModules.BuildModule());
         _mainSystems.Init();
+<<<<<<< HEAD
         
         _guestSystem = new ProtoSystems(_world)
             .AddModule(guestSystemModules.BuildModule());
@@ -78,6 +79,8 @@ public class Main : MonoBehaviour
         //
         // speed.Value = 10;
         // c4.Rigidbody2D = player.GetOrAddComponent<Rigidbody2D>();
+=======
+>>>>>>> a41aa0402813acfc4dd4f706c8fadafd701e5387
     }
 
     void Update()
