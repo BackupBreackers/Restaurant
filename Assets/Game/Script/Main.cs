@@ -1,11 +1,11 @@
-using System;
+using System.Linq;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 using Leopotam.EcsProto.Unity;
 using Leopotam.EcsProto.Unity.Physics2D;
 using Unity.VisualScripting;
-using UnityEngine.InputSystem;
+using VContainer;
 
 public class Main : MonoBehaviour
 {
@@ -14,9 +14,14 @@ public class Main : MonoBehaviour
     private IProtoSystems _mainSystems;
     private IProtoSystems _physicsSystem;
     private ProtoWorld _world;
+    
+    private Canvas _canvas;
 
-    void Start()
+    [Inject]
+    private void InitializeEcs(Canvas canvas)
     {
+        this._canvas = canvas;
+        Debug.Log(_canvas);
         var physicsSystemModules = new ProtoModules(
             new AutoInjectModule(),
             new UnityModule(),
@@ -29,13 +34,9 @@ public class Main : MonoBehaviour
             new PlayerModule(),
             new InteractionModule());
 
-        var combinedModules = new ProtoModules();
-
-        foreach (var m in physicsSystemModules.Modules())
-            combinedModules.AddModule(m);
-
-        foreach (var m in mainSystemModules.Modules())
-            combinedModules.AddModule(m);
+        var combinedModules = new ProtoModules(physicsSystemModules.Modules()
+            .Concat(mainSystemModules.Modules())
+            .ToArray());
 
 
         _world = new ProtoWorld(combinedModules.BuildAspect());
