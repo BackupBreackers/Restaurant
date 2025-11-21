@@ -61,26 +61,10 @@ public class Main : MonoBehaviour
         _mainSystems = new ProtoSystems(_world)
             .AddModule(mainSystemModules.BuildModule());
         _mainSystems.Init();
-<<<<<<< HEAD
         
         _guestSystem = new ProtoSystems(_world)
             .AddModule(guestSystemModules.BuildModule());
         _guestSystem.Init();
-
-
-        // var playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
-        // var physicsAspect = (PhysicsAspect)_world.Aspect(typeof(PhysicsAspect));
-        //
-        // ref HealthComponent c1 = ref playerAspect.HealthPool.NewEntity(out ProtoEntity entity);
-        // ref PlayerInputComponent c2 = ref playerAspect.InputRawPool.Add(entity);
-        // ref PositionComponent c3 = ref physicsAspect.PositionPool.Add(entity);
-        // ref Rigidbody2DComponent c4 = ref physicsAspect.Rigidbody2DPool.Add(entity);
-        // ref MovementSpeedComponent speed = ref playerAspect.SpeedPool.Add(entity);
-        //
-        // speed.Value = 10;
-        // c4.Rigidbody2D = player.GetOrAddComponent<Rigidbody2D>();
-=======
->>>>>>> a41aa0402813acfc4dd4f706c8fadafd701e5387
     }
 
     void Update()

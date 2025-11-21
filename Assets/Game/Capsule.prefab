@@ -57,9 +57,13 @@ MonoBehaviour:
   - rid: 8425613062871187534
   - rid: 8425613062871187535
   - rid: 8425613062871187539
+  - rid: 8223375501504806986
   references:
     version: 2
     RefIds:
+    - rid: 8223375501504806986
+      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 8425613062871187532
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
