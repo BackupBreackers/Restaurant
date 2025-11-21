@@ -8,7 +8,8 @@ class PlayerModule : IProtoModule
         systems
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
-            .AddSystem(new HealthSystem());
+            .AddSystem(new HealthSystem())
+            .AddSystem(new PlayerTargetSystem());
     }
 
     public IProtoAspect[] Aspects()

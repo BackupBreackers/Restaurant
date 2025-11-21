@@ -8,6 +8,7 @@ internal class PhysicsAspect : ProtoAspectInject
 {
     public ProtoPool<PositionComponent> PositionPool;
     public ProtoPool<Rigidbody2DComponent> Rigidbody2DPool;
+    public ProtoPool<MovementSpeedComponent> MovementSpeedPool;
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/PositionComponent")]
@@ -20,4 +21,10 @@ internal struct PositionComponent
 internal struct Rigidbody2DComponent
 {
     public Rigidbody2D Rigidbody2D;
+}
+
+[Serializable, ProtoUnityAuthoring("PhysicsAspect/MovementSpeedComponent")]
+internal struct MovementSpeedComponent
+{
+    public float Value;
 }

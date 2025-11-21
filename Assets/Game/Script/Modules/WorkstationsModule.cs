@@ -1,18 +1,17 @@
 ﻿using System;
 using Leopotam.EcsProto;
 
-internal class InteractionModule : IProtoModule
+internal class WorkstationsModule : IProtoModule
 {
     public void Init(IProtoSystems systems)
     {
         systems
-            .AddSystem(new InteractionSystem());
-        //.AddSystem(new TargetingSystem());
+            .AddSystem(new TableInteractionSystem());
     }
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new InteractionAspect() };
+        return new IProtoAspect[] { new WorkstationsAspect() };
     }
 
     public Type[] Dependencies()
