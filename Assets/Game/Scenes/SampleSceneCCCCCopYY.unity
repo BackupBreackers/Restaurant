@@ -1338,54 +1338,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1495584803016971051, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: Components.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: _destroyAfterAuthoring
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: 'Components.Array.data[2]'
-      value: 8223375500027101261
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: 'Components.Array.data[3]'
-      value: 8223375500027101263
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: 'managedReferences[8223375500027101261]'
-      value: Assembly-CSharp Game.Script.Aspects.TargetPositionComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: 'managedReferences[8223375500027101263]'
-      value: Assembly-CSharp PositionComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: managedReferences[8223375500027101258].Value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: managedReferences[8223375500027101261].Position.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: managedReferences[8223375500027101261].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: managedReferences[8223375500027101263].Position.x
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726978896863025518, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
-      propertyPath: managedReferences[8223375500027101263].Position.y
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8823938586616885949, guid: dac2a25ab68fd8445987c4f78401872a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21

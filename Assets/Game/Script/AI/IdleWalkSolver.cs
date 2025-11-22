@@ -26,9 +26,7 @@ namespace Game.Script.AI
             ref MovementSpeedComponent movementSpeed = ref _guest.MovementSpeedComponentPool.Get(entity);
             ref TargetPositionComponent target = ref _guest.TargetPositionComponentPool.Get(entity);
             var direction = (target.Position - position.Position).normalized;
-            Debug.Log(direction);
             ref Rigidbody2DComponent rb = ref _physics.Rigidbody2DPool.Get(entity);
-            //rb.Rigidbody2D.transform.position += new Vector3(direction.x * movementSpeed.Value, direction.y * movementSpeed.Value, 0);
             rb.Rigidbody2D.linearVelocity = direction * movementSpeed.Value;
         }
     }
