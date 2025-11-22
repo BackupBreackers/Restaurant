@@ -11,6 +11,7 @@ class PlayerAspect : ProtoAspectInject
     
     public ProtoPool<InteractableComponent> InteractablePool;
     public ProtoPool<HolderComponent> HolderPool;
+    public ProtoPool<HasItemTag> HasItemTagPool;
 }
 
 [Serializable, ProtoUnityAuthoring("PlayerAspect/PlayerInputComponent")]
@@ -51,4 +52,10 @@ internal struct InteractableComponent
 internal struct HolderComponent
 {
     public ProtoPackedEntityWithWorld Entity;
+    public Vector2 ItemPosition;
+}
+
+internal struct HasItemTag
+{
+    
 }

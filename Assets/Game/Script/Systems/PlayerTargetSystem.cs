@@ -71,11 +71,11 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                 
                 if(!playerInput.InteractPressed) continue;
                 
-                if (!_workstationsAspect.InteractedPool.Has(targetEntity))
+                if (!_workstationsAspect.InteractedEventPool.Has(targetEntity))
                 {
-                    _workstationsAspect.InteractedPool.Add(targetEntity);
-                    ref InteractedComponent r = ref _workstationsAspect.InteractedPool.Get(targetEntity);
-                    r.Player = _world.PackEntityWithWorld(entityPlayer);
+                    _workstationsAspect.InteractedEventPool.Add(targetEntity);
+                    ref InteractedEvent r = ref _workstationsAspect.InteractedEventPool.Get(targetEntity);
+                    r.Invoker = _world.PackEntityWithWorld(entityPlayer);
                 }
             }
         }

@@ -7,7 +7,8 @@ internal class PhysicsModule : IProtoModule
     {
         systems
             .AddSystem(new PhysicsEventsHandlerSystem())
-            .AddSystem(new SyncUnityPhysicsToEcsSystem());
+            .AddSystem(new SyncUnityPhysicsToEcsSystem())
+            .AddSystem(new UpdateItemViewPosition());
     }
 
     public IProtoAspect[] Aspects()

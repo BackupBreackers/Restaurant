@@ -65,7 +65,7 @@ MonoBehaviour:
     - rid: 8223375500027101258
       type: {class: MovementSpeedComponent, ns: , asm: Assembly-CSharp}
       data:
-        Value: 10
+        Value: 5
     - rid: 8223375500027101261
       type: {class: TargetPositionComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
@@ -144,7 +144,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 40
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0

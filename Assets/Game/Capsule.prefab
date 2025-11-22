@@ -57,13 +57,10 @@ MonoBehaviour:
   - rid: 8425613062871187534
   - rid: 8425613062871187535
   - rid: 8425613062871187539
-  - rid: 8223375501504806986
+  - rid: 8425613083015381066
   references:
     version: 2
     RefIds:
-    - rid: 8223375501504806986
-      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 8425613062871187532
       type: {class: PlayerInputComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -85,6 +82,10 @@ MonoBehaviour:
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 2, y: 2}
+    - rid: 8425613083015381066
+      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
+      data:
+        ItemPosition: {x: 0, y: 2}
 --- !u!212 &5118263255637697165
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -192,7 +193,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 60
   m_LinearDamping: 0.05
   m_AngularDamping: 0.05
   m_GravityScale: 0
