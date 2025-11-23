@@ -49,6 +49,8 @@ public class SpriteOutlineController : MonoBehaviour
         }
     }
 
+    public bool IsHighlighted() => _isHighlighted;
+
     /// <summary>
     /// Можно менять цвет на лету (например, красный для ошибки, зеленый для успеха)
     /// </summary>
