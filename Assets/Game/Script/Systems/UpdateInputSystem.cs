@@ -24,6 +24,7 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
             ref PlayerInputComponent playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
             playerInputComponent.MoveDirection = _inputService.MoveDirection;
             playerInputComponent.InteractPressed = _inputService.InteractPressed;
+            playerInputComponent.RandomSpawnFurniturePressed = _inputService.RandomSpawnFurniturePressed;
         }
     }
 

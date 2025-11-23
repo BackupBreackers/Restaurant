@@ -34,7 +34,8 @@ public class Main : MonoBehaviour
             new AutoInjectModule(),
             new UnityModule(),
             new PlayerModule(),
-            new WorkstationsModule());
+            new WorkstationsModule(),
+            new PlacementModule());
 
         var guestSystemModules = new ProtoModules(
             new AutoInjectModule(),

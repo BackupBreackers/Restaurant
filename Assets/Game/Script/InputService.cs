@@ -19,8 +19,19 @@ public class InputService : MonoBehaviour
         }
     }
 
+    public bool RandomSpawnFurniturePressed { get; private set; } // true только один кадр
+
+    public void OnRandomSpawnFurniture(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            RandomSpawnFurniturePressed = true;
+        }
+    }
+
     private void LateUpdate()
     {
         InteractPressed = false; // сбрасываем каждый кадр
+        RandomSpawnFurniturePressed = false;
     }
 }

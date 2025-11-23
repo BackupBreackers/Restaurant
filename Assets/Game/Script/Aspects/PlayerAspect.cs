@@ -34,6 +34,8 @@ internal struct PlayerInputComponent
 
     
     public bool InteractPressed;
+
+    public bool RandomSpawnFurniturePressed;
 }
 
 [Serializable, ProtoUnityAuthoring("PlayerAspect/HealthComponent")]
