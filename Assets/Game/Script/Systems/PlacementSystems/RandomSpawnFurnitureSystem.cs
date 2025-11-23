@@ -54,8 +54,10 @@ public class RandomSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
 
                             //получаю сущность из авторинга
                             furnitureObj.GetComponent<ProtoUnityAuthoring>().Entity().TryUnpack(out var _, out var createdEntity);
-                            
-                            gridComponent.GridData[i][j] = _placementAspect.FurniturePool.Get(createdEntity);
+                            ref var furnComponent = ref _placementAspect.FurniturePool.Get(createdEntity);
+                            furnComponent.PositionInGrid = new Vector2Int(i, j);
+                            gridComponent.GridData[i][j] = furnComponent;
+
 
                             isPlaced = true;
                             break;

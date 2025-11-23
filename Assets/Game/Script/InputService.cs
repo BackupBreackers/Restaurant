@@ -29,9 +29,20 @@ public class InputService : MonoBehaviour
         }
     }
 
+    public bool MoveFurniturePressed { get; private set; } // true только один кадр
+
+    public void OnMoveFurniture(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            MoveFurniturePressed = true;
+        }
+    }
+
     private void LateUpdate()
     {
         InteractPressed = false; // сбрасываем каждый кадр
         RandomSpawnFurniturePressed = false;
+        MoveFurniturePressed = false;
     }
 }

@@ -36,6 +36,9 @@ internal struct PlayerInputComponent
     public bool InteractPressed;
 
     public bool RandomSpawnFurniturePressed;
+
+    public bool MoveFurniturePressed;
+    public bool IsInMoveState;
 }
 
 [Serializable, ProtoUnityAuthoring("PlayerAspect/HealthComponent")]
@@ -47,6 +50,7 @@ internal struct HealthComponent
 [Serializable, ProtoUnityAuthoring("PlayerAspect/InteractableComponent")]
 internal struct InteractableComponent
 {
+    public SpriteRenderer SpriteRenderer;
     public SpriteOutlineController OutlineController;
 }
 

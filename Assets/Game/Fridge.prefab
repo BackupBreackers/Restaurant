@@ -75,6 +75,7 @@ MonoBehaviour:
     - rid: 8425613062871187542
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
+        SpriteRenderer: {fileID: 7402408901365943067}
         OutlineController: {fileID: 7593671318826805493}
     - rid: 8425613062871187543
       type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}

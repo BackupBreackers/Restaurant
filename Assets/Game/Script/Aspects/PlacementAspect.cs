@@ -9,6 +9,7 @@ internal class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
     public ProtoPool<PlacementGridComponent> PlacementGridPool;
+    public ProtoPool<MoveStateComponent> MoveStatePool;
 }
 
 public enum FurnitureType
@@ -23,6 +24,7 @@ internal struct FurnitureComponent
 {
     public FurnitureType Type;
     public GameObject ThisGameObject;
+    public Vector2Int PositionInGrid;
 }
 
 [Serializable, ProtoUnityAuthoring("PlacementAspect/PlacementGrid")]
@@ -32,4 +34,9 @@ internal struct PlacementGridComponent
     public Vector2Int GridSize;
     public int CellSize;
     public FurnitureComponent[][] GridData;
+}
+
+internal struct MoveStateComponent
+{
+    public ProtoPackedEntityWithWorld Invoker;
 }

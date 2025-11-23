@@ -7,7 +7,8 @@ public class PlacementModule : IProtoModule
     public void Init(IProtoSystems systems)
     {
         systems
-            .AddSystem(new RandomSpawnFurnitureSystem());
+            .AddSystem(new RandomSpawnFurnitureSystem())
+            .AddSystem(new MoveFurnitureSystem());
     }
 
     public IProtoAspect[] Aspects()
