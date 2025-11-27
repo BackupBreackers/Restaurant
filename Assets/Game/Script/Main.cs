@@ -7,7 +7,6 @@ using Leopotam.EcsProto.QoL;
 using UnityEngine;
 using Leopotam.EcsProto.Unity;
 using Leopotam.EcsProto.Unity.Physics2D;
-using Unity.VisualScripting;
 using VContainer;
 
 public class Main : MonoBehaviour
@@ -22,7 +21,7 @@ public class Main : MonoBehaviour
     private Canvas _canvas;
 
     [Inject]
-    private void InitializeEcs(Canvas canvas)
+    private void InitializeEcs(IObjectResolver container)
     {
         var physicsSystemModules = new ProtoModules(
             new AutoInjectModule(),
@@ -34,12 +33,8 @@ public class Main : MonoBehaviour
             new AutoInjectModule(),
             new UnityModule(),
             new PlayerModule(),
-            new WorkstationsModule(),
-            new PlacementModule());
-
-        var guestSystemModules = new ProtoModules(
-            new AutoInjectModule(),
-            new UnityModule(),
+            container.Resolve<WorkstationsModule>(),
+            new PlacementModule(),
             new GuestModule(),
             new AiUtilityModule(
                 default,
@@ -48,7 +43,6 @@ public class Main : MonoBehaviour
 
         var combinedModules = new ProtoModules(physicsSystemModules.Modules()
             .Concat(mainSystemModules.Modules())
-            .Concat(guestSystemModules.Modules())
             .ToArray());
 
 
@@ -62,10 +56,6 @@ public class Main : MonoBehaviour
         _mainSystems = new ProtoSystems(_world)
             .AddModule(mainSystemModules.BuildModule());
         _mainSystems.Init();
-        
-        _guestSystem = new ProtoSystems(_world)
-            .AddModule(guestSystemModules.BuildModule());
-        _guestSystem.Init();
     }
 
     void Update()
@@ -76,7 +66,6 @@ public class Main : MonoBehaviour
     void FixedUpdate()
     {
         _physicsSystem.Run();
-        _guestSystem.Run();
     }
 
     void OnDestroy()

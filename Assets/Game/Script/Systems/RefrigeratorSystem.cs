@@ -1,16 +1,19 @@
 ﻿using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
+using VContainer;
 
 public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
     [DI] readonly WorkstationsAspect _workstationsAspect = default;
     [DI] readonly PlayerAspect _playerAspect = default;
-    [DIUnity("MeatPrefab")] readonly GameObject _meatPrefab = null;
+    readonly Sprite _meatSprite;
     
     private ProtoIt _iterator;
     private ProtoWorld _world;
+    
+    public RefrigeratorSystem(Sprite meatSprite) =>
+        this._meatSprite = meatSprite;
 
     public void Init(IProtoSystems systems)
     {
@@ -66,9 +69,10 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
                 _workstationsAspect.MeatPool.Add(newItemEntity);
                 ref var view = ref _workstationsAspect.ViewPool.Add(newItemEntity);
                 itemEntity.ItemId = ItemId.Meat;
-                var newTrans = GameObject.Instantiate(_meatPrefab).transform;
+                Debug.Log(_meatSprite);
+                // var newTrans = GameObject.Instantiate(_meatPrefab).transform;
 
-                view.GameObjectTransform = newTrans;
+                //view.GameObjectTransform = newTrans;
                 break;
                 
             case ItemId.Cheese:
