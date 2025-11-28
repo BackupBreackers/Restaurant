@@ -9,12 +9,19 @@ internal class PhysicsAspect : ProtoAspectInject
     public ProtoPool<PositionComponent> PositionPool;
     public ProtoPool<Rigidbody2DComponent> Rigidbody2DPool;
     public ProtoPool<MovementSpeedComponent> MovementSpeedPool;
+    public ProtoPool<GridPositionComponent> GridPositionPool;
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/PositionComponent")]
 public struct PositionComponent
 {
     public Vector2 Position;
+}
+
+[Serializable, ProtoUnityAuthoring("PhysicsAspect/GridPositionComponent")]
+public struct GridPositionComponent
+{
+    public Vector2Int Position;
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/Rigidbody2DComponent")]

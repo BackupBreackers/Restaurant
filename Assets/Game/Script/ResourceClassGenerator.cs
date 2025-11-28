@@ -145,6 +145,8 @@ public class ResourceClassGenerator : AssetPostprocessor
 
         switch (fileExtension)
         {
+            case ".asset":
+                return GetScriptableObjectType(filePath, namespaces);
             case ".prefab":
                 string componentType = GetFirstMonoBehaviourType(relativePath, namespaces);
                 return string.IsNullOrEmpty(componentType) ? "GameObject" : componentType;
@@ -169,6 +171,23 @@ public class ResourceClassGenerator : AssetPostprocessor
             default:
                 return null;
         }
+    }
+    private static string GetScriptableObjectType(string filePath, HashSet<string> namespaces)
+    {
+        string assetPath = filePath.Substring(Application.dataPath.Length - "Assets".Length);
+        ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
+        if (so == null)
+        {
+            Debug.LogWarning($"Failed to load ScriptableObject at: {assetPath}");
+            return null;
+        }
+
+        Type type = so.GetType();
+        if (!string.IsNullOrEmpty(type.Namespace))
+        {
+            namespaces.Add(type.Namespace);
+        }
+        return type.Name;
     }
 
     private static string GetFirstMonoBehaviourType(string relativePath, HashSet<string> namespaces)

@@ -5,7 +5,7 @@ Shader "Custom/URP_2D_Outline"
         [MainTexture] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
         [HDR] _OutlineColor ("Outline Color", Color) = (1,1,1,1)
-        _OutlineWidth ("Outline Width", Range(0, 10)) = 1
+        _OutlineWidth ("Outline Width", Range(0, 100)) = 1
         _AlphaThreshold ("Alpha Threshold", Range(0, 1)) = 0.1
         
         // Необходимые свойства для SpriteRenderer

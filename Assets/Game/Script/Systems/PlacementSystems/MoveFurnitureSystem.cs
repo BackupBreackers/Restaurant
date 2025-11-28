@@ -125,6 +125,6 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
 
     public void Destroy()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

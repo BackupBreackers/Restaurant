@@ -6,6 +6,7 @@ class PlayerModule : IProtoModule
     public void Init(IProtoSystems systems)
     {
         systems
+            .AddSystem(new TimerSystem())
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
             .AddSystem(new HealthSystem())
@@ -14,7 +15,7 @@ class PlayerModule : IProtoModule
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new PlayerAspect() };
+        return new IProtoAspect[] { new PlayerAspect(), new BaseAspect() };
     }
 
     public Type[] Dependencies()

@@ -3,13 +3,9 @@ using UnityEngine.InputSystem;
 
 public class InputService : MonoBehaviour
 {
-    public Vector2 MoveDirection {get; private set;}
-    
-    public void OnMove(InputValue value)
-    {
-        MoveDirection = value.Get<Vector2>();
-    }
-    public bool InteractPressed { get; private set; } // true только один кадр
+    public Vector2 MoveDirection { get; private set; }
+    public bool InteractPressed { get; private set; }
+    public bool PickPlacePressed { get; private set; }
 
     public void OnInteract(InputValue value)
     {
@@ -17,6 +13,19 @@ public class InputService : MonoBehaviour
         {
             InteractPressed = true;
         }
+    }
+
+    public void OnPickPlace(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            PickPlacePressed = true;
+        }
+    }
+
+    public void OnMove(InputValue value)
+    {
+        MoveDirection = value.Get<Vector2>();
     }
 
     public bool RandomSpawnFurniturePressed { get; private set; } // true только один кадр
@@ -42,6 +51,8 @@ public class InputService : MonoBehaviour
     private void LateUpdate()
     {
         InteractPressed = false; // сбрасываем каждый кадр
+        PickPlacePressed = false;
+
         RandomSpawnFurniturePressed = false;
         MoveFurniturePressed = false;
     }

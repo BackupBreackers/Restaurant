@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
     "com.unity.2d.animation": "12.0.2",
     "com.unity.2d.aseprite": "2.0.1",
     "com.unity.2d.psdimporter": "11.0.1",
@@ -20,10 +21,10 @@
     "jp.hadashikick.vcontainer": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.17.0",
     "ru.leopotam.ecsproto": "https://gitverse.ru/leopotam/ecsproto.git",
     "ru.leopotam.ecsproto-qol": "https://gitverse.ru/leopotam/ecsproto-qol.git",
-    "ru.leopotam.ecsproto.unity": "https://gitverse.ru/leopotam/ecsproto.unity.git",
-    "ru.leopotam.ecsproto.unity.physics2d": "https://gitverse.ru/leopotam/ecsproto.unity.physics2d.git",
     "ru.leopotam.ecsproto.ai.utility": "https://gitverse.ru/leopotam/ecsproto.ai.utility.git",
     "ru.leopotam.ecsproto.ai.utility.unity": "https://gitverse.ru/leopotam/ecsproto.ai.utility.unity.git",
+    "ru.leopotam.ecsproto.unity": "https://gitverse.ru/leopotam/ecsproto.unity.git",
+    "ru.leopotam.ecsproto.unity.physics2d": "https://gitverse.ru/leopotam/ecsproto.unity.physics2d.git",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",

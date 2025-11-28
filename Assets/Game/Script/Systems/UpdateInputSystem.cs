@@ -26,6 +26,7 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
             playerInputComponent.InteractPressed = _inputService.InteractPressed;
             playerInputComponent.RandomSpawnFurniturePressed = _inputService.RandomSpawnFurniturePressed;
             playerInputComponent.MoveFurniturePressed = _inputService.MoveFurniturePressed;
+            playerInputComponent.PickPlacePressed = _inputService.PickPlacePressed;
         }
     }
 

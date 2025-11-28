@@ -11,9 +11,17 @@ namespace Game.Script.DISystem
         {
             builder.RegisterEntryPoint<Main>();
             builder.Register<GameResources>(Lifetime.Singleton);
+            builder.Register<RecipeService>(Lifetime.Singleton);
+            
+            builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);
+            
             builder.RegisterFactory<RefrigeratorSystem>(container =>
                 container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            
+            builder.RegisterFactory<StoveSystem>(container =>
+                container.Resolve<StoveSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            
             builder.Register<WorkstationsModule>(Lifetime.Singleton);
         }
     }

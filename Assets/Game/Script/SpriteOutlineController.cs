@@ -6,7 +6,7 @@ public class SpriteOutlineController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private Color _outlineColor = Color.white;
-    [SerializeField, Range(0, 10)] private float _outlineWidth = 1f;
+    [SerializeField, Range(0, 100)] private float _outlineWidth = 1f;
     
     [Header("State")]
     [SerializeField] private bool _isHighlighted = false;
