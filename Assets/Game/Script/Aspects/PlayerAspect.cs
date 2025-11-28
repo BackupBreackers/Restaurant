@@ -57,21 +57,6 @@ public struct HolderComponent
     //public ProtoPackedEntityWithWorld Entity;
     public PickupItemType ItemType;
     public SpriteRenderer SpriteRenderer;
-
-    // public bool EntityIsNotNull(out ProtoEntity entity)
-    // {
-    //     entity = default;
-    //     if (Entity.TryUnpack(out _, out var protoEntity))
-    //     {
-    //         if (protoEntity != default)
-    //         {
-    //             entity = protoEntity;
-    //             return true;
-    //         }
-    //     }
-    //
-    //     return false;
-    // }
 }
 
 public struct HasItemTag

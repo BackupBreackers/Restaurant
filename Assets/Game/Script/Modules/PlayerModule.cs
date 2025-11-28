@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Script.Systems;
 using Leopotam.EcsProto;
 
 class PlayerModule : IProtoModule
@@ -10,12 +11,13 @@ class PlayerModule : IProtoModule
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
             .AddSystem(new HealthSystem())
+            .AddSystem(new ProgressBarSystem())
             .AddSystem(new PlayerTargetSystem());
     }
 
     public IProtoAspect[] Aspects()
     {
-        return new IProtoAspect[] { new PlayerAspect(), new BaseAspect() };
+        return new IProtoAspect[] { new PlayerAspect(), new BaseAspect(), new ViewAspect() };
     }
 
     public Type[] Dependencies()

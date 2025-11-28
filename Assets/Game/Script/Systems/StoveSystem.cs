@@ -8,6 +8,7 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
     [DI] readonly WorkstationsAspect _workstationsAspect;
     [DI] readonly ItemAspect _itemAspect;
     [DI] readonly BaseAspect _baseAspect;
+    [DI] readonly ViewAspect _viewAspect;
     [DI] readonly ProtoWorld _world;
 
     private ProtoIt _placeIterator;
@@ -61,19 +62,23 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 Debug.Log("Item type is None");
                 continue;
             }
+
             if (!_recipeService.TryGetRecipe(holder.ItemType, works.WorkstationType, out var recipe))
             {
                 Debug.Log("Recipe not found");
                 continue;
             }
-            
+
             ref var timer = ref _baseAspect.TimerPool.Add(stoveEntity);
             timer.Duration = recipe.Duration;
+
+            _viewAspect.ProgressBarPool.Get(stoveEntity).ShowComponent();
         }
-        
+
         foreach (var stoveEntity in _abortIterator)
         {
             _baseAspect.TimerPool.DelIfExists(stoveEntity);
+            _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }
 
         foreach (var stoveEntity in _processingIterator)
@@ -89,6 +94,7 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             holder.ItemType = recipe.outputItemType;
             holder.SpriteRenderer.sprite = recipe.outputItemSprite;
             _baseAspect.TimerPool.DelIfExists(stoveEntity);
+            _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }
     }
 }
