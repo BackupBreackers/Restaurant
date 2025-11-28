@@ -16,12 +16,15 @@ public class GameResources
     public class Visual
     {
         public Sprite box => Resources.Load<Sprite>("Visual/box");
+        public Sprite burner__2_ => Resources.Load<Sprite>("Visual/burner (2)");
         public Sprite meat => Resources.Load<Sprite>("Visual/meat");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite plate => Resources.Load<Sprite>("Visual/plate");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
         public Sprite stove => Resources.Load<Sprite>("Visual/stove");
+        public Sprite tablet__2_ => Resources.Load<Sprite>("Visual/tablet (2)");
+        public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
     }
     public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
     public ProtoUnityAuthoring Guest => Resources.Load<ProtoUnityAuthoring>("Guest");

@@ -68,6 +68,7 @@ MonoBehaviour:
       data:
         Type: 1
         ThisGameObject: {fileID: 8766884320135700761}
+        PositionInGrid: {x: 0, y: 0}
     - rid: 8425613062871187541
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -84,7 +85,7 @@ MonoBehaviour:
     - rid: 8425613083015381065
       type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
       data:
-        ResourceType: 1
+        resourceItemType: 0
 --- !u!212 &7402408901365943067
 SpriteRenderer:
   m_ObjectHideFlags: 0
