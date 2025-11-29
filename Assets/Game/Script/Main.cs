@@ -1,4 +1,5 @@
 using System.Linq;
+using Game.Script;
 using Game.Script.Modules;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.Ai.Utility;

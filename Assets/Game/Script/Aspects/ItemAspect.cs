@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 
@@ -9,17 +10,10 @@ public class ItemAspect : ProtoAspectInject
     public ProtoPool<RawMeatComponent> RawMeatPool;
 }
 
-public enum PickupItemType
-{
-    None = 0,
-    RawMeat,
-    Meat,
-    Cheese,
-}
 
 public struct ItemComponent
 {
-    public PickupItemType PickupItemType;
+    public PickableItem PickupItemType;
 }
 
 [Serializable]

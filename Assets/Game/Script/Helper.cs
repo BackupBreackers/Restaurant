@@ -13,7 +13,7 @@ public static class Helper
 
         //fromHolder.Entity = default;
         fromHolder.SpriteRenderer.sprite = null;
-        fromHolder.ItemType = PickupItemType.None;
+        fromHolder.ItemType = null;
 
         // 2. Обновляем теги
         playerAspect.HasItemTagPool.Add(to);

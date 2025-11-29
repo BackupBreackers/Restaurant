@@ -13,7 +13,7 @@ internal class PhysicsAspect : ProtoAspectInject
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/PositionComponent")]
-public struct PositionComponent
+public struct PositionComponent : IComponent
 {
     public Vector2 Position;
 }
@@ -25,7 +25,7 @@ public struct GridPositionComponent
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/Rigidbody2DComponent")]
-internal struct Rigidbody2DComponent
+public struct Rigidbody2DComponent : IComponent
 {
     public Rigidbody2D Rigidbody2D;
 }

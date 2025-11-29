@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Script;
 using UnityEngine;
 
 public class RecipeService
 {
-    public readonly Dictionary<(PickupItemType, WorkstationsType), Recipe> Recipes = new();
+    private readonly Dictionary<(Type, WorkstationItem), Recipe> _recipes = new();
     private readonly RecipesDB _recipesDB;
 
     public RecipeService(GameResources gameResources)
@@ -13,34 +14,34 @@ public class RecipeService
         Initialize();
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         foreach (var p in _recipesDB.processors)
         {
-            var key = (inputItem: p.inputItemType, workstation: p.workstationType);
+            var key = (inputItem: p.inputItemType.GetType(), workstation: p.workstationType);
 
-            if (p.inputItemType == PickupItemType.None || p.workstationType == WorkstationsType.None ||
-                p.outputItemType == PickupItemType.None)
+            if (p.inputItemType == null || p.workstationType == null ||
+                p.outputItemType == null)
             {
                 Debug.LogError($"Recipe {p.name} is incomplete or uses 'None' types!");
                 continue;
             }
 
-            if (Recipes.ContainsKey(key))
+            if (_recipes.ContainsKey(key))
             {
                 Debug.LogError($"Duplicate recipe found for: {key.Item1} + {key.Item2}");
                 continue;
             }
 
-            Recipes.Add(key, p);
+            _recipes.Add(key, p);
         }
 
-        Debug.Log($"Loaded {Recipes.Count} recipes.");
+        Debug.Log($"Loaded {_recipes.Count} recipes.");
     }
 
-    public bool TryGetRecipe(PickupItemType inputItemType, WorkstationsType workstationType, out Recipe processor)
+    public bool TryGetRecipe(Type inputItemType, WorkstationItem workstationType, out Recipe processor)
     {
         var key = (inputItem: inputItemType, workstation: workstationType);
-        return Recipes.TryGetValue(key, out processor);
+        return _recipes.TryGetValue(key, out processor);
     }
 }

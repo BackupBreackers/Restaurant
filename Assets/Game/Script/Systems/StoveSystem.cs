@@ -15,10 +15,12 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
     private ProtoIt _processingIterator;
     private ProtoIt _abortIterator;
     private RecipeService _recipeService;
+    private PickableService _pickableService;
 
-    public StoveSystem(RecipeService recipeService)
+    public StoveSystem(RecipeService recipeService, PickableService pickableService)
     {
         _recipeService = recipeService;
+        _pickableService = pickableService;
     }
 
     public void Init(IProtoSystems systems)
@@ -57,7 +59,7 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
             ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
 
-            if (holder.ItemType == PickupItemType.None)
+            if (holder.ItemType == null)
             {
                 Debug.Log("Item type is None");
                 continue;
@@ -91,8 +93,11 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
             if (!_recipeService.TryGetRecipe(holder.ItemType, works.WorkstationType, out var recipe)) continue;
 
-            holder.ItemType = recipe.outputItemType;
-            holder.SpriteRenderer.sprite = recipe.outputItemSprite;
+            // holder.ItemType = recipe.outputItemType.Type;
+            //
+            // _pickableService.TryGetPickable(recipe.outputItemType.Type, out var pickable);
+            //
+            // holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
             _baseAspect.TimerPool.DelIfExists(stoveEntity);
             _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }
