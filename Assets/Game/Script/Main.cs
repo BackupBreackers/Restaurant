@@ -1,5 +1,4 @@
 using System.Linq;
-using Game.Script.AI;
 using Game.Script.Modules;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.Ai.Utility;
@@ -35,11 +34,7 @@ public class Main : MonoBehaviour
             new PlayerModule(),
             container.Resolve<WorkstationsModule>(),
             new PlacementModule(),
-            new GuestModule(),
-            new AiUtilityModule(
-                default,
-                1,
-                new IdleWalkSolver()));
+            new GuestModule());
 
         var combinedModules = new ProtoModules(physicsSystemModules.Modules()
             .Concat(mainSystemModules.Modules())

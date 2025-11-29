@@ -1,54 +1,65 @@
 using Game.Script.Aspects;
 using Leopotam.EcsProto;
-using Leopotam.EcsProto.Ai.Utility;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
 public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
-    [DI] readonly AiUtilityAspect _aiUtilityAspect = default;
-    [DI] readonly ProtoIt _responses = new (It.Inc<AiUtilityResponseEvent> ());
-    private GuestAspect _guestAspect;
-    private PhysicsAspect _physicsAspect;
+    [DI] private readonly GuestAspect _guestAspect = default;
+    [DI] private readonly PhysicsAspect _physics = default;
+    private Vector2 _guestDeathPlace = new Vector2(0, -10); //  #TODO DI+rename
     
-    private ProtoIt _iterator;
+    private ProtoIt _moveIterator;
+    private ProtoIt _startLeavingIterator;
     
     public void Init(IProtoSystems systems)
     {
         var world = systems.World();
-        _guestAspect = (GuestAspect)world.Aspect(typeof(GuestAspect));
-        _physicsAspect = (PhysicsAspect)world.Aspect(typeof(PhysicsAspect));
         
-        _iterator = new(new[]
+        _moveIterator = new(new[]
         {
-            typeof(MovementSpeedComponent), typeof(PositionComponent),
-            typeof(TargetPositionComponent),
+            typeof(TargetPositionComponent), typeof(GuestTag)
         });
-        _iterator.Init(world);
+        _startLeavingIterator = new(new[]
+        {
+            typeof(GuestLeavingEvent)
+        });
+        _moveIterator.Init(world);
+        _startLeavingIterator.Init(world);
     }
 
     public void Run()
     {
-        foreach (var entity in _iterator)
-            _aiUtilityAspect.Request(entity);
-
-        foreach (var entity in _responses)
+        foreach (var entity in _startLeavingIterator)
         {
-            ref AiUtilityResponseEvent result = ref _aiUtilityAspect.ResponseEvent.Get(entity);
-            if (result.Solver is null)
+            ref var newTarget = ref _guestAspect.TargetPositionComponentPool.Add(entity);
+            newTarget.Position = _guestDeathPlace;
+            ref Rigidbody2DComponent rb = ref _physics.Rigidbody2DPool.Get(entity);
+            rb.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+            _guestAspect.GuestLeavingEventPool.DelIfExists(entity);
+        }
+        foreach (var entity in _moveIterator)
+        {
+            ref TargetPositionComponent target = ref _guestAspect.TargetPositionComponentPool.Get(entity);
+            ref PositionComponent position = ref _guestAspect.PositionComponentPool.Get(entity);
+            ref Rigidbody2DComponent rb = ref _physics.Rigidbody2DPool.Get(entity);
+            if (Vector2.Distance(position.Position, target.Position) < 0.5f)
             {
-                ref Rigidbody2DComponent rb = ref _physicsAspect.Rigidbody2DPool.Get(entity);
                 rb.Rigidbody2D.linearVelocity = Vector2.zero;
-                return;
+                _guestAspect.TargetPositionComponentPool.DelIfExists(entity);
+                _guestAspect.GuestArrivedEventPool.Add(entity);
+                rb.Rigidbody2D.bodyType = RigidbodyType2D.Static;
+                continue;
             }
-            result.Solver.Apply(entity);
+            ref MovementSpeedComponent movementSpeed = ref _guestAspect.MovementSpeedComponentPool.Get(entity);
+            var direction = (target.Position - position.Position).normalized;
+            rb.Rigidbody2D.linearVelocity = direction * movementSpeed.Value;
         }
     }
 
     public void Destroy()
     {
-        _guestAspect = null;
-        _physicsAspect = null;
-        _iterator = null;
+        _moveIterator = null;
+        _startLeavingIterator = null;
     }
 }
