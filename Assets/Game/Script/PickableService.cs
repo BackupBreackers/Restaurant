@@ -18,7 +18,7 @@ public class PickableService
     {
         foreach (var p in _pickableItem.processors)
         {
-            var key = p.GetType();
+            var key = p.PickableItem.GetType();
             
             if (_pickableItems.ContainsKey(key))
             {
@@ -26,7 +26,7 @@ public class PickableService
                 continue;
             }
 
-            _pickableItems.Add(key, p);
+            _pickableItems.Add(key, p.PickableItem);
         }
 
         Debug.Log($"Loaded {_pickableItems.Count} recipes.");

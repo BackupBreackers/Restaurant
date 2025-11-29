@@ -8,7 +8,6 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
 {
     [DI] readonly WorkstationsAspect _workstationsAspect = default;
     [DI] readonly PlayerAspect _playerAspect = default;
-    [DI] readonly ItemAspect _itemAspect = default;
 
     private readonly PickableService _pickableService;
     private ProtoIt _iterator;
@@ -51,8 +50,13 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
     private void SpawnItemForPlayer(Type item, ProtoEntity playerEntity, ref HolderComponent playerHolder)
     {
         playerHolder.ItemType = item;
-        if (_pickableService.TryGetPickable(item.GetType(), out var pickable))
+        Debug.Log("Spawn Item");
+        if (_pickableService.TryGetPickable(item, out var pickable))
+        {
+            Debug.Log("Item Found");
             playerHolder.SpriteRenderer.sprite = pickable.PickupItemSprite;
+            
+        }
         _playerAspect.HasItemTagPool.Add(playerEntity);
     }
 

@@ -37,7 +37,7 @@ internal struct ItemPlaceEvent
 }
 
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/InteractableComponent")]
-public struct InteractableComponent
+public struct InteractableComponent : IComponent
 {
     public SpriteRenderer SpriteRenderer;
     public SpriteOutlineController OutlineController;
@@ -50,11 +50,14 @@ public struct StoveComponent
 }
 
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/ItemSource")]
-public struct ItemSourceComponent
+public struct ItemSourceComponent : IComponent
 {
     [SerializeReference, SubclassSelector]
-    public PickableItem resourceItemType;
-    public string Name;
+    public PickableItem resourceItemType;   
+}
+
+public interface IComponent
+{
 }
 
 internal struct PickPlaceEvent
