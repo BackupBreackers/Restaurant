@@ -13,7 +13,6 @@ public class PhysicsEventsHandlerSystem : IProtoInitSystem, IProtoRunSystem
     private ProtoIt _trigEnterIterator;
     // private ProtoIt _trigExit;
 
-
     public void Init(IProtoSystems systems)
     {
         ProtoWorld world = systems.World();

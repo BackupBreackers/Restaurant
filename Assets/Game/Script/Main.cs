@@ -10,8 +10,6 @@ using VContainer;
 
 public class Main : MonoBehaviour
 {
-    //[SerializeField] private GameObject player;
-
     private IProtoSystems _mainSystems;
     private IProtoSystems _physicsSystem;
     private IProtoSystems _guestSystem;
@@ -25,7 +23,7 @@ public class Main : MonoBehaviour
         var physicsSystemModules = new ProtoModules(
             new AutoInjectModule(),
             new UnityModule(),
-            new PhysicsModule(),
+            container.Resolve<PhysicsModule>(),
             new UnityPhysics2DModule());
 
         var mainSystemModules = new ProtoModules(
