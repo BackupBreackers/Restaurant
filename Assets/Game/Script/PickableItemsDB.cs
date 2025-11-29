@@ -20,15 +20,15 @@ namespace Game.Script
             processors.Clear();
 
             // Ищем все ассеты типа ItemProcessor в проекте
-            string[] guids = AssetDatabase.FindAssets("", new[] { SavePath });
+            var guids = AssetDatabase.FindAssets("", new[] { SavePath });
 
             foreach (var guid in guids)
             {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                PickableItem item = AssetDatabase.LoadAssetAtPath<PickableItem>(path);
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var item = AssetDatabase.LoadAssetAtPath<PickableItemSO>(path);
                 if (item != null)
                 {
-                    processors.Add(item);
+                    processors.Add(item.PickableItem);
                 }
             }
 

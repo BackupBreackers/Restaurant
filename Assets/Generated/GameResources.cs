@@ -10,7 +10,7 @@ public class GameResources
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
-        public Meat Meat => Resources.Load<Meat>("PickableItems/Meat");
+        public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
     }
     public Recipes RecipesLink;
     public class Recipes

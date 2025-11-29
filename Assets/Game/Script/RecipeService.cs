@@ -18,7 +18,7 @@ public class RecipeService
     {
         foreach (var p in _recipesDB.processors)
         {
-            var key = (inputItem: p.inputItemType.Type, workstation: p.workstationType);
+            var key = (inputItem: p.inputItemType.GetType(), workstation: p.workstationType);
 
             if (p.inputItemType == null || p.workstationType == null ||
                 p.outputItemType == null)

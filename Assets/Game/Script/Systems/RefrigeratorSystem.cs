@@ -35,13 +35,13 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
 
             ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
 
-            if (playerHolder.ItemType != null)
+            if (playerHolder.ItemType is not null)
             {
                 Debug.Log("Руки заняты, не могу взять мясо!");
             }
             else
             {
-                //SpawnItemForPlayer(itemSource.resourceItemType, playerEntity, ref playerHolder);
+                SpawnItemForPlayer(itemSource.resourceItemType.GetType(), playerEntity, ref playerHolder);
             }
 
             _workstationsAspect.PickPlaceEventPool.DelIfExists(sourceEntity);

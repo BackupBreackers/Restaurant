@@ -4,6 +4,7 @@ using UnityEditor;
 using System;
 using System.IO;
 using System.Linq;
+using Game.Script;
 
 public static class PickableItemSOGenerator
 {
@@ -23,14 +24,14 @@ public static class PickableItemSOGenerator
 
         foreach (var type in pickableTypes)
         {
-            string assetName = type.Name + ".asset";
-            string assetPath = Path.Combine(SavePath, assetName);
+            var assetName = type.Name + ".asset";
+            var assetPath = Path.Combine(SavePath, assetName);
 
             if (File.Exists(assetPath))
                 continue;
 
             // Создаем пустой SO конкретного типа
-            var so = ScriptableObject.CreateInstance(type) as Game.Script.PickableItem;
+            var so = ScriptableObject.CreateInstance(typeof(PickableItemSO)) as PickableItemSO;
             AssetDatabase.CreateAsset(so, assetPath);
         }
 
@@ -61,11 +62,11 @@ public static class PickableItemSOChecker
         foreach (string guid in guids)
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            var item = AssetDatabase.LoadAssetAtPath<Game.Script.PickableItem>(path);
+            var item = AssetDatabase.LoadAssetAtPath<Game.Script.PickableItemSO>(path);
 
-            if (item != null && item.PickupItemSprite == null)
+            if (item != null && item.PickableItem == null)
             {
-                Debug.LogWarning($"У PickableItem '{item.name}' не установлен спрайт!", item);
+                Debug.LogWarning($"У PickableItem '{item.name}' не установлен!", item);
                 missingSprites++;
             }
         }

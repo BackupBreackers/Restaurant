@@ -7,24 +7,29 @@ using UnityEngine;
 public class Recipe : ScriptableObject
 {
     [SerializeReference, SubclassSelector]
-    public SerializableType inputItemType;
+    public PickableItem inputItemType;
 
     [SerializeReference, SubclassSelector]
-    public SerializableType outputItemType;
+    public PickableItem outputItemType;
 
     [SerializeReference, SubclassSelector]
     public WorkstationItem workstationType;
     public float Duration;
 }
 
+[Serializable]
+public abstract class WorkstationItem
+{
+    public Sprite workstationSprite;
+}
 
-public class WorkstationItem : ScriptableObject
+[Serializable]
+public class Stove : WorkstationItem
 {
     
 }
-
-
-public class Stove : WorkstationItem
+[Serializable]
+public class Refreg : WorkstationItem
 {
     
 }

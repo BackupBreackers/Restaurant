@@ -12,5 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d944c1b24ccbcc4e98ebb6ff15d61f0, type: 3}
   m_Name: Pickable_Items_DB
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemsDB
-  processors:
-  - {fileID: 11400000, guid: 3450c569c0377bd419cb31f57cad9d59, type: 2}

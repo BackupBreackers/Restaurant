@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82b15923f6b438a862559f58c05689e, type: 3}
   m_Name: meet1
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
-  inputItemType: 1
-  workstationType: 1
-  outputItemType: 2
-  outputItemSprite: {fileID: 21300000, guid: fc1654291554b3345936926b4ee65d67, type: 3}
+  inputItemType:
+    rid: -2
+  outputItemType:
+    rid: -2
+  workstationType:
+    rid: 8223375674423640148
   Duration: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8223375674423640148
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

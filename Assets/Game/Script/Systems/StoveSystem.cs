@@ -93,11 +93,11 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
             if (!_recipeService.TryGetRecipe(holder.ItemType, works.WorkstationType, out var recipe)) continue;
 
-            holder.ItemType = recipe.outputItemType.Type;
-            
-            _pickableService.TryGetPickable(recipe.outputItemType.Type, out var pickable);
-            
-            holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
+            // holder.ItemType = recipe.outputItemType.Type;
+            //
+            // _pickableService.TryGetPickable(recipe.outputItemType.Type, out var pickable);
+            //
+            // holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
             _baseAspect.TimerPool.DelIfExists(stoveEntity);
             _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }

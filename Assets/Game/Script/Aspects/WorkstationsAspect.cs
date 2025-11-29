@@ -50,9 +50,11 @@ public struct StoveComponent
 }
 
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/ItemSource")]
-internal struct ItemSourceComponent
+public struct ItemSourceComponent
 {
+    [SerializeReference, SubclassSelector]
     public PickableItem resourceItemType;
+    public string Name;
 }
 
 internal struct PickPlaceEvent
