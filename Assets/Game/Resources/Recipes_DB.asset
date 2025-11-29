@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d82028dc7764d82b878e4e2ab636971, type: 3}
   m_Name: Recipes_DB
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.RecipesDB
-  processors:
-  - {fileID: 11400000, guid: edeb50f35782994489d5cadf3f267489, type: 2}
+  processors: []

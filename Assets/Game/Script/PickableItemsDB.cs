@@ -10,7 +10,8 @@ namespace Game.Script
     public class PickableItemsDB : ScriptableObject
     {
         private const string SavePath = "Assets/Game/Resources/PickableItems";
-        public List<PickableItem> processors = new List<PickableItem>();
+        [SerializeReference, SubclassSelector]
+        public List<PickableItem> processors = new();
 
 #if UNITY_EDITOR
         // Добавляет пункт в контекстное меню (ПКМ по скрипту или шестеренка в инспекторе)
