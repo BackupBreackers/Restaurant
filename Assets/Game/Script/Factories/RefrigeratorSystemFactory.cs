@@ -2,13 +2,13 @@ namespace Game.Script.Factories
 {
     public class RefrigeratorSystemFactory
     {
-        GameResources _gameResources;
+        PickableService _pickableService;
         
-        public RefrigeratorSystemFactory(GameResources resources) => this._gameResources = resources;
+        public RefrigeratorSystemFactory(PickableService pickableService) => this._pickableService = pickableService;
         
         public RefrigeratorSystem CreateProtoSystem()
         {
-            return new RefrigeratorSystem(_gameResources.VisualLink.meat);
+            return new RefrigeratorSystem(_pickableService);
         }
     }
 }

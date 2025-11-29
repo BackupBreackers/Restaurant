@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
@@ -18,17 +19,11 @@ internal class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<StoveComponent> StovePool;
 }
 
-public enum WorkstationsType
-{
-    None = 0,
-    Stove,
-    Refrigerator
-}
-
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/WorkstationsTypeComponent")]
 internal struct WorkstationsTypeComponent
 {
-    public WorkstationsType WorkstationType;
+    [SerializeReference, SubclassSelector]
+    public WorkstationItem WorkstationType;
 }
 
 internal struct ItemPickEvent
@@ -57,7 +52,7 @@ public struct StoveComponent
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/ItemSource")]
 internal struct ItemSourceComponent
 {
-    [FormerlySerializedAs("resourceItem")] public PickupItemType resourceItemType;
+    public PickableItem resourceItemType;
 }
 
 internal struct PickPlaceEvent

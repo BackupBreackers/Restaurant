@@ -14,6 +14,7 @@ namespace Game.Script.DISystem
             builder.RegisterEntryPoint<Main>();
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
+            builder.Register<PickableService>(Lifetime.Singleton);
             
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);

@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
@@ -55,7 +56,7 @@ public struct HealthComponent
 public struct HolderComponent
 { 
     //public ProtoPackedEntityWithWorld Entity;
-    public PickupItemType ItemType;
+    public Type ItemType;
     public SpriteRenderer SpriteRenderer;
 }
 

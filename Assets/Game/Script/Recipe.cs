@@ -1,12 +1,30 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using System;
+using Game.Script;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game/Recipe")]
+
+[CreateAssetMenu(fileName = "NewRecipe", menuName = "Game/Recipe")]
 public class Recipe : ScriptableObject
 {
-    public PickupItemType inputItemType;
-    public WorkstationsType workstationType;
-    public PickupItemType outputItemType;
-    public Sprite outputItemSprite;
+    [SerializeReference, SubclassSelector]
+    public SerializableType inputItemType;
+
+    [SerializeReference, SubclassSelector]
+    public SerializableType outputItemType;
+
+    [SerializeReference, SubclassSelector]
+    public WorkstationItem workstationType;
     public float Duration;
+}
+
+
+public class WorkstationItem : ScriptableObject
+{
+    
+}
+
+
+public class Stove : WorkstationItem
+{
+    
 }

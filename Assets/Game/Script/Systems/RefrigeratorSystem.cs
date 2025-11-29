@@ -1,4 +1,6 @@
-﻿using Leopotam.EcsProto;
+﻿using System;
+using Game.Script;
+using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
@@ -8,12 +10,12 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
     [DI] readonly PlayerAspect _playerAspect = default;
     [DI] readonly ItemAspect _itemAspect = default;
 
-    private readonly Sprite _meatSprite;
+    private readonly PickableService _pickableService;
     private ProtoIt _iterator;
     private ProtoWorld _world;
 
-    public RefrigeratorSystem(Sprite meatSprite) =>
-        this._meatSprite = meatSprite;
+    public RefrigeratorSystem(PickableService pickableService) =>
+        this._pickableService = pickableService;
 
     public void Init(IProtoSystems systems)
     {
@@ -33,33 +35,24 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
 
             ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
 
-            if (playerHolder.ItemType != PickupItemType.None)
+            if (playerHolder.ItemType != null)
             {
                 Debug.Log("Руки заняты, не могу взять мясо!");
             }
             else
             {
-                SpawnItemForPlayer(itemSource.resourceItemType, playerEntity, ref playerHolder);
+                //SpawnItemForPlayer(itemSource.resourceItemType, playerEntity, ref playerHolder);
             }
 
             _workstationsAspect.PickPlaceEventPool.DelIfExists(sourceEntity);
         }
     }
 
-    private void SpawnItemForPlayer(PickupItemType itemType, ProtoEntity playerEntity, ref HolderComponent playerHolder)
+    private void SpawnItemForPlayer(Type item, ProtoEntity playerEntity, ref HolderComponent playerHolder)
     {
-        switch (itemType)
-        {
-            case PickupItemType.RawMeat:
-                Debug.Log("Создано Мясо!");
-                playerHolder.ItemType = PickupItemType.RawMeat;
-                playerHolder.SpriteRenderer.sprite = _meatSprite;
-                break;
-
-            case PickupItemType.Cheese:
-                Debug.Log("Создан Сыр!");
-                break;
-        }
+        playerHolder.ItemType = item;
+        if (_pickableService.TryGetPickable(item.GetType(), out var pickable))
+            playerHolder.SpriteRenderer.sprite = pickable.PickupItemSprite;
         _playerAspect.HasItemTagPool.Add(playerEntity);
     }
 
