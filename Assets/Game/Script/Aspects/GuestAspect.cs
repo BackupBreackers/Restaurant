@@ -15,7 +15,7 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestArrivedEvent> GuestArrivedEventPool;
         public ProtoPool<GuestLeavingEvent> GuestLeavingEventPool;
         public ProtoPool<GuestTag> GuestTagPool;
-        public ProtoPool<GuestTakeOrderEvent> GuestTakeOrderEventPool;
+        public ProtoPool<IsGuestWaitingInteractionTag> IsGuestWaitingInteractionPool;
         public ProtoPool<InteractableComponent> InteractableComponentPool;
         public ProtoPool<DidPlayerInteracted> DidPlayerInteractedPool;
         public ProtoPool<DidGotOrder> DidGotOrderPool;
@@ -40,14 +40,11 @@ namespace Game.Script.Aspects
         public Vector2 Position;
     }
     
-    public struct GuestTakeOrderEvent
+    public struct IsGuestWaitingInteractionTag
     {}
 
     public struct DidGotOrder
     { }
-    
-    public struct EbanayaHuinyaEvent{
-        public ProtoPackedEntityWithWorld Invoker;}
 
     [Serializable, ProtoUnityAuthoring("GuestAspect/DidPlayerInteracted")]
     public struct DidPlayerInteracted : IComponent

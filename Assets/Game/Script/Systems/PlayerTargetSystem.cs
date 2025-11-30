@@ -118,9 +118,9 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
                         if (playerInput.InteractPressed)
                         {
-                            if (!_guestAspect.GuestTakeOrderEventPool.Has(entityGuest))
+                            if (!_guestAspect.IsGuestWaitingInteractionPool.Has(entityGuest))
                             {
-                                _guestAspect.GuestTakeOrderEventPool.Add(entityGuest);
+                                _guestAspect.IsGuestWaitingInteractionPool.Add(entityGuest);
                             }
                         }
                     }

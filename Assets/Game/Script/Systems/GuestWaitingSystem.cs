@@ -34,7 +34,7 @@ namespace Game.Script.Systems
             });
             _playerInteractedIterator = new ProtoIt(new[]
             {
-                typeof(GuestTag), typeof(GuestTakeOrderEvent), typeof(TimerComponent)
+                typeof(GuestTag), typeof(IsGuestWaitingInteractionTag), typeof(TimerComponent)
             });
             _waitingIterator.Init(world);
             _startWaitingIterator.Init(world);
@@ -79,9 +79,8 @@ namespace Game.Script.Systems
                 if (timer.Completed)
                 {
                     _viewAspect.ProgressBarPool.Get(entity).HideComponent();
-                    _baseAspect.TimerPool.DelIfExists(entity);
                     _guestAspect.GuestLeavingEventPool.Add(entity);
-                    _guestAspect.GuestIsWalkingPool.Add(entity);
+                    _guestAspect.GuestIsWalkingPool.GetOrAdd(entity);
                 }
             }
         }

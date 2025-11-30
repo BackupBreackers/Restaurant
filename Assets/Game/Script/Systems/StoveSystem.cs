@@ -79,7 +79,7 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
 
         foreach (var stoveEntity in _abortIterator)
         {
-            _baseAspect.TimerPool.DelIfExists(stoveEntity);
+            _baseAspect.TimerCompletedPool.Add(stoveEntity);
             _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }
 
@@ -98,7 +98,6 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             _pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickable);
             
             holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
-            _baseAspect.TimerPool.DelIfExists(stoveEntity);
             _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }
     }

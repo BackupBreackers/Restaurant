@@ -1,5 +1,6 @@
 ﻿using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
+using UnityEngine;
 
 public class TimerSystem : IProtoRunSystem, IProtoInitSystem
 {
@@ -22,8 +23,11 @@ public class TimerSystem : IProtoRunSystem, IProtoInitSystem
             ref var timer = ref _aspect.TimerPool.Get(timerEntity);
 
             if (timer.Completed)
+            {
+                _aspect.TimerCompletedPool.Add(timerEntity);
                 continue;
-        
+            }
+
             timer.Elapsed += dt;
 
             if (timer.Elapsed >= timer.Duration)

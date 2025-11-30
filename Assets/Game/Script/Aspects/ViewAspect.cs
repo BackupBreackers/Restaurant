@@ -19,7 +19,6 @@ public struct ProgressBarComponent : IComponent
 
     public void HideComponent()
     {
-        Debug.Log("RFRFRFR");
         Image.enabled = false;
     }
 
