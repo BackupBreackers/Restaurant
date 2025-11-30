@@ -17,7 +17,7 @@ public class MyAuthoring : MonoBehaviour
     [SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
     [SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.GameObject;
     
-    [SerializeReference, SubclassSelector] public List<IComponent> Components;
+    [SerializeReference, SubclassSelector] public List<IComponent> Components = new List<IComponent>();
 
     ProtoPackedEntityWithWorld _packed;
 

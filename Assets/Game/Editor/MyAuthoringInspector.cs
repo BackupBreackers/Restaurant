@@ -72,6 +72,7 @@ public class MyAuthoringInspector : Editor
         
         // Используем Foldout для сворачивания всего списка
         //componentsProperty.isExpanded = EditorGUILayout.Foldout(componentsProperty.isExpanded, "Components", true);
+        componentsProperty.isExpanded = true;
 
         if (componentsProperty.isExpanded)
         {
@@ -131,6 +132,7 @@ public class MyAuthoringInspector : Editor
         EditorGUILayout.Space();
         if (GUILayout.Button("Добавить компонент", GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight * 1.5f)))
         {
+            Debug.Log("ASfdasdfskamfaskfmdsakmdsakm");
             _authoring.AddComponent();
         }
         
