@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 internal class WorkstationsAspect : ProtoAspectInject
 {
@@ -17,22 +15,21 @@ internal class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<ItemPickEvent> ItemPickEventPool;
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<StoveComponent> StovePool;
+    public ProtoPool<GuestTable> GuestTablePool;
 }
 
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/WorkstationsTypeComponent")]
-internal struct WorkstationsTypeComponent
+public struct WorkstationsTypeComponent : IComponent
 {
     [SerializeReference, SubclassSelector]
-    public WorkstationItem WorkstationType;
+    public WorkstationItem workstationType;
 }
 
-internal struct ItemPickEvent
+public struct ItemPickEvent
 {
 }
 
-
-
-internal struct ItemPlaceEvent
+public struct ItemPlaceEvent
 {
 }
 
@@ -45,7 +42,7 @@ public struct InteractableComponent : IComponent
 
 
 [Serializable, ProtoUnityAuthoring("WorkstationsAspect/Stove")]
-public struct StoveComponent
+public struct StoveComponent : IComponent
 {
 }
 
@@ -60,7 +57,14 @@ public interface IComponent
 {
 }
 
-internal struct PickPlaceEvent
+public struct PickPlaceEvent
 {
     public ProtoPackedEntityWithWorld Invoker;
+}
+
+[Serializable]
+public struct GuestTable : IComponent
+{
+    public Vector2[] guestPlaces;
+    public List<ProtoPackedEntityWithWorld> Guests;
 }

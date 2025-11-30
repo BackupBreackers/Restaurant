@@ -132,7 +132,6 @@ public class MyAuthoringInspector : Editor
         EditorGUILayout.Space();
         if (GUILayout.Button("Добавить компонент", GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight * 1.5f)))
         {
-            Debug.Log("ASfdasdfskamfaskfmdsakmdsakm");
             _authoring.AddComponent();
         }
         

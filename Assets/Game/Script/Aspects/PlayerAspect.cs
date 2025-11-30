@@ -53,7 +53,7 @@ public struct HealthComponent
 
 
 [Serializable, ProtoUnityAuthoring("PlayerAspect/HolderComponent")]
-public struct HolderComponent
+public struct HolderComponent : IComponent
 { 
     //public ProtoPackedEntityWithWorld Entity;
     public Type ItemType;

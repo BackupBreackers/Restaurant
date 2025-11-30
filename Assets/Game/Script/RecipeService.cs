@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RecipeService
 {
-    private readonly Dictionary<(Type, WorkstationItem), Recipe> _recipes = new();
+    private readonly Dictionary<(Type, Type), Recipe> _recipes = new();
     private readonly RecipesDB _recipesDB;
 
     public RecipeService(GameResources gameResources)
@@ -18,7 +18,7 @@ public class RecipeService
     {
         foreach (var p in _recipesDB.processors)
         {
-            var key = (inputItem: p.inputItemType.GetType(), workstation: p.workstationType);
+            var key = (inputItem: p.inputItemType.GetType(), workstation: p.workstationType.GetType());
 
             if (p.inputItemType == null || p.workstationType == null ||
                 p.outputItemType == null)
@@ -39,7 +39,7 @@ public class RecipeService
         Debug.Log($"Loaded {_recipes.Count} recipes.");
     }
 
-    public bool TryGetRecipe(Type inputItemType, WorkstationItem workstationType, out Recipe processor)
+    public bool TryGetRecipe(Type inputItemType, Type workstationType, out Recipe processor)
     {
         var key = (inputItem: inputItemType, workstation: workstationType);
         return _recipes.TryGetValue(key, out processor);

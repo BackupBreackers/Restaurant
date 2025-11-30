@@ -1,4 +1,5 @@
-﻿using Leopotam.EcsProto;
+﻿using Game.Script.Aspects;
+using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Game.Script.Systems
     public class PickPlaceSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
     {
         [DI] readonly WorkstationsAspect _workstationsAspect = default;
+        [DI] readonly GuestAspect _guestAspect = default;
         [DI] readonly PlayerAspect _playerAspect = default;
         [DI] readonly ProtoWorld _world = default;
 

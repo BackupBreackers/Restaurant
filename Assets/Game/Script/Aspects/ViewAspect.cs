@@ -11,7 +11,7 @@ public class ViewAspect : ProtoAspectInject
 }
 
 [Serializable, ProtoUnityAuthoring("ViewAspect/ProgressBar")]
-public struct ProgressBarComponent
+public struct ProgressBarComponent : IComponent
 {
     public Image Image;
     public Color StartColor;

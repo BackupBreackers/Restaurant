@@ -19,7 +19,7 @@ public struct PositionComponent : IComponent
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/GridPositionComponent")]
-public struct GridPositionComponent
+public struct GridPositionComponent : IComponent
 {
     public Vector2Int Position;
 }
@@ -31,7 +31,7 @@ public struct Rigidbody2DComponent : IComponent
 }
 
 [Serializable, ProtoUnityAuthoring("PhysicsAspect/MovementSpeedComponent")]
-public struct MovementSpeedComponent
+public struct MovementSpeedComponent : IComponent
 {
     public float Value;
 }

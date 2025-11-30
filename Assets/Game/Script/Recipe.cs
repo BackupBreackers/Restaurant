@@ -18,7 +18,7 @@ public class Recipe : ScriptableObject
 }
 
 [Serializable]
-public abstract class WorkstationItem
+public class WorkstationItem
 {
     public Sprite workstationSprite;
 }

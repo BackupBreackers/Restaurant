@@ -65,7 +65,7 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
                 continue;
             }
 
-            if (!_recipeService.TryGetRecipe(holder.ItemType, works.WorkstationType, out var recipe))
+            if (!_recipeService.TryGetRecipe(holder.ItemType, works.workstationType.GetType(), out var recipe))
             {
                 Debug.Log("Recipe not found");
                 continue;
@@ -91,13 +91,13 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             if (!timer.Completed) continue;
 
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
-            if (!_recipeService.TryGetRecipe(holder.ItemType, works.WorkstationType, out var recipe)) continue;
+            if (!_recipeService.TryGetRecipe(holder.ItemType, works.workstationType.GetType(), out var recipe)) continue;
 
-            // holder.ItemType = recipe.outputItemType.Type;
-            //
-            // _pickableService.TryGetPickable(recipe.outputItemType.Type, out var pickable);
-            //
-            // holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
+            holder.ItemType = recipe.outputItemType.GetType();
+            
+            _pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickable);
+            
+            holder.SpriteRenderer.sprite = pickable.PickupItemSprite;
             _baseAspect.TimerPool.DelIfExists(stoveEntity);
             _viewAspect.ProgressBarPool.Get(stoveEntity).HideComponent();
         }

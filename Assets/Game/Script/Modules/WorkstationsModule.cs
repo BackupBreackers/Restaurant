@@ -30,6 +30,7 @@ internal class WorkstationsModule : IProtoModule
     {
         systems
             .AddSystem(_pickPlaceSystem)
+            .AddSystem(new TableNotificationSystem())
             .AddSystem(_refrigeratorSystem)
             .AddSystem(_tableInteractionSystem)
             .AddSystem(_stoveSystem)

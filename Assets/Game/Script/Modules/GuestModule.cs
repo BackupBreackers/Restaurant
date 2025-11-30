@@ -11,7 +11,9 @@ namespace Game.Script.Modules
         {
             systems
                 .AddSystem(new GuestMovementSystem())
+                .AddSystem(new GuestsDestroyerSystem())
                 .AddSystem(new GuestWaitingSystem());
+            //.AddSystem(new GuestEatSystem());
         }
 
         public IProtoAspect[] Aspects()
