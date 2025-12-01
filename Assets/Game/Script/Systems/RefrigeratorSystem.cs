@@ -34,7 +34,7 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
 
             ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
 
-            if (playerHolder.ItemType is not null)
+            if (playerHolder.Item is not null)
             {
                 Debug.Log("Руки заняты, не могу взять мясо!");
             }
@@ -49,7 +49,7 @@ public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestr
 
     private void SpawnItemForPlayer(Type item, ProtoEntity playerEntity, ref HolderComponent playerHolder)
     {
-        playerHolder.ItemType = item;
+        playerHolder.Item = item;
         Debug.Log("Spawn Item");
         if (_pickableService.TryGetPickable(item, out var pickable))
         {

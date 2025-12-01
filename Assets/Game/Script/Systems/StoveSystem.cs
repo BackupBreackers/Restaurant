@@ -59,13 +59,13 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
             ref var holder = ref _playerAspect.HolderPool.Get(stoveEntity);
 
-            if (holder.ItemType == null)
+            if (holder.Item == null)
             {
                 Debug.Log("Item type is None");
                 continue;
             }
 
-            if (!_recipeService.TryGetRecipe(holder.ItemType, works.workstationType.GetType(), out var recipe))
+            if (!_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe))
             {
                 Debug.Log("Recipe not found");
                 continue;
@@ -91,9 +91,9 @@ internal class StoveSystem : IProtoInitSystem, IProtoRunSystem
             if (!timer.Completed) continue;
 
             ref var works = ref _workstationsAspect.WorkstationsTypePool.Get(stoveEntity);
-            if (!_recipeService.TryGetRecipe(holder.ItemType, works.workstationType.GetType(), out var recipe)) continue;
+            if (!_recipeService.TryGetRecipe(holder.Item, works.workstationType.GetType(), out var recipe)) continue;
 
-            holder.ItemType = recipe.outputItemType.GetType();
+            holder.Item = recipe.outputItemType.GetType();
             
             _pickableService.TryGetPickable(recipe.outputItemType.GetType(), out var pickable);
             

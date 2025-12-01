@@ -3,26 +3,40 @@ using System.Collections.Generic;
 using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
-internal class WorkstationsAspect : ProtoAspectInject
+public class WorkstationsAspect : ProtoAspectInject
 {
     public ProtoPool<PickPlaceEvent> PickPlaceEventPool;
-    public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
-
     public ProtoPool<ItemPlaceEvent> ItemPlaceEventPool;
     public ProtoPool<ItemPickEvent> ItemPickEventPool;
+    public ProtoPool<PlaceWorkstationEvent> PlaceWorkstationEventPool;
+    public ProtoPool<InteractedEvent> InteractedEventPool;
+    
+    
+    
+    public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<StoveComponent> StovePool;
-    public ProtoPool<GuestTable> GuestTablePool;
+    public ProtoPool<GuestTableComponent> GuestTablePool;
+}
+public struct InteractedEvent 
+{
+}
+[Serializable]
+public struct PlaceWorkstationEvent : IComponent
+{
 }
 
-[Serializable, ProtoUnityAuthoring("WorkstationsAspect/WorkstationsTypeComponent")]
+[Serializable]
 public struct WorkstationsTypeComponent : IComponent
 {
-    [SerializeReference, SubclassSelector]
-    public WorkstationItem workstationType;
+    [SerializeReference, SubclassSelector] public WorkstationItem workstationType;
+}
+
+public struct PickPlaceEvent
+{
+    public ProtoPackedEntityWithWorld Invoker;
 }
 
 public struct ItemPickEvent
@@ -33,7 +47,7 @@ public struct ItemPlaceEvent
 {
 }
 
-[Serializable, ProtoUnityAuthoring("WorkstationsAspect/InteractableComponent")]
+[Serializable]
 public struct InteractableComponent : IComponent
 {
     public SpriteRenderer SpriteRenderer;
@@ -41,29 +55,19 @@ public struct InteractableComponent : IComponent
 }
 
 
-[Serializable, ProtoUnityAuthoring("WorkstationsAspect/Stove")]
+[Serializable]
 public struct StoveComponent : IComponent
 {
 }
 
-[Serializable, ProtoUnityAuthoring("WorkstationsAspect/ItemSource")]
+[Serializable]
 public struct ItemSourceComponent : IComponent
 {
-    [SerializeReference, SubclassSelector]
-    public PickableItem resourceItemType;   
-}
-
-public interface IComponent
-{
-}
-
-public struct PickPlaceEvent
-{
-    public ProtoPackedEntityWithWorld Invoker;
+    [SerializeReference, SubclassSelector] public PickableItem resourceItemType;
 }
 
 [Serializable]
-public struct GuestTable : IComponent
+public struct GuestTableComponent : IComponent
 {
     public Vector2[] guestPlaces;
     public List<ProtoPackedEntityWithWorld> Guests;

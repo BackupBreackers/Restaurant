@@ -12,75 +12,57 @@ namespace Game.Script.Systems
         [DI] private PlayerAspect _playerAspect;
         [DI] private GuestAspect _guestAspect;
         [DI] private BaseAspect _baseAspect;
-        private ProtoIt _tables;
+        private ProtoIt _tablesIterator;
+
         public void Init(IProtoSystems systems)
         {
             var world = systems.World();
-            _tables = new(new[]
+            _tablesIterator = new(new[]
             {
-                typeof(GuestTable), typeof(PickPlaceEvent), typeof(HolderComponent),
+                typeof(GuestTableComponent), typeof(ItemPlaceEvent), typeof(HolderComponent),
                 typeof(PositionComponent), typeof(InteractableComponent)
             });
-            _tables.Init(world);
+            _tablesIterator.Init(world);
         }
 
         public void Run()
         {
-            foreach (var entity in _tables)
+            foreach (var tableEntity in _tablesIterator)
             {
-                ref var packedGuests =
-                    ref _workstationsAspect.GuestTablePool.Get(entity).Guests;
-                if (packedGuests is null)
-                    continue;
-                var guests = new List<ProtoEntity>();
-                foreach (var guest in packedGuests)
-                {
-                    if (!guest.TryUnpack(out _, out var guestEntity))
-                    {
-                        Debug.Log("Гость не распакован!");
-                        continue;
-                    }
-                    guests.Add(guestEntity);
-                }
-                ref var holder = ref _playerAspect.HolderPool.Get(entity);
-                if (holder.ItemType == null)
-                {
-                    continue;
-                }
+                ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
+                ref var holder = ref _playerAspect.HolderPool.Get(tableEntity);
 
-                foreach (var guest in guests)
-                {
-                    if (_guestAspect.WantedItemPool.Get(guest).Item.GetType() == holder.ItemType
-                        && !_guestAspect.DidGotOrderPool.Has(guest))
-                    {
-                        _guestAspect.DidGotOrderPool.Add(guest);
-                        holder.ItemType = null;
-                        holder.SpriteRenderer.sprite = null;
-                        break;
-                    }
-                }
-                var isAllGuestsServed = true;
-                foreach (var guest in guests)
-                {
-                    if (!_guestAspect.DidGotOrderPool.Has(guest))
-                    {
-                        isAllGuestsServed = false;
-                        break;
-                    }
-                }
+                if (tableComponent.Guests is null || tableComponent.Guests.Count == 0) 
+                    continue;
 
-                if (isAllGuestsServed)
-                    ClearTable(entity, guests);
+                var currentGuests = new List<ProtoEntity>();
+                foreach (var packedGuest in tableComponent.Guests)
+                    if (packedGuest.TryUnpack(out _, out var guestEntity))
+                        currentGuests.Add(guestEntity);
+
+                foreach (var guestEntity in currentGuests)
+                {
+                    if (TryServiceGuest(guestEntity, ref holder))
+                    {
+                        break; 
+                    }
+                }
             }
         }
-
-        private void ClearTable(ProtoEntity table, List<ProtoEntity> guests)
+        
+        private bool TryServiceGuest(ProtoEntity guestEntity, ref HolderComponent holder)
         {
-            _workstationsAspect.GuestTablePool.Get(table).Guests.Clear();
-            foreach (var guest in guests)
-            {
-                _baseAspect.TimerPool.Get(guest).Completed = true;
-            }
+            ref var wantedItem = ref _guestAspect.WantedItemPool.Get(guestEntity).WantedItem;
+
+            if (!wantedItem.Is(holder.Item))
+                return false;
+
+            if (_guestAspect.GuestServicedPool.Has(guestEntity))
+                return false;
+            _guestAspect.GuestServicedPool.Add(guestEntity);
+            holder.Clear();
+            Debug.Log("WINWINWIN");
+            return true;
         }
     }
 }

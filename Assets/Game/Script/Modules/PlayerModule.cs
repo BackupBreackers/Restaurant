@@ -10,7 +10,6 @@ class PlayerModule : IProtoModule
             .AddSystem(new TimerSystem())
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
-            .AddSystem(new HealthSystem())
             .AddSystem(new ProgressBarSystem())
             .AddSystem(new PlayerTargetSystem());
     }

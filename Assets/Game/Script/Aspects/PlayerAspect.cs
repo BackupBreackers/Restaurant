@@ -8,14 +8,29 @@ using UnityEngine;
 public class PlayerAspect : ProtoAspectInject
 {
     public ProtoPool<PlayerInputComponent> InputRawPool;
-    public ProtoPool<HealthComponent> HealthPool;
-
     public ProtoPool<InteractableComponent> InteractablePool;
     public ProtoPool<HolderComponent> HolderPool;
     public ProtoPool<HasItemTag> HasItemTagPool;
 }
 
-[Serializable, ProtoUnityAuthoring("PlayerAspect/PlayerInputComponent")]
+[Serializable]
+public struct HolderComponent : IComponent
+{
+    public Type Item;
+    public SpriteRenderer SpriteRenderer;
+
+    public void Clear()
+    {
+        Item = null;
+        SpriteRenderer = null;
+    }
+}
+
+public struct HasItemTag
+{
+}
+
+[Serializable]
 public struct PlayerInputComponent
 {
     public Vector2 MoveDirection;
@@ -43,23 +58,4 @@ public struct PlayerInputComponent
 
     public bool MoveFurniturePressed;
     public bool IsInMoveState;
-}
-
-[Serializable, ProtoUnityAuthoring("PlayerAspect/HealthComponent")]
-public struct HealthComponent
-{
-    public float HealthValue;
-}
-
-
-[Serializable, ProtoUnityAuthoring("PlayerAspect/HolderComponent")]
-public struct HolderComponent : IComponent
-{ 
-    //public ProtoPackedEntityWithWorld Entity;
-    public Type ItemType;
-    public SpriteRenderer SpriteRenderer;
-}
-
-public struct HasItemTag
-{
 }

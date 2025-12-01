@@ -9,11 +9,11 @@ public static class Helper
         // 1. Перекидываем ссылку на Entity предмета
         //toHolder.Entity = fromHolder.Entity;
         toHolder.SpriteRenderer.sprite = fromHolder.SpriteRenderer.sprite;
-        toHolder.ItemType = fromHolder.ItemType;
+        toHolder.Item = fromHolder.Item;
 
         //fromHolder.Entity = default;
         fromHolder.SpriteRenderer.sprite = null;
-        fromHolder.ItemType = null;
+        fromHolder.Item = null;
 
         // 2. Обновляем теги
         playerAspect.HasItemTagPool.Add(to);

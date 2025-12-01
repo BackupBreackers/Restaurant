@@ -14,16 +14,19 @@ public class ViewAspect : ProtoAspectInject
 public struct ProgressBarComponent : IComponent
 {
     public Image Image;
+    public bool IsActive;
     public Color StartColor;
     public Color EndColor;
 
     public void HideComponent()
     {
         Image.enabled = false;
+        IsActive = false;
     }
 
     public void ShowComponent()
     {
         Image.enabled = true;
+        IsActive = true;
     }
 }

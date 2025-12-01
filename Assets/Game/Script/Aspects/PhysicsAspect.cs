@@ -12,25 +12,25 @@ internal class PhysicsAspect : ProtoAspectInject
     public ProtoPool<GridPositionComponent> GridPositionPool;
 }
 
-[Serializable, ProtoUnityAuthoring("PhysicsAspect/PositionComponent")]
+[Serializable]
 public struct PositionComponent : IComponent
 {
     public Vector2 Position;
 }
 
-[Serializable, ProtoUnityAuthoring("PhysicsAspect/GridPositionComponent")]
+[Serializable]
 public struct GridPositionComponent : IComponent
 {
     public Vector2Int Position;
 }
 
-[Serializable, ProtoUnityAuthoring("PhysicsAspect/Rigidbody2DComponent")]
+[Serializable]
 public struct Rigidbody2DComponent : IComponent
 {
     public Rigidbody2D Rigidbody2D;
 }
 
-[Serializable, ProtoUnityAuthoring("PhysicsAspect/MovementSpeedComponent")]
+[Serializable]
 public struct MovementSpeedComponent : IComponent
 {
     public float Value;

@@ -1,56 +1,59 @@
 using System;
-using System.ComponentModel;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
 namespace Game.Script.Aspects
 {
     public class GuestAspect : ProtoAspectInject
     {
-        public ProtoPool<MovementSpeedComponent> MovementSpeedComponentPool;
-        public ProtoPool<PositionComponent> PositionComponentPool;
         public ProtoPool<TargetPositionComponent> TargetPositionComponentPool;
-        public ProtoPool<GuestArrivedEvent> GuestArrivedEventPool;
-        public ProtoPool<GuestLeavingEvent> GuestLeavingEventPool;
+        public ProtoPool<GuestTableComponent> GuestTablePool;
+        public ProtoPool<WantedItemComponent> WantedItemPool;
+        
         public ProtoPool<GuestTag> GuestTagPool;
-        public ProtoPool<IsGuestWaitingInteractionTag> IsGuestWaitingInteractionPool;
-        public ProtoPool<InteractableComponent> InteractableComponentPool;
-        public ProtoPool<DidPlayerInteracted> DidPlayerInteractedPool;
-        public ProtoPool<DidGotOrder> DidGotOrderPool;
-        public ProtoPool<GuestTable> GuestTablePool;
-        public ProtoPool<GuestIsWalking> GuestIsWalkingPool;
-        public ProtoPool<WantedItem> WantedItemPool;
+        public ProtoPool<WaitingTakeOrderTag>  WaitingTakeOrderTagPool;
+        public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
+        public ProtoPool<GuestServicedTag> GuestServicedPool;
+        public ProtoPool<GuestTableIsFreeTag> GuestTableIsFreeTagPool;
+        public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
+        
+        public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
     }
     
-    [Serializable, ProtoUnityAuthoring("GuestAspect/GuestTag")]
+    public struct WaitingOrderTag
+    {
+    }
+
+    [Serializable]
     public struct GuestTag : IComponent
-    {}
+    {
+    }
     
     [Serializable]
-    public struct GuestIsWalking : IComponent
-    {}
-    
-    public struct GuestArrivedEvent
-    {}
-
-    public struct GuestLeavingEvent
+    public struct GuestTableIsFreeTag : IComponent
     {
-        public Vector2 Position;
     }
-    
-    public struct IsGuestWaitingInteractionTag
-    {}
 
-    public struct DidGotOrder
-    { }
+    [Serializable]
+    public struct GuestIsWalkingTag : IComponent
+    {
+    }
 
-    [Serializable, ProtoUnityAuthoring("GuestAspect/DidPlayerInteracted")]
-    public struct DidPlayerInteracted : IComponent
-    { }
-    
-    [Serializable, ProtoUnityAuthoring("GuestAspect/TargetPositionComponent")]
+    public struct ReachedTargetPositionEvent
+    {
+    }
+
+    public struct GuestServicedTag
+    {
+    }
+
+    [Serializable]
+    public struct WaitingTakeOrderTag : IComponent
+    {
+    }
+
+    [Serializable]
     public struct TargetPositionComponent : IComponent
     {
         public ProtoPackedEntityWithWorld Table;
@@ -58,9 +61,8 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
-    public struct WantedItem : IComponent
+    public struct WantedItemComponent : IComponent
     {
-        [SubclassSelector, SerializeReference]
-        public PickableItem Item;
+        [SubclassSelector, SerializeReference] public PickableItem WantedItem;
     }
 }

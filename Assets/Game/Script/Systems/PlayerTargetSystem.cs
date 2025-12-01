@@ -2,31 +2,28 @@
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 {
+    [DI] private PlayerAspect _playerAspect;
+    [DI] private PhysicsAspect _physicsAspect;
+    [DI] private PlacementAspect _placementAspect;
+    [DI] private WorkstationsAspect _workstationsAspect;
+    [DI] private GuestAspect _guestAspect;
+
     private ProtoIt _iteratorInteractable;
     private ProtoIt _iteratorPlayer;
     private ProtoIt _iteratorGuest;
-    private PlayerAspect _playerAspect;
-    private PhysicsAspect _physicsAspect;
-    private PlacementAspect _placementAspect;
-    private WorkstationsAspect _workstationsAspect;
-    private GuestAspect _guestAspect;
     private ProtoWorld _world;
 
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
-        _physicsAspect = (PhysicsAspect)_world.Aspect(typeof(PhysicsAspect));
-        _workstationsAspect = (WorkstationsAspect)_world.Aspect(typeof(WorkstationsAspect));
-        _placementAspect = (PlacementAspect)_world.Aspect(typeof(PlacementAspect));
-        _guestAspect = (GuestAspect)_world.Aspect(typeof(GuestAspect));
-        _iteratorInteractable = new(new[] { typeof(InteractableComponent), typeof(PositionComponent)});
+
+        _iteratorInteractable = new(new[] { typeof(InteractableComponent), typeof(PositionComponent) });
         _iteratorPlayer = new(new[] { typeof(PlayerInputComponent), typeof(PositionComponent) });
-        _iteratorGuest = new (new[] {typeof(GuestTag), typeof(InteractableComponent)});
+        _iteratorGuest = new(new[] { typeof(GuestTag), typeof(InteractableComponent) });
+
         _iteratorInteractable.Init(_world);
         _iteratorPlayer.Init(_world);
         _iteratorGuest.Init(_world);
@@ -37,7 +34,6 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var entityPlayer in _iteratorPlayer)
         {
             var range = 5f;
-
 
             ref var playerPosition = ref _physicsAspect.PositionPool.Get(entityPlayer);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
@@ -51,7 +47,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
             foreach (var entityInteractable in _iteratorInteractable)
             {
-                ref InteractableComponent interactable = ref _playerAspect.InteractablePool.Get(entityInteractable);
+                //ref InteractableComponent interactable = ref _playerAspect.InteractablePool.Get(entityInteractable);
                 ref PositionComponent interactablePosition = ref _physicsAspect.PositionPool.Get(entityInteractable);
 
                 //interactable.OutlineController.SetHighlight(false);
@@ -68,7 +64,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                         if (absAngle < minAngle)
                         {
                             minAngle = absAngle;
-                            interactableComponent = interactable;
+                            //interactableComponent = interactable;
                             targetEntity = entityInteractable;
                         }
                     }
@@ -98,33 +94,25 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                     }
                 }
             }
-            
+
             foreach (var entityGuest in _iteratorGuest)
             {
                 ref PositionComponent guestPosition = ref _physicsAspect.PositionPool.Get(entityGuest);
-                ref InteractableComponent guestInteractable = ref _guestAspect.InteractableComponentPool.Get(entityGuest);
+                //ref InteractableComponent guestInteractable = ref _guestAspect.InteractableComponentPool.Get(entityGuest);
 
-                float distance = Vector2.Distance(guestPosition.Position, playerPosition.Position);
-                if (distance < range)
-                {
-                    var vector = guestPosition.Position - playerPosition.Position;
-                    var angle = Vector2.SignedAngle(vector, playerInput.LookDirection);
-                    float absAngle = Mathf.Abs(angle);
+                var distance = Vector2.Distance(guestPosition.Position, playerPosition.Position);
+                if (!(distance < range)) continue;
+                var vector = guestPosition.Position - playerPosition.Position;
+                var angle = Vector2.SignedAngle(vector, playerInput.LookDirection);
+                var absAngle = Mathf.Abs(angle);
 
-                    if (absAngle < 60)
-                    {
-                        // подсветка гостя
-                        // guestInteractable.OutlineController.SetHighlight(true);
+                if (!(absAngle < 60)) continue;
+                // guestInteractable.OutlineController.SetHighlight(true);
 
-                        if (playerInput.InteractPressed)
-                        {
-                            if (!_guestAspect.IsGuestWaitingInteractionPool.Has(entityGuest))
-                            {
-                                _guestAspect.IsGuestWaitingInteractionPool.Add(entityGuest);
-                            }
-                        }
-                    }
-                }
+                if (!playerInput.InteractPressed) continue;
+                
+                if (!_workstationsAspect.InteractedEventPool.Has(entityGuest))
+                    _workstationsAspect.InteractedEventPool.Add(entityGuest);
             }
         }
     }

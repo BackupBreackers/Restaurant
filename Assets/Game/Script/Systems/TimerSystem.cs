@@ -16,7 +16,7 @@ public class TimerSystem : IProtoRunSystem, IProtoInitSystem
 
     public void Run()
     {
-        float dt = UnityEngine.Time.deltaTime;
+        float dt = Time.deltaTime;
 
         foreach (var timerEntity in _iteratorUpdate)
         {

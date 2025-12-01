@@ -10,9 +10,11 @@ namespace Game.Script.Modules
         public void Init(IProtoSystems systems)
         {
             systems
+                .AddSystem(new GuestNavigationSystem())
                 .AddSystem(new GuestMovementSystem())
+                .AddSystem(new GuestWaitingSystem())
                 .AddSystem(new GuestsDestroyerSystem())
-                .AddSystem(new GuestWaitingSystem());
+                .AddSystem(new EndGameSystem());
             //.AddSystem(new GuestEatSystem());
         }
 

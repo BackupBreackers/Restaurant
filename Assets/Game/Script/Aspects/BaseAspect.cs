@@ -9,7 +9,11 @@ public class BaseAspect : ProtoAspectInject
     public ProtoPool<TimerCompletedTag> TimerCompletedPool;
 }
 
-[Serializable, ProtoUnityAuthoring("BaseAspect/TimerComponent")]
+public interface IComponent
+{
+}
+
+[Serializable]
 public struct TimerComponent
 {
     public float Elapsed;
@@ -18,4 +22,5 @@ public struct TimerComponent
 }
 
 public struct TimerCompletedTag
-{ }
+{
+}
