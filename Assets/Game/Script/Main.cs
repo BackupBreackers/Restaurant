@@ -32,7 +32,7 @@ public class Main : MonoBehaviour
             new UnityModule(),
             new PlayerModule(),
             container.Resolve<WorkstationsModule>(),
-            new PlacementModule(),
+            container.Resolve<PlacementModule>(),
             new GuestModule());
 
         var combinedModules = new ProtoModules(physicsSystemModules.Modules()

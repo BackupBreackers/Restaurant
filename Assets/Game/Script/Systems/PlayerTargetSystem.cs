@@ -43,7 +43,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
 
             //если игрок сейчас двигает мебель, то что-то подсвечивать не нужно
-            //if (playerInput.IsInMoveState) continue;
+            if (playerInput.IsInMoveState) continue;
 
             InteractableComponent interactableComponent = default;
             ProtoEntity targetEntity = default;
@@ -90,10 +90,10 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                 }
                 else if (playerInput.MoveFurniturePressed)
                 {
-                    if (!_placementAspect.MoveStatePool.Has(targetEntity))
+                    if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
                     {
-                        _placementAspect.MoveStatePool.Add(targetEntity);
-                        ref var m = ref _placementAspect.MoveStatePool.Get(targetEntity);
+                        _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
+                        ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
                         m.Invoker = _world.PackEntityWithWorld(entityPlayer);
                     }
                 }

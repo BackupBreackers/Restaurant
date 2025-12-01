@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 532959154327911370}
   - component: {fileID: 6473110481244454949}
+  - component: {fileID: 4116833319232833429}
   - component: {fileID: 7402408901365943067}
   - component: {fileID: 7593671318826805493}
   - component: {fileID: 7505846793795261033}
   - component: {fileID: 5958025274116152075}
   - component: {fileID: 4761429192973698094}
   - component: {fileID: 2132682014274631685}
-  - component: {fileID: 3095988864004086509}
   m_Layer: 0
   m_Name: Fridge
   m_TagString: Untagged
@@ -33,8 +33,8 @@ Transform:
   m_GameObject: {fileID: 8766884320135700761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.11, y: -5.6, z: 0}
-  m_LocalScale: {x: 5.23, y: 2.93, z: 6.03}
+  m_LocalPosition: {x: -6.516, y: -5.487, z: 0}
+  m_LocalScale: {x: 1.49, y: 0.83, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8766884320135700761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd2e3b9377ea4b6b9d83eb1bc17d15a7, type: 3}
   m_Name: 
@@ -63,12 +63,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5322463640679874637
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:
-        Type: 1
-        ThisGameObject: {fileID: 8766884320135700761}
-        PositionInGrid: {x: 0, y: 0}
+        type: 0
     - rid: 8425613062871187541
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -85,7 +85,73 @@ MonoBehaviour:
     - rid: 8425613083015381065
       type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
       data:
-        resourceItemType: 0
+        resourceItemType:
+          rid: -2
+--- !u!114 &4116833319232833429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8766884320135700761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
+  _worldName: 
+  _authoringType: 0
+  _destroyAfterAuthoring: 1
+  Components:
+  - rid: 6222297960297791562
+  - rid: 6222297960297791563
+  - rid: 6222297960297791564
+  - rid: 6222297960297791566
+  - rid: 6222297960297791568
+  - rid: 6222297960297791569
+  - rid: 6222297960297791570
+  - rid: 6222297960297791571
+  references:
+    version: 2
+    RefIds:
+    - rid: 6222297960297791562
+      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 6222297960297791563
+      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        SpriteRenderer: {fileID: 7402408901365943067}
+        OutlineController: {fileID: 7593671318826805493}
+    - rid: 6222297960297791564
+      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody2D: {fileID: 4761429192973698094}
+    - rid: 6222297960297791566
+      type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
+      data:
+        resourceItemType:
+          rid: 6222297960297791567
+    - rid: 6222297960297791567
+      type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite: {fileID: 0}
+    - rid: 6222297960297791568
+      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
+      data:
+        type: 1
+    - rid: 6222297960297791569
+      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 532959154327911370}
+    - rid: 6222297960297791570
+      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 6222297960297791571
+      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
+      data:
+        entityGridPositions: []
 --- !u!212 &7402408901365943067
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -260,18 +326,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.57025766, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3095988864004086509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766884320135700761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a950226beaf44d818fca2b2ba7495e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityLink
-  _registrationType: 0
-  _linkName: Fridge
-  _inScene: 1
