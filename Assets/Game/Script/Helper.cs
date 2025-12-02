@@ -22,4 +22,10 @@ public static class Helper
         // Примечание: В ECS часто удобнее сразу тут отправить событие или обновить компонент View,
         // чтобы модель синхронизировалась с Unity GameObject (трансформом предмета).
     }
+
+    public static void EatItem(ProtoEntity guestEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
+    {
+        fromHolder.Clear();
+        playerAspect.HasItemTagPool.DelIfExists(guestEntity);
+    }
 }

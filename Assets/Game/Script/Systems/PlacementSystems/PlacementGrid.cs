@@ -12,9 +12,8 @@ public class PlacementGrid
     public Vector2 PlacementZoneCellSize { get; private set; }
     private Dictionary<Vector2Int, Func<ProtoPackedEntityWithWorld>> worldGrid = new();
 
-    public PlacementGrid()
+    public PlacementGrid(Grid grid)
     {
-        var grid = GameObject.FindAnyObjectByType<Grid>();
         PlacementZoneCellSize = new Vector2(grid.cellSize.x,grid.cellSize.y);
         PlacementZoneWorldStart = new Vector2(PlacementZoneIndexStart.x * PlacementZoneCellSize.x,
             PlacementZoneIndexStart.y * PlacementZoneCellSize.y);

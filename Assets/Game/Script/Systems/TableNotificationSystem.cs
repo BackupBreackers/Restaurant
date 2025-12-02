@@ -60,7 +60,9 @@ namespace Game.Script.Systems
             if (_guestAspect.GuestServicedPool.Has(guestEntity))
                 return false;
             _guestAspect.GuestServicedPool.Add(guestEntity);
-            holder.Clear();
+            
+            Helper.EatItem(guestEntity, ref holder, _playerAspect);
+            
             Debug.Log("WINWINWIN");
             return true;
         }

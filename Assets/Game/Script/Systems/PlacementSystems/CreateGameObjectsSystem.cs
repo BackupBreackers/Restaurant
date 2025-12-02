@@ -9,7 +9,7 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
 
     private PlacementGrid worldGrid;
     private GameResources gameResources;
-    private ProtoIt _iterator;
+    private ProtoIt _CreateGOIterator;
     private ProtoWorld _world;
 
     public CreateGameObjectsSystem(PlacementGrid placementGrid, GameResources gameResources)
@@ -21,44 +21,45 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(CreateGameObjectEvent) });
-        _iterator.Init(_world);
+        _CreateGOIterator = new(new[] { typeof(CreateGameObjectEvent) });
+        _CreateGOIterator.Init(_world);
     }
 
     public void Run()
     {
-        foreach (var entity in _iterator)
+        foreach (var createEvent in _CreateGOIterator)
         {
-            ref var component = ref _placementAspect.CreateGameObjectEventPool.Get(entity);
+            ref var component = ref _placementAspect.CreateGameObjectEventPool.Get(createEvent);
             var furn = GetGameObject(component.furnitureType);
             var position2D = new Vector2(component.position.x*worldGrid.PlacementZoneCellSize.x,
                 component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2;
             var obj = GameObject.Instantiate(furn,new Vector3(position2D.x,position2D.y,0),Quaternion.identity);
             worldGrid.AddElement(component.position, obj.GetComponent<MyAuthoring>().Entity);
 
-            if (!_placementAspect.SyncMyGridPositionEventPool.Has(entity))
-                _placementAspect.SyncMyGridPositionEventPool.Add(entity);
-            ref var sync = ref _placementAspect.SyncMyGridPositionEventPool.Get(entity);
-            if (sync.entityGridPositions is null)
-                sync.entityGridPositions = new();
+            if (!_placementAspect.SyncMyGridPositionEventPool.Has(createEvent))
+                _placementAspect.SyncMyGridPositionEventPool.Add(createEvent);
+            ref var sync = ref _placementAspect.SyncMyGridPositionEventPool.Get(createEvent);
+            sync.entityGridPositions ??= new();
             sync.entityGridPositions.Add(component.position);
 
-            _placementAspect.CreateGameObjectEventPool.DelIfExists(entity);
+            _placementAspect.CreateGameObjectEventPool.DelIfExists(createEvent);
         }
     }
 
-    private GameObject GetGameObject(FurnitureType type)
+    private GameObject GetGameObject(Type type)
     {
-        switch (type)
-        {
-            case FurnitureType.Fridge:
+        //GameObject go = WorkstationService.GetGO(type);
+        
+        // switch (type)
+        // {
+        //     case typeof(StoveComponent):
                 return gameResources.Fridge.gameObject;
-        }
-        throw new NotImplementedException("Остальные типы мебели пока не добавлены");
+        //}
+        //throw new NotImplementedException("Остальные типы мебели пока не добавлены");
     }
 
     public void Destroy()
     {
-        _iterator = null;
+        _CreateGOIterator = null;
     }
 }

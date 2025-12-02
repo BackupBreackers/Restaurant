@@ -19,7 +19,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(MoveThisFurnitureEvent) });
+        _iterator = new(new[] { typeof(MoveThisFurnitureTag), typeof(GridPositionComponent) });
         _iterator.Init(_world);
     }
 

@@ -9,37 +9,32 @@ internal class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
     public ProtoPool<PlacementTransformComponent> PlacementTransformPool;
-    public ProtoPool<MoveThisFurnitureEvent> MoveThisFurnitureEventPool;
+    public ProtoPool<MoveThisFurnitureTag> MoveThisFurnitureEventPool;
     public ProtoPool<CreateGameObjectEvent> CreateGameObjectEventPool;
     public ProtoPool<MoveThisGameObjectEvent> MoveThisGameObjectEventPool;
     public ProtoPool<SyncGridPositionEvent> SyncMyGridPositionEventPool;
 }
 
-public enum FurnitureType
-{
-    None,
-    Fridge,
-    Table
-}
-[Serializable, ProtoUnityAuthoring("PlacementAspect/PlacementTransformComponent")]
+[Serializable]
 public struct PlacementTransformComponent : IComponent
 {
     public Transform transform;
 }
-[Serializable, ProtoUnityAuthoring("PlacementAspect/FurnitureComponent")]
+[Serializable]
 public struct FurnitureComponent : IComponent
 {
-    public FurnitureType type;
+    [SerializeReference,SubclassSelector]
+    public WorkstationItem type;
 }
 
-internal struct MoveThisFurnitureEvent
+public struct MoveThisFurnitureTag
 {
     public ProtoPackedEntityWithWorld Invoker;
 }
 
 internal struct CreateGameObjectEvent
 {
-    public FurnitureType furnitureType;
+    public Type furnitureType;
     public Vector2Int position;
 }
 
@@ -47,7 +42,8 @@ internal struct MoveThisGameObjectEvent
 {
     public Vector2Int newPositionInGrid;
 }
-[Serializable, ProtoUnityAuthoring("PlacementAspect/SyncGridPositionEvent")]
+
+[Serializable]
 public struct SyncGridPositionEvent : IComponent
 {
     public List<Vector2Int> entityGridPositions;

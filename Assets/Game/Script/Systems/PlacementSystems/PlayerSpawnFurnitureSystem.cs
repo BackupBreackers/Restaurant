@@ -31,7 +31,7 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             Debug.Log("P была нажата");
 
             var emptyPlace = GetFirstEmptyCell();
-            var currentType = FurnitureType.Fridge; //временно спавню только холодильники
+            var currentType = typeof(StoveComponent); //временно спавню только холодильники
 
             //добавляю event на игрока
             if (!_placementAspect.CreateGameObjectEventPool.Has(entityPlayer))

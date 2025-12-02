@@ -7,18 +7,16 @@ using UnityEngine;
 
 public class WorkstationsAspect : ProtoAspectInject
 {
+    public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
+    public ProtoPool<ItemSourceComponent> ItemSourcePool;
+    public ProtoPool<StoveComponent> StovePool;
+    public ProtoPool<GuestTableComponent> GuestTablePool;
+    
     public ProtoPool<PickPlaceEvent> PickPlaceEventPool;
     public ProtoPool<ItemPlaceEvent> ItemPlaceEventPool;
     public ProtoPool<ItemPickEvent> ItemPickEventPool;
     public ProtoPool<PlaceWorkstationEvent> PlaceWorkstationEventPool;
     public ProtoPool<InteractedEvent> InteractedEventPool;
-    
-    
-    
-    public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
-    public ProtoPool<ItemSourceComponent> ItemSourcePool;
-    public ProtoPool<StoveComponent> StovePool;
-    public ProtoPool<GuestTableComponent> GuestTablePool;
 }
 public struct InteractedEvent 
 {

@@ -17,12 +17,12 @@ MonoBehaviour:
   outputItemType:
     rid: 8425613255053148362
   workstationType:
-    rid: 8223375674423640148
+    rid: 6709886309644107851
   Duration: 3
   references:
     version: 2
     RefIds:
-    - rid: 8223375674423640148
+    - rid: 6709886309644107851
       type: {class: Stove, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}

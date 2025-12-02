@@ -28,8 +28,3 @@ public class Stove : WorkstationItem
 {
     
 }
-[Serializable]
-public class Refreg : WorkstationItem
-{
-    
-}

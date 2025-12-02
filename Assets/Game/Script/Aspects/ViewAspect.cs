@@ -10,7 +10,7 @@ public class ViewAspect : ProtoAspectInject
     public ProtoPool<ProgressBarComponent> ProgressBarPool;
 }
 
-[Serializable, ProtoUnityAuthoring("ViewAspect/ProgressBar")]
+[Serializable]
 public struct ProgressBarComponent : IComponent
 {
     public Image Image;

@@ -22,7 +22,7 @@ public struct HolderComponent : IComponent
     public void Clear()
     {
         Item = null;
-        SpriteRenderer = null;
+        SpriteRenderer.sprite = null;
     }
 }
 
