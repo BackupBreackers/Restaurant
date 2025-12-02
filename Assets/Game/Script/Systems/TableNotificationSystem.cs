@@ -42,7 +42,7 @@ namespace Game.Script.Systems
 
                 foreach (var guestEntity in currentGuests)
                 {
-                    if (TryServiceGuest(guestEntity, ref holder))
+                    if (TryServiceGuest(guestEntity, tableEntity, ref holder))
                     {
                         break; 
                     }
@@ -50,7 +50,7 @@ namespace Game.Script.Systems
             }
         }
         
-        private bool TryServiceGuest(ProtoEntity guestEntity, ref HolderComponent holder)
+        private bool TryServiceGuest(ProtoEntity guestEntity, ProtoEntity tableEntity, ref HolderComponent holder)
         {
             ref var wantedItem = ref _guestAspect.WantedItemPool.Get(guestEntity).WantedItem;
 
@@ -61,7 +61,7 @@ namespace Game.Script.Systems
                 return false;
             _guestAspect.GuestServicedPool.Add(guestEntity);
             
-            Helper.EatItem(guestEntity, ref holder, _playerAspect);
+            Helper.EatItem(tableEntity, ref holder, _playerAspect);
             
             Debug.Log("WINWINWIN");
             return true;

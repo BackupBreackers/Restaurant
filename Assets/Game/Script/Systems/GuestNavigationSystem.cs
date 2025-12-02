@@ -8,14 +8,14 @@ using UnityEngine;
 
 public class GuestNavigationSystem : IProtoInitSystem, IProtoRunSystem
 {
-    [DIUnity("Exit")] readonly Transform ExitTransform = default;
+    [DIUnity("Exit")] private readonly Transform _exitTransform = default;
     [DI] private ProtoWorld _world;
     [DI] private GuestAspect _guestAspect;
     [DI] private WorkstationsAspect _workstationsAspect;
 
     private ProtoItExc _guestIterator;
     private ProtoIt _tableIterator;
-
+    private ProtoItExc _leavingGuestIterator;
 
     public void Init(IProtoSystems systems)
     {
@@ -24,11 +24,19 @@ public class GuestNavigationSystem : IProtoInitSystem, IProtoRunSystem
             typeof(GuestTag), typeof(TargetPositionComponent), 
         },new []
         {
-            typeof(GuestIsWalkingTag), typeof(WaitingOrderTag), typeof(WaitingTakeOrderTag)
+            typeof(GuestIsWalkingTag), typeof(WaitingOrderTag), typeof(WaitingTakeOrderTag), typeof(GuestServicedTag)
         });
         _tableIterator = new(new[] { typeof(GuestTableComponent), typeof(GuestTableIsFreeTag) });
+        _leavingGuestIterator = new(new[]
+        {
+            typeof(GuestTag), typeof(TargetPositionComponent), typeof(GuestServicedTag)
+        },new []
+        {
+            typeof(GuestIsWalkingTag), typeof(WaitingOrderTag), typeof(WaitingTakeOrderTag)
+        });
         _guestIterator.Init(_world);
         _tableIterator.Init(_world);
+        _leavingGuestIterator.Init(_world);
     }
 
     public void Run()
@@ -50,6 +58,13 @@ public class GuestNavigationSystem : IProtoInitSystem, IProtoRunSystem
                 break;
             }
             _guestAspect.GuestIsWalkingTagPool.Add(guestEntity);
+        }
+        foreach (var leavingGuestEntity in _leavingGuestIterator)
+        {
+            ref var targetPosition = ref _guestAspect.TargetPositionComponentPool.Get(leavingGuestEntity);
+            
+            targetPosition.Position = _exitTransform.position;
+            _guestAspect.GuestIsWalkingTagPool.Add(leavingGuestEntity);
         }
     }
 }

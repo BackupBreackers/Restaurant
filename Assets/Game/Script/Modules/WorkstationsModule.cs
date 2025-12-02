@@ -31,6 +31,7 @@ internal class WorkstationsModule : IProtoModule
         systems
             .AddSystem(_pickPlaceSystem)
             .AddSystem(new GuestTableSetupSystem())
+            .AddSystem(new AcceptOrderSystem())
             .AddSystem(new TableNotificationSystem())
             .AddSystem(_refrigeratorSystem)
             .AddSystem(_tableInteractionSystem)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
 {
+    [DI] GuestAspect _guestAspect;
     [DI] ProtoWorld _world;
     private ProtoIt _it;
     private ProtoIt _it2;
@@ -22,12 +23,15 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var guest in _it)
         {
             Debug.LogError("ПРОЕБАЛИ ожидание заказа");
+            _guestAspect.WaitingOrderTagPool.Del(guest);
             break;
         }
 
         foreach (var guest in _it2)
         {
             Debug.LogError("ПРОЕБАЛИ не взял заказаз, сука тварь");
+            _guestAspect.GuestServicedPool.Add(guest);
+            _guestAspect.WaitingTakeOrderTagPool.Del(guest);
             break;
         }
     }

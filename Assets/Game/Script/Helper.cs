@@ -23,9 +23,9 @@ public static class Helper
         // чтобы модель синхронизировалась с Unity GameObject (трансформом предмета).
     }
 
-    public static void EatItem(ProtoEntity guestEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
+    public static void EatItem(ProtoEntity tableEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
     {
         fromHolder.Clear();
-        playerAspect.HasItemTagPool.DelIfExists(guestEntity);
+        playerAspect.HasItemTagPool.DelIfExists(tableEntity);
     }
 }
