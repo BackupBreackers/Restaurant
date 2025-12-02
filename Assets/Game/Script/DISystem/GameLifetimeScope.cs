@@ -15,6 +15,7 @@ namespace Game.Script.DISystem
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
+            builder.Register<PlacementGrid>(Lifetime.Singleton);
             
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);
@@ -23,6 +24,11 @@ namespace Game.Script.DISystem
             builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
             builder.Register<TableInteractionSystemFactory>(Lifetime.Singleton);
             builder.Register<ClearSystemFactory>(Lifetime.Singleton);
+            builder.Register<PlayerSpawnFurnitureSystemFactory>(Lifetime.Singleton);
+            builder.Register<CreateGameObjectsSystemFactory>(Lifetime.Singleton);
+            builder.Register<MoveFurnitureSystemFactory>(Lifetime.Singleton);
+            builder.Register<MoveGameObjectSystemFactory>(Lifetime.Singleton);
+            builder.Register<SyncGridPositionSystemFactory>(Lifetime.Singleton);
             
             builder.RegisterFactory<RefrigeratorSystem>(container =>
                 container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -44,8 +50,24 @@ namespace Game.Script.DISystem
             
             builder.RegisterFactory<ClearSystem>(container =>
                 container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-            
+
+            builder.RegisterFactory<PlayerSpawnFurnitureSystem>(container =>
+                container.Resolve<PlayerSpawnFurnitureSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<CreateGameObjectsSystem>(container =>
+                container.Resolve<CreateGameObjectsSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<MoveFurnitureSystem>(container =>
+                container.Resolve<MoveFurnitureSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<MoveGameObjectSystem>(container =>
+                container.Resolve<MoveGameObjectSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<SyncGridPositionSystem>(container =>
+                container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
             builder.Register<WorkstationsModule>(Lifetime.Singleton);
+            builder.Register<PlacementModule>(Lifetime.Singleton);
             builder.Register<PhysicsModule>(Lifetime.Singleton);
         }
     }

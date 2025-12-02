@@ -8,8 +8,11 @@ using UnityEngine;
 internal class PlacementAspect : ProtoAspectInject
 {
     public ProtoPool<FurnitureComponent> FurniturePool;
-    public ProtoPool<PlacementGridComponent> PlacementGridPool;
-    public ProtoPool<MoveStateComponent> MoveStatePool;
+    public ProtoPool<PlacementTransformComponent> PlacementTransformPool;
+    public ProtoPool<MoveThisFurnitureEvent> MoveThisFurnitureEventPool;
+    public ProtoPool<CreateGameObjectEvent> CreateGameObjectEventPool;
+    public ProtoPool<MoveThisGameObjectEvent> MoveThisGameObjectEventPool;
+    public ProtoPool<SyncGridPositionEvent> SyncMyGridPositionEventPool;
 }
 
 public enum FurnitureType
@@ -18,25 +21,34 @@ public enum FurnitureType
     Fridge,
     Table
 }
-
-[Serializable, ProtoUnityAuthoring("PlacementAspect/Furniture")]
-internal struct FurnitureComponent
+[Serializable, ProtoUnityAuthoring("PlacementAspect/PlacementTransformComponent")]
+public struct PlacementTransformComponent : IComponent
 {
-    public FurnitureType Type;
-    public GameObject ThisGameObject;
-    public Vector2Int PositionInGrid;
+    public Transform transform;
+}
+[Serializable, ProtoUnityAuthoring("PlacementAspect/FurnitureComponent")]
+public struct FurnitureComponent : IComponent
+{
+    public FurnitureType type;
 }
 
-[Serializable, ProtoUnityAuthoring("PlacementAspect/PlacementGrid")]
-internal struct PlacementGridComponent
-{
-    public Vector3 GridStartPosition;
-    public Vector2Int GridSize;
-    public int CellSize;
-    public FurnitureComponent[][] GridData;
-}
-
-internal struct MoveStateComponent
+internal struct MoveThisFurnitureEvent
 {
     public ProtoPackedEntityWithWorld Invoker;
+}
+
+internal struct CreateGameObjectEvent
+{
+    public FurnitureType furnitureType;
+    public Vector2Int position;
+}
+
+internal struct MoveThisGameObjectEvent
+{
+    public Vector2Int newPositionInGrid;
+}
+[Serializable, ProtoUnityAuthoring("PlacementAspect/SyncGridPositionEvent")]
+public struct SyncGridPositionEvent : IComponent
+{
+    public List<Vector2Int> entityGridPositions;
 }

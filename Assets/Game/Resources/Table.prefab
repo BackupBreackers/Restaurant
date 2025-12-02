@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4718937926506782110}
   - component: {fileID: 6516550699329612071}
+  - component: {fileID: 1218517130466121298}
   - component: {fileID: 1387410222696992548}
   - component: {fileID: 600596794963983334}
   - component: {fileID: 4781637604407680465}
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9195784874728175871}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd2e3b9377ea4b6b9d83eb1bc17d15a7, type: 3}
   m_Name: 
@@ -167,6 +168,66 @@ MonoBehaviour:
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 5618560073224818768}
+--- !u!114 &1218517130466121298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195784874728175871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
+  _worldName: 
+  _authoringType: 0
+  _destroyAfterAuthoring: 1
+  Components:
+  - rid: 6222297960297791572
+  - rid: 6222297960297791573
+  - rid: 6222297960297791574
+  - rid: 6222297960297791575
+  - rid: 6222297960297791576
+  - rid: 6222297960297791577
+  - rid: 6222297960297791578
+  - rid: 6222297960297791579
+  references:
+    version: 2
+    RefIds:
+    - rid: 6222297960297791572
+      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 6222297960297791573
+      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        SpriteRenderer: {fileID: 1387410222696992548}
+        OutlineController: {fileID: 4781637604407680465}
+    - rid: 6222297960297791574
+      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody2D: {fileID: 255365096448145633}
+    - rid: 6222297960297791575
+      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
+      data:
+        SpriteRenderer: {fileID: 5618560073224818768}
+    - rid: 6222297960297791576
+      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 4718937926506782110}
+    - rid: 6222297960297791577
+      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
+      data:
+        type: 2
+    - rid: 6222297960297791578
+      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
+      data:
+        entityGridPositions: []
+    - rid: 6222297960297791579
+      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
 --- !u!212 &1387410222696992548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +275,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b668f3ba874b8064b8f170c700b120bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dbc3395099105684e889de3b9f387fc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -259,17 +320,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.27449822, y: -0.2833526}
+  m_Offset: {x: 0, y: -0.23}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 1.26, y: 1.48}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.6906714, y: 1.5667052}
+  m_Size: {x: 1.26, y: 1.04}
   m_EdgeRadius: 0
 --- !u!114 &4781637604407680465
 MonoBehaviour:

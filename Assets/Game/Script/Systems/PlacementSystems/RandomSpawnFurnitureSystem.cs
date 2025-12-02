@@ -2,7 +2,7 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
-
+/*
 public class RandomSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
     private ProtoIt _iteratorPlayer;
@@ -92,3 +92,4 @@ public class RandomSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
         return grid.GridData;
     }
 }
+*/
