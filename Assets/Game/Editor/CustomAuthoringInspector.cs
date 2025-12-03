@@ -6,17 +6,17 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(MyAuthoring), true)]
-public class MyAuthoringInspector : Editor
+[CustomEditor(typeof(CustomAuthoring), true)]
+public class CustomAuthoringInspector : Editor
 {
-    MyAuthoring _authoring;
+    CustomAuthoring _authoring;
     readonly Slice<object> _componentsCache = new();
     static string _filter = "";
 
     void OnEnable()
     {
         // ⭐ Инициализация MyAuthoring
-        _authoring = (MyAuthoring)target;
+        _authoring = (CustomAuthoring)target;
     }
 
     public override void OnInspectorGUI()
@@ -61,10 +61,10 @@ public class MyAuthoringInspector : Editor
         // Обновляем SerializedObject перед началом работы
         serializedObject.Update(); 
         
-        var componentsProperty = serializedObject.FindProperty(nameof(MyAuthoring.Components));
+        var componentsProperty = serializedObject.FindProperty(nameof(CustomAuthoring.Components));
 
         // 1. Рисуем все поля, кроме скрипта и списка Components
-        DrawPropertiesExcluding(serializedObject, "m_Script", nameof(MyAuthoring.Components));
+        DrawPropertiesExcluding(serializedObject, "m_Script", nameof(CustomAuthoring.Components));
         
         EditorGUILayout.Space();
 
@@ -116,7 +116,7 @@ public class MyAuthoringInspector : Editor
                     EditorGUI.indentLevel++;
                     
                     // ⭐ Рендерим поля компонента БЕЗ СТАНДАРТНОГО ЗАГОЛОВКА "Element 0"
-                    EditorGUILayout.PropertyField(elementProperty, GUIContent.none, true); 
+                    EditorGUILayout.PropertyField(elementProperty, GUIContent.none, false);
                     
                     EditorGUI.indentLevel--;
                 }
