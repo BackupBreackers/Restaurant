@@ -2,6 +2,7 @@ using Game.Script.Factories;
 using Game.Script.Modules;
 using Game.Script.Systems;
 using UnityEngine;
+using UnityEngine.Playables;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,12 +11,14 @@ namespace Game.Script.DISystem
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private Grid grid;
+        [SerializeField] private PlayableDirector playableDirector;
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<Main>();
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
+            builder.RegisterInstance(playableDirector).AsSelf();
 
             builder.RegisterComponent(grid);
             builder.Register<PlacementGrid>(Lifetime.Singleton);
