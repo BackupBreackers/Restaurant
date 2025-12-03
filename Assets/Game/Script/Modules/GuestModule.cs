@@ -19,11 +19,14 @@ namespace Game.Script.Modules
             systems
                 .AddSystem(_groupGenerationSystem)
                 .AddSystem(new GuestGroupTableResolveSystem())
-                .AddSystem(new GuestNavigationSystem())
+                .AddSystem(new GuestNavigateToTableSystem())
                 .AddSystem(new GuestMovementSystem())
+                .AddSystem(new GroupArrivingRegistrySystem())
                 .AddSystem(new GuestWaitingSystem())
                 .AddSystem(new GuestsDestroyerSystem())
-                .AddSystem(new EndGameSystem());
+                .AddSystem(new EndGameSystem())
+                .AddSystem(new GuestNavigateToDestroySystem())
+                .AddSystem(new PositionToTransformSystem());
         }
 
         public IProtoAspect[] Aspects()

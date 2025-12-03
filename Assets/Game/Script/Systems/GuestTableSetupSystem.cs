@@ -42,7 +42,7 @@ public class GuestTableSetupSystem : IProtoInitSystem, IProtoRunSystem
             
             table.guestPlaces = tempPlaces.ToArray();
             
-            table.Guests ??= new List<ProtoPackedEntityWithWorld>();
+            //table.Guests ??= new List<ProtoPackedEntityWithWorld>();
         }
     }
 

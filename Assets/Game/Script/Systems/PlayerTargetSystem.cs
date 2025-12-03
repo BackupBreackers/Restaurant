@@ -94,26 +94,6 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                     }
                 }
             }
-
-            // foreach (var entityGuest in _iteratorGuest)
-            // {
-            //     ref PositionComponent guestPosition = ref _physicsAspect.PositionPool.Get(entityGuest);
-            //     //ref InteractableComponent guestInteractable = ref _guestAspect.InteractableComponentPool.Get(entityGuest);
-            //
-            //     var distance = Vector2.Distance(guestPosition.Position, playerPosition.Position);
-            //     if (!(distance < range)) continue;
-            //     var vector = guestPosition.Position - playerPosition.Position;
-            //     var angle = Vector2.SignedAngle(vector, playerInput.LookDirection);
-            //     var absAngle = Mathf.Abs(angle);
-            //
-            //     if (!(absAngle < 60)) continue;
-            //     // guestInteractable.OutlineController.SetHighlight(true);
-            //
-            //     if (!playerInput.InteractPressed) continue;
-            //     
-            //     if (!_workstationsAspect.InteractedEventPool.Has(entityGuest))
-            //         _workstationsAspect.InteractedEventPool.Add(entityGuest);
-            // }
         }
     }
 }

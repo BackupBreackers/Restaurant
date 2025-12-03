@@ -11,6 +11,12 @@ namespace Game.Script.Aspects
         public ProtoPool<TargetGroupSize>  TargetGroupSizePool;
         public ProtoPool<GroupNeedsTableTag> GroupNeedsTablePool;
         public ProtoPool<GroupGotTableEvent> GroupGotTableEventPool;
+        public ProtoPool<GroupArrivedEvent> GroupArrivedEventPool;
+        public ProtoPool<GuestGroupServedEvent> GuestGroupServedEventPool;
+        public ProtoPool<GroupIsWalkingTag> GroupIsWalkingPool;
+        public ProtoPool<WaitingTakeOrderTag>  WaitingTakeOrderTagPool;
+        public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
+        public ProtoPool<GuestGroupServedTag> GuestGroupServedTagPool;
     }
 
     [Serializable]
@@ -24,6 +30,20 @@ namespace Game.Script.Aspects
     }
 
     [Serializable]
+    public struct GroupArrivedEvent : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GuestGroupServedTag : IComponent
+    {
+    }
+    
+    public struct WaitingOrderTag :IComponent
+    {
+    }
+    
+    [Serializable]
     public struct GuestGroupTag : IComponent
     {
         public List<ProtoPackedEntityWithWorld> includedGuests;
@@ -32,6 +52,16 @@ namespace Game.Script.Aspects
 
     [Serializable]
     public struct GroupNeedsTableTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct WaitingTakeOrderTag : IComponent
+    {
+    }
+
+    [Serializable]
+    public struct GroupIsWalkingTag : IComponent
     {
     }
 

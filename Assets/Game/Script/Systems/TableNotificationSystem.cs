@@ -11,6 +11,7 @@ namespace Game.Script.Systems
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private PlayerAspect _playerAspect;
         [DI] private GuestAspect _guestAspect;
+        [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private BaseAspect _baseAspect;
         private ProtoIt _tablesIterator;
 
@@ -30,22 +31,43 @@ namespace Game.Script.Systems
             foreach (var tableEntity in _tablesIterator)
             {
                 ref var tableComponent = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
-                ref var holder = ref _playerAspect.HolderPool.Get(tableEntity);
-
-                if (tableComponent.Guests is null || tableComponent.Guests.Count == 0) 
-                    continue;
-
-                var currentGuests = new List<ProtoEntity>();
-                foreach (var packedGuest in tableComponent.Guests)
-                    if (packedGuest.TryUnpack(out _, out var guestEntity))
-                        currentGuests.Add(guestEntity);
-
-                foreach (var guestEntity in currentGuests)
+                if (!tableComponent.GuestGroup.TryUnpack(out _, out var guestGroupEntity))
                 {
-                    if (TryServiceGuest(guestEntity, tableEntity, ref holder))
+                    Debug.LogWarning("Не получилось извлечь группу!");
+                    continue;
+                }
+                ref var holder = ref _playerAspect.HolderPool.Get(tableEntity);
+                var group = _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
+                var packedGuests = group.includedGuests;
+
+                foreach (var packedGuest in packedGuests)
+                    if (packedGuest.TryUnpack(out _, out var guestEntity))
                     {
-                        break; 
+                        if (TryServiceGuest(guestEntity, tableEntity, ref holder))
+                        {
+                            Debug.Log("Гость хавает");
+                            break;
+                        }
                     }
+                
+                var isEverybodyServed = true;
+                foreach (var packedGuest in packedGuests)
+                    if (packedGuest.TryUnpack(out _, out var guestEntity))
+                    {
+                        if (!_guestAspect.GuestServicedPool.Has(guestEntity))
+                        {
+                            isEverybodyServed = false;
+                            break;
+                        }
+                    }
+
+                if (isEverybodyServed)
+                {
+                    Debug.Log("Гости поели, щяс уйдут");
+                    _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
+                    _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
+                    _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
+                    _baseAspect.TimerCompletedPool.Add(guestGroupEntity);
                 }
             }
         }

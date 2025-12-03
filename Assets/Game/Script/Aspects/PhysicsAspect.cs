@@ -10,6 +10,7 @@ internal class PhysicsAspect : ProtoAspectInject
     public ProtoPool<Rigidbody2DComponent> Rigidbody2DPool;
     public ProtoPool<MovementSpeedComponent> MovementSpeedPool;
     public ProtoPool<GridPositionComponent> GridPositionPool;
+    public ProtoPool<UnityTransformRef> UnityTransformPool;
 }
 
 [Serializable]
@@ -34,4 +35,10 @@ public struct Rigidbody2DComponent : IComponent
 public struct MovementSpeedComponent : IComponent
 {
     public float Value;
+}
+
+[Serializable]
+public struct UnityTransformRef : IComponent
+{
+    public Transform Transform;
 }
