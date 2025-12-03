@@ -35,6 +35,7 @@ internal class WorkstationsModule : IProtoModule
             .AddSystem(_refrigeratorSystem)
             .AddSystem(_tableInteractionSystem)
             .AddSystem(_stoveSystem)
+            .AddSystem(new ProgressBarSystem())
             .AddSystem(_clearSystem, 999);
     }
 

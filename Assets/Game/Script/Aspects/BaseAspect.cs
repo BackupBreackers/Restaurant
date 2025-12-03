@@ -6,7 +6,7 @@ using Leopotam.EcsProto.Unity;
 public class BaseAspect : ProtoAspectInject
 {
     public ProtoPool<TimerComponent> TimerPool;
-    public ProtoPool<TimerCompletedTag> TimerCompletedPool;
+    public ProtoPool<TimerCompletedEvent> TimerCompletedPool;
 }
 
 public interface IComponent
@@ -21,6 +21,6 @@ public struct TimerComponent
     public bool Completed;
 }
 
-public struct TimerCompletedTag
+public struct TimerCompletedEvent
 {
 }

@@ -16,7 +16,7 @@ namespace Game.Script.Systems
         public void Init(IProtoSystems systems)
         {
             _iterator = new(new[] { typeof(TimerComponent), typeof(ProgressBarComponent) });
-            _iteratorDel = new(new[] { typeof(TimerCompletedTag), typeof(ProgressBarComponent) });
+            _iteratorDel = new(new[] { typeof(TimerCompletedEvent), typeof(ProgressBarComponent) });
             _iterator.Init(_world);
             _iteratorDel.Init(_world);
         }

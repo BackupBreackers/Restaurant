@@ -11,8 +11,8 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
 
     public void Init(IProtoSystems systems)
     {
-        _it = new(new[] { typeof(WaitingOrderTag), typeof(TimerCompletedTag)});
-        _it2 = new(new[] { typeof(WaitingTakeOrderTag), typeof(TimerCompletedTag)});
+        _it = new(new[] { typeof(WaitingOrderTag), typeof(TimerCompletedEvent)});
+        _it2 = new(new[] { typeof(WaitingTakeOrderTag), typeof(TimerCompletedEvent)});
         _it.Init(_world);
         _it2.Init(_world);
     }

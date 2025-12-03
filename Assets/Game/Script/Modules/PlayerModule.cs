@@ -7,10 +7,9 @@ class PlayerModule : IProtoModule
     public void Init(IProtoSystems systems)
     {
         systems
-            .AddSystem(new TimerSystem()) // пока лагает,
+            .AddSystem(new TimerSystem())
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
-            .AddSystem(new ProgressBarSystem())
             .AddSystem(new PlayerTargetSystem());
     }
 
