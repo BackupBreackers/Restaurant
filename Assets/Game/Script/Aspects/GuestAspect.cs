@@ -10,6 +10,7 @@ namespace Game.Script.Aspects
         public ProtoPool<TargetPositionComponent> TargetPositionComponentPool;
         public ProtoPool<GuestTableComponent> GuestTablePool;
         public ProtoPool<WantedItemComponent> WantedItemPool;
+        public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
         public ProtoPool<WaitingTakeOrderTag>  WaitingTakeOrderTagPool;
@@ -51,6 +52,12 @@ namespace Game.Script.Aspects
     [Serializable]
     public struct WaitingTakeOrderTag : IComponent
     {
+    }
+
+    [Serializable]
+    public struct GuestGroupComponent : IComponent
+    {
+        public ProtoPackedEntityWithWorld GuestGroup;
     }
 
     [Serializable]

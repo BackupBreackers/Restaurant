@@ -1,4 +1,5 @@
 using Game.Script.Factories;
+using Game.Script.Modules;
 using Game.Script.Systems;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Game.Script.DISystem
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private Grid grid;
+        [SerializeField] private GameObject guestPrefab;
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<Main>();
@@ -19,7 +21,7 @@ namespace Game.Script.DISystem
 
             builder.RegisterComponent(grid);
             builder.Register<PlacementGrid>(Lifetime.Singleton);
-            
+            builder.RegisterComponent(guestPrefab);
             
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);
@@ -33,6 +35,7 @@ namespace Game.Script.DISystem
             builder.Register<MoveFurnitureSystemFactory>(Lifetime.Singleton);
             builder.Register<MoveGameObjectSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystemFactory>(Lifetime.Singleton);
+            builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
             
             builder.RegisterFactory<RefrigeratorSystem>(container =>
                 container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -69,10 +72,14 @@ namespace Game.Script.DISystem
 
             builder.RegisterFactory<SyncGridPositionSystem>(container =>
                 container.Resolve<SyncGridPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            
+            builder.RegisterFactory<GroupGenerationSystem>(container =>
+                container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.Register<WorkstationsModule>(Lifetime.Singleton);
             builder.Register<PlacementModule>(Lifetime.Singleton);
             builder.Register<PhysicsModule>(Lifetime.Singleton);
+            builder.Register<GuestModule>(Lifetime.Singleton);
         }
     }
 }
