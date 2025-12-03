@@ -11,6 +11,7 @@ namespace Game.Script.Systems
     {
         [DI] private GuestGroupAspect _guestGroupAspect;
         [DI] private GuestAspect _guestAspect;
+        [DI] private ProtoWorld _world;
         
         private readonly GameObject _guestPrefab;
         private ProtoIt _groupsToGenerateIterator;
@@ -22,22 +23,28 @@ namespace Game.Script.Systems
 
         public void Init(IProtoSystems systems)
         {
-            var world = systems.World();
             _groupsToGenerateIterator = new(new[]
             {
                 typeof(GuestGroupTag), typeof(TargetGroupSize)
             });
-            _groupsToGenerateIterator.Init(world);
+            _groupsToGenerateIterator.Init(_world);
         }
 
         public void Run()
         {
             foreach (var groupEntity in _groupsToGenerateIterator)
             {
+                Debug.Log("создаём гостей");
                 var numberOfGuests = _guestGroupAspect.TargetGroupSizePool.Get(groupEntity).size;
                 var guests = CreateGuests(numberOfGuests);
-                foreach (var guest in guests)
-                    _guestAspect.GuestGroupComponentPool.Add(groupEntity);
+                foreach (var packed in guests)
+                {
+                    if (packed.TryUnpack(out _, out var guestEntity))
+                    {
+                        ref var groupComp = ref _guestAspect.GuestGroupComponentPool.Add(guestEntity);
+                        groupComp.GuestGroup = _world.PackEntityWithWorld(groupEntity);
+                    }
+                }
                 ref var groupGuests = ref _guestGroupAspect.GuestGroupPool.Get(groupEntity);
                 groupGuests.includedGuests = guests;
                 _guestGroupAspect.TargetGroupSizePool.Del(groupEntity);
@@ -49,8 +56,8 @@ namespace Game.Script.Systems
             var guests = new List<ProtoPackedEntityWithWorld>();
             for (var i = 0; i < numberOfGuests; ++i)
             {
-                var go = GameObject.Instantiate(_guestPrefab);
-                var authoring = go.GetComponent<MyAuthoring>();
+                var go = Object.Instantiate(_guestPrefab);
+                var authoring = go.GetComponent<CustomAuthoring>();
 
                 authoring.ProcessAuthoring();
 
