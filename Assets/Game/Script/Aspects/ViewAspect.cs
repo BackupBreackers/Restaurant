@@ -15,8 +15,7 @@ public struct ProgressBarComponent : IComponent
 {
     public Image Image;
     public bool IsActive;
-    public Color StartColor;
-    public Color EndColor;
+    public Gradient Gradient;
 
     public void HideComponent()
     {
