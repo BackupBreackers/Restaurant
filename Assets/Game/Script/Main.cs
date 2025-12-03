@@ -33,7 +33,7 @@ public class Main : MonoBehaviour
             new PlayerModule(),
             container.Resolve<WorkstationsModule>(),
             container.Resolve<PlacementModule>(),
-            new GuestModule());
+            container.Resolve<GuestModule>());
 
         var combinedModules = new ProtoModules(physicsSystemModules.Modules()
             .Concat(mainSystemModules.Modules())

@@ -21,8 +21,9 @@ namespace Game.Script.Systems
         {
             _startWaitingTakeOrderIt = new(new[]
             {
-                typeof(GuestTag), typeof(ReachedTargetPositionEvent)
-            }, new[] { typeof(TimerComponent), typeof(WaitingTakeOrderTag), typeof(WaitingOrderTag) });
+                typeof(GuestTag), typeof(ReachedTargetPositionEvent) // Переделать здесь на проверку системы, а не отдельных гостей
+            }, new[] { typeof(TimerComponent), typeof(WaitingTakeOrderTag), typeof(WaitingOrderTag),
+                typeof(GuestServicedTag) });
 
             _startWaitingOrderIt = new(new[]
             {

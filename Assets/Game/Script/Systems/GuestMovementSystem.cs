@@ -44,6 +44,7 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
 
             ref var movementSpeed = ref _physicsAspect.MovementSpeedPool.Get(guestEntity);
 
+            rb.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
             var direction = (targetPosition - guestPosition).normalized;
             rb.Rigidbody2D.linearVelocity = direction * movementSpeed.Value;
         }
