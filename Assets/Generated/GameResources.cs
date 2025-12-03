@@ -42,6 +42,7 @@ public class GameResources
     }
     public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
+    public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public ProtoUnityAuthoring Player => Resources.Load<ProtoUnityAuthoring>("Player");
