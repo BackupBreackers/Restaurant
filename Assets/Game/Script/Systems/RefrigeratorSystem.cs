@@ -3,65 +3,58 @@ using Game.Script;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
+using Object = System.Object;
 
 public class RefrigeratorSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
-    [DI] readonly WorkstationsAspect _workstationsAspect = default;
-    [DI] readonly PlayerAspect _playerAspect = default;
+    [DI] readonly WorkstationsAspect _workstationsAspect;
+    [DI] readonly PlayerAspect _playerAspect;
+    [DI] private ProtoWorld _world;
 
+    private ProtoIt _refrigeratorIt;
     private readonly PickableService _pickableService;
-    private ProtoIt _iterator;
-    private ProtoWorld _world;
 
     public RefrigeratorSystem(PickableService pickableService) =>
-        this._pickableService = pickableService;
+        _pickableService = pickableService;
 
     public void Init(IProtoSystems systems)
     {
-        _world = systems.World();
-        _iterator = new(new[] { typeof(ItemSourceComponent), typeof(PickPlaceEvent) });
-        _iterator.Init(_world);
+        _refrigeratorIt = new(new[] { typeof(ItemSourceComponent), typeof(PickPlaceEvent) });
+        _refrigeratorIt.Init(_world);
     }
 
     public void Run()
     {
-        foreach (ProtoEntity sourceEntity in _iterator)
+        foreach (var refrigeratorEntity in _refrigeratorIt)
         {
-            ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(sourceEntity);
-            ref var interacted = ref _workstationsAspect.PickPlaceEventPool.Get(sourceEntity);
+            ref var itemSource = ref _workstationsAspect.ItemSourcePool.Get(refrigeratorEntity);
+            ref var interacted = ref _workstationsAspect.PickPlaceEventPool.Get(refrigeratorEntity);
 
-            if (!interacted.Invoker.TryUnpack(out _, out var playerEntity)) continue;
-
+            if (!interacted.Invoker.TryUnpack(out _, out var playerEntity)) 
+                continue;
+            
+            if (!_playerAspect.HolderPool.Has(playerEntity)) 
+                continue;
+            
             ref var playerHolder = ref _playerAspect.HolderPool.Get(playerEntity);
-
             if (playerHolder.Item is not null)
             {
-                Debug.Log("Руки заняты, не могу взять мясо!");
+                Debug.Log($"[{refrigeratorEntity}] Руки заняты, не могу взять {itemSource.resourceItemType.GetType().Name}!");
+                continue; 
             }
-            else
-            {
-                SpawnItemForPlayer(itemSource.resourceItemType.GetType(), playerEntity, ref playerHolder);
-            }
-
-            _workstationsAspect.PickPlaceEventPool.DelIfExists(sourceEntity);
-        }
-    }
-
-    private void SpawnItemForPlayer(Type item, ProtoEntity playerEntity, ref HolderComponent playerHolder)
-    {
-        playerHolder.Item = item;
-        Debug.Log("Spawn Item");
-        if (_pickableService.TryGetPickable(item, out var pickable))
-        {
-            Debug.Log("Item Found");
-            playerHolder.SpriteRenderer.sprite = pickable.PickupItemSprite;
             
+            var resourceType = itemSource.resourceItemType.GetType();
+            
+            if (_pickableService.TryGetPickable(resourceType, out var pickableItem))
+                Helper.CreateItem(playerEntity, ref playerHolder, _playerAspect, pickableItem);
+            else
+                Debug.LogError($"Не удалось найти PickableItem для типа {resourceType.Name}!");
         }
-        _playerAspect.HasItemTagPool.Add(playerEntity);
     }
+
 
     public void Destroy()
     {
-        _iterator = null;
+        _refrigeratorIt = null;
     }
 }

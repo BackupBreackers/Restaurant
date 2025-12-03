@@ -34,7 +34,7 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
             var position2D = new Vector2(component.position.x*worldGrid.PlacementZoneCellSize.x,
                 component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2;
             var obj = GameObject.Instantiate(furn,new Vector3(position2D.x,position2D.y,0),Quaternion.identity);
-            worldGrid.AddElement(component.position, obj.GetComponent<MyAuthoring>().Entity);
+            worldGrid.AddElement(component.position, obj.GetComponent<CustomAuthoring>().Entity);
 
             if (!_placementAspect.SyncMyGridPositionEventPool.Has(createEvent))
                 _placementAspect.SyncMyGridPositionEventPool.Add(createEvent);

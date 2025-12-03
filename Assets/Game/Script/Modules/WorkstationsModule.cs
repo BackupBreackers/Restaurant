@@ -9,20 +9,17 @@ internal class WorkstationsModule : IProtoModule
     RefrigeratorSystem _refrigeratorSystem;
     StoveSystem _stoveSystem;
     PickPlaceSystem _pickPlaceSystem;
-    TableInteractionSystem _tableInteractionSystem;
     ClearSystem _clearSystem;
 
     public WorkstationsModule(RefrigeratorSystemFactory refrigeratorSystemFactory,
         StoveSystemFactory stoveSystemFactory,
         PickPlaceSystemFactory pickPlaceSystemFactory,
-        TableInteractionSystemFactory tableInteractionSystemFactory,
         ClearSystemFactory clearSystemFactory
         )
     {
         _refrigeratorSystem = refrigeratorSystemFactory.CreateProtoSystem();
         _stoveSystem = stoveSystemFactory.CreateProtoSystem();
         _pickPlaceSystem = pickPlaceSystemFactory.CreateProtoSystem();
-        _tableInteractionSystem = tableInteractionSystemFactory.CreateProtoSystem();
         _clearSystem = clearSystemFactory.CreateProtoSystem();
     }
     
@@ -34,8 +31,8 @@ internal class WorkstationsModule : IProtoModule
             .AddSystem(new AcceptOrderSystem())
             .AddSystem(new TableNotificationSystem())
             .AddSystem(_refrigeratorSystem)
-            .AddSystem(_tableInteractionSystem)
             .AddSystem(_stoveSystem)
+            .AddSystem(new ProgressBarSystem())
             .AddSystem(_clearSystem, 999);
     }
 

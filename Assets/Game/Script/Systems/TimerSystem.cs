@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TimerSystem : IProtoRunSystem, IProtoInitSystem
 {
-    private ProtoIt _iteratorUpdate;
-    [DI] readonly ProtoWorld _world;
     [DI] readonly BaseAspect _aspect;
+    [DI] readonly ProtoWorld _world;
+    
+    private ProtoIt _iteratorUpdate;
 
     public void Init(IProtoSystems systems)
     {
@@ -16,7 +17,7 @@ public class TimerSystem : IProtoRunSystem, IProtoInitSystem
 
     public void Run()
     {
-        float dt = Time.deltaTime;
+        var dt = Time.deltaTime;
 
         foreach (var timerEntity in _iteratorUpdate)
         {

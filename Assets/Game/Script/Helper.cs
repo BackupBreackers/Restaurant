@@ -1,4 +1,5 @@
-﻿using Leopotam.EcsProto;
+﻿using Game.Script;
+using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 
 public static class Helper
@@ -23,9 +24,24 @@ public static class Helper
         // чтобы модель синхронизировалась с Unity GameObject (трансформом предмета).
     }
 
+<<<<<<< HEAD
     public static void EatItem(ProtoEntity tableEntity, ref HolderComponent fromHolder, PlayerAspect playerAspect)
     {
         fromHolder.Clear();
         playerAspect.HasItemTagPool.DelIfExists(tableEntity);
+=======
+    public static void EatItem(ProtoEntity guestEntity, ref HolderComponent guestHolder, PlayerAspect playerAspect)
+    {
+        guestHolder.Clear();
+        playerAspect.HasItemTagPool.DelIfExists(guestEntity);
+>>>>>>> origin/main
+    }
+    public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder, PlayerAspect playerAspect, PickableItem itemPick)
+    {
+        playerHolder.SpriteRenderer.sprite = itemPick.PickupItemSprite;
+        playerHolder.Item = itemPick.GetType();
+        
+        playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
+        
     }
 }

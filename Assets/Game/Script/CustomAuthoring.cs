@@ -11,11 +11,11 @@ using Unity.IL2CPP.CompilerServices;
 
 [DefaultExecutionOrder(10000)]
 [DisallowMultipleComponent]
-public class MyAuthoring : MonoBehaviour
+public class CustomAuthoring : MonoBehaviour
 {
-    [SerializeField] string _worldName;
-    [SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
-    [SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.GameObject;
+    [HideInInspector, SerializeField] string _worldName;
+    [HideInInspector, SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
+    [HideInInspector, SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.None;
     
     [SerializeReference, SubclassSelector] public List<IComponent> Components = new List<IComponent>();
 

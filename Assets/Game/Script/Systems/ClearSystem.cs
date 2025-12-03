@@ -25,7 +25,7 @@ namespace Game.Script.Systems
             _iteratorPick = new(new[] { typeof(ItemPickEvent) });
             _iteratorPlace = new(new[] { typeof(ItemPlaceEvent) });
             _iteratorPickPlace = new(new[] { typeof(PickPlaceEvent) });
-            _iteratorTimer = new(new[] { typeof(TimerComponent), typeof(TimerCompletedTag) });
+            _iteratorTimer = new(new[] { typeof(TimerComponent), typeof(TimerCompletedEvent) });
             _placeWorkstationIt = new(new[] { typeof(PlaceWorkstationEvent) });
             _reachedTargetPositionEventIt = new(new[] { typeof(ReachedTargetPositionEvent) });
             _interactedEventIt = new(new[] { typeof(InteractedEvent) });
@@ -48,12 +48,12 @@ namespace Game.Script.Systems
                 _workstationsAspect.ItemPlaceEventPool.Del(item);
 
             foreach (var item in _iteratorPickPlace)
-                _workstationsAspect.ItemPlaceEventPool.Del(item);
+                _workstationsAspect.PickPlaceEventPool.Del(item);
 
             foreach (var item in _iteratorTimer)
             {
-                _baseAspect.TimerPool.Del(item);
                 _baseAspect.TimerCompletedPool.Del(item);
+                _baseAspect.TimerPool.Del(item);
             }
             
             foreach (var item in _placeWorkstationIt)

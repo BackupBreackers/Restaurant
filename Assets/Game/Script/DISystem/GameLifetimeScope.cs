@@ -28,7 +28,6 @@ namespace Game.Script.DISystem
             builder.Register<PhysicsEventsHandlerSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncUnityPhysicsToEcsSystemFactory>(Lifetime.Singleton);
             builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
-            builder.Register<TableInteractionSystemFactory>(Lifetime.Singleton);
             builder.Register<ClearSystemFactory>(Lifetime.Singleton);
             builder.Register<PlayerSpawnFurnitureSystemFactory>(Lifetime.Singleton);
             builder.Register<CreateGameObjectsSystemFactory>(Lifetime.Singleton);
@@ -51,9 +50,6 @@ namespace Game.Script.DISystem
             
             builder.RegisterFactory<PickPlaceSystem>(container =>
                 container.Resolve<PickPlaceSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-            
-            builder.RegisterFactory<TableInteractionSystem>(container =>
-                container.Resolve<TableInteractionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
             
             builder.RegisterFactory<ClearSystem>(container =>
                 container.Resolve<ClearSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
