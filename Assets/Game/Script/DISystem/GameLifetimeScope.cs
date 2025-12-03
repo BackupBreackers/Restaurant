@@ -1,7 +1,6 @@
 using Game.Script.Factories;
 using Game.Script.Modules;
 using Game.Script.Systems;
-using Leopotam.EcsProto.QoL;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -11,7 +10,6 @@ namespace Game.Script.DISystem
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private Grid grid;
-        [SerializeField] private GameObject guestPrefab;
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<Main>();
@@ -21,7 +19,6 @@ namespace Game.Script.DISystem
 
             builder.RegisterComponent(grid);
             builder.Register<PlacementGrid>(Lifetime.Singleton);
-            builder.RegisterComponent(guestPrefab);
             
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);

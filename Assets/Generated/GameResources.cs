@@ -7,6 +7,10 @@ using UnityEngine.UIElements;
 
 public class GameResources
 {
+    public LevelConfigs LevelConfigsLink;
+    public class LevelConfigs
+    {
+    }
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
@@ -53,6 +57,7 @@ public class GameResources
 
     public GameResources()
     {
+        LevelConfigsLink = new LevelConfigs();
         PickableItemsLink = new PickableItems();
         RecipesLink = new Recipes();
         VisualLink = new Visual();
