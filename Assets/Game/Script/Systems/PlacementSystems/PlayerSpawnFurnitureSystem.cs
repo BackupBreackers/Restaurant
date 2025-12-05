@@ -38,14 +38,15 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
 
             playerInput.IsInPlacementMode = true;
             var emptyPlace = GetFirstEmptyCell();
-            var currentType = typeof(Fridge); //временно спавню только холодильники
+            var currentType = typeof(FridgeSpawner); //временно спавню только холодильники
 
             //добавляю event на игрока
             if (!_placementAspect.CreateGameObjectEventPool.Has(entityPlayer))
                 _placementAspect.CreateGameObjectEventPool.Add(entityPlayer);
             ref var createComponent = ref _placementAspect.CreateGameObjectEventPool.Get(entityPlayer);
-            createComponent.position = emptyPlace;
+            createComponent.gridPosition = emptyPlace;
             createComponent.furnitureType = currentType;
+            createComponent.destroyInvoker = false;
         }
     }
 

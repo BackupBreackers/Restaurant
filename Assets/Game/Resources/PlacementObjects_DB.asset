@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ba9bd26156c6642871026e2c0b6602, type: 3}
   m_Name: PlacementObjects_DB
   m_EditorClassIdentifier: Assembly-CSharp::PlacementObjectsDB
-  furnitures: []
+  furnitures:
+  - {fileID: 11400000, guid: 0582f5fbaf36c314ba3d6732decce5a4, type: 2}
+  - {fileID: 11400000, guid: f00dfe18e4e7bae459aec6e2f963c877, type: 2}
+  - {fileID: 11400000, guid: 27c41246504f39849b19fa10e20bb877, type: 2}
+  - {fileID: 11400000, guid: dd3eb506d4ad44549ba2b0a18529843c, type: 2}

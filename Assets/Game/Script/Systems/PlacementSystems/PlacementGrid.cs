@@ -18,8 +18,8 @@ public class PlacementGrid
     public PlacementGrid(Grid grid, GameResources gameResources)
     {
         PlacementZoneCellSize = new Vector2(grid.cellSize.x, grid.cellSize.y);
-        PlacementZoneWorldStart = new Vector2(PlacementZoneIndexStart.x * PlacementZoneCellSize.x,
-            PlacementZoneIndexStart.y * PlacementZoneCellSize.y);
+        PlacementZoneWorldStart = new Vector2(PlacementZoneIndexStart.x * PlacementZoneCellSize.x + grid.transform.position.x,
+            PlacementZoneIndexStart.y * PlacementZoneCellSize.y + grid.transform.position.y);
         this.gameResources = gameResources;
         workstationItems = GetWorkstationDict();
         pivotDifferences = GetPivotDifferenceDict();
@@ -42,8 +42,6 @@ public class PlacementGrid
     {
         AddElement(newPos);
         DeleteElement(lastPos);
-
-        Debug.Log(string.Join(" ", worldGrid));
     }
 
     public bool TryGetFurniturePrefab(Type type, out GameObject prefab)

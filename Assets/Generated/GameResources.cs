@@ -20,6 +20,7 @@ public class GameResources
     public class PlacementObjects
     {
         public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
+        public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
         public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
         public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
     }
@@ -52,6 +53,7 @@ public class GameResources
         }
     }
     public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
+    public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");

@@ -12,3 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f08660bcf7d1147821e0d59cb88923, type: 3}
   m_Name: PivotToRealPositionDifferences
   m_EditorClassIdentifier: Assembly-CSharp::PivotToRealPositionDifferences
+  differenceList:
+  - item:
+      rid: 6222298054940950604
+    pivotToRealPositionDifference: {x: 0, y: 0}
+  - item:
+      rid: 6222298054940950605
+    pivotToRealPositionDifference: {x: 0, y: 0.22}
+  - item:
+      rid: 6222298054940950606
+    pivotToRealPositionDifference: {x: 0, y: 0.22}
+  - item:
+      rid: 6222298054940950626
+    pivotToRealPositionDifference: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6222298054940950604
+      type: {class: Fridge, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950605
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950606
+      type: {class: Table, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298054940950626
+      type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

@@ -88,7 +88,15 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
                     }
                     else
                     {
-                        if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
+                        if (_placementAspect.SpawnerTagPool.Has(targetEntity))
+                        {
+                            if (!_placementAspect.SpawnFurnitureEventPool.Has(targetEntity))
+                            {
+                                _placementAspect.SpawnFurnitureEventPool.Add(targetEntity);
+                                ref var spawnEvent = ref _placementAspect.SpawnFurnitureEventPool.Get(targetEntity);                                
+                            }
+                        }
+                        else if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
                         {
                             _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
                             ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);

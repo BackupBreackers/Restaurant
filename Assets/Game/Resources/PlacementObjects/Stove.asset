@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Stove
   m_EditorClassIdentifier: Assembly-CSharp::PlacementObject
   workstationType:
-    rid: -2
-  prefab: {fileID: 0}
+    rid: 6222298054940950608
+  prefab: {fileID: 178823374488142866, guid: 8167e51197327314d84bae23ca57c0f4, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 6222298054940950608
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

@@ -40,3 +40,15 @@ public class Table : WorkstationItem
 {
 
 }
+
+[Serializable]
+public class Spawner : WorkstationItem
+{
+
+}
+
+[Serializable]
+public class FridgeSpawner : Spawner
+{
+
+}

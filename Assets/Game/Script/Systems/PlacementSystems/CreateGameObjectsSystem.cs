@@ -6,6 +6,7 @@ using System;
 public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
     [DI] readonly PlacementAspect _placementAspect;
+    [DI] readonly PhysicsAspect _physicsAspect;
 
     private PlacementGrid worldGrid;
     private GameResources gameResources;
@@ -21,7 +22,7 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _CreateGOIterator = new(new[] { typeof(CreateGameObjectEvent) });
+        _CreateGOIterator = new(new[] { typeof(CreateGameObjectEvent), typeof(Rigidbody2DComponent) });
         _CreateGOIterator.Init(_world);
     }
 
@@ -33,13 +34,22 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
             var furn = GetGameObject(component.furnitureType);
             var pivotDiff = new Vector2(0, 0);
             worldGrid.TryGetPivotDifference(component.furnitureType, out pivotDiff);
-            var position2D = new Vector2(component.position.x*worldGrid.PlacementZoneCellSize.x,
-                component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2
+            var position2D = new Vector2(component.gridPosition.x*worldGrid.PlacementZoneCellSize.x,
+                component.gridPosition.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2
                 + worldGrid.PlacementZoneWorldStart + pivotDiff;
             var obj = GameObject.Instantiate(furn,new Vector3(position2D.x,position2D.y,0),Quaternion.identity);
-            worldGrid.AddElement(component.position);
+            worldGrid.AddElement(component.gridPosition);
 
-            _placementAspect.CreateGameObjectEventPool.DelIfExists(createEvent);
+            ref var rig2D = ref _physicsAspect.Rigidbody2DPool.Get(createEvent);
+            if (component.destroyInvoker)
+            {
+                GameObject.Destroy(rig2D.Rigidbody2D.gameObject);
+                _world.DelEntity(createEvent);
+            }
+            else
+            {
+                _placementAspect.CreateGameObjectEventPool.DelIfExists(createEvent);
+            }
         }
     }
 

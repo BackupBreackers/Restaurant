@@ -10,7 +10,7 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     [DI] readonly PhysicsAspect _physicsAspect;
 
     private PlacementGrid worldGrid;
-    private ProtoIt _iterator;
+    private ProtoIt _iteratorEvent;
     private ProtoWorld _world;
 
     public SyncGridPositionSystem(PlacementGrid placementGrid) =>
@@ -19,29 +19,29 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(SyncGridPositionEvent), typeof(PlacementTransformComponent) });
-        _iterator.Init(_world);
+        _iteratorEvent = new(new[] { typeof(SyncGridPositionEvent), typeof(PlacementTransformComponent) });
+        _iteratorEvent.Init(_world);
     }
 
     public void Run()
     {
-        foreach (var entity in _iterator)
+        foreach (var eventEntity in _iteratorEvent)
         {
-            ref var syncComponent = ref _placementAspect.SyncMyGridPositionEventPool.Get(entity);
-            ref var transformPosition = ref _placementAspect.PlacementTransformPool.Get(entity);
+            ref var syncComponent = ref _placementAspect.SyncMyGridPositionEventPool.Get(eventEntity);
+            ref var transformPosition = ref _placementAspect.PlacementTransformPool.Get(eventEntity);
             var posInGrid = new Vector2Int(Mathf.FloorToInt(transformPosition.transform.position.x / worldGrid.PlacementZoneCellSize.x),
                 Mathf.FloorToInt(transformPosition.transform.position.y / worldGrid.PlacementZoneCellSize.y))
                 - worldGrid.PlacementZoneIndexStart;
             worldGrid.AddElement(posInGrid);
-            ref var gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(entity);
+            ref var gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(eventEntity);
             gridPositionComponent.Position = posInGrid;
 
-            _placementAspect.SyncMyGridPositionEventPool.DelIfExists(entity);
+            _placementAspect.SyncMyGridPositionEventPool.DelIfExists(eventEntity);
         }
     }
 
     public void Destroy()
     {
-        _iterator = null;
+        _iteratorEvent = null;
     }
 }

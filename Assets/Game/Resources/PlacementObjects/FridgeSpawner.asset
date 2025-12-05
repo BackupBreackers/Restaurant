@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b44386247e5d0224391f68f60a74cda6, type: 3}
-  m_Name: Table
+  m_Name: FridgeSpawner
   m_EditorClassIdentifier: Assembly-CSharp::PlacementObject
   workstationType:
-    rid: 6222298054940950607
-  prefab: {fileID: 9195784874728175871, guid: 017ae1e074c7b1a409d9bbbb1bdcb971, type: 3}
+    rid: 6222298054940950625
+  prefab: {fileID: 580955582349234919, guid: 936d46135998c2a4184dcfe65d6ed50f, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 6222298054940950607
-      type: {class: Table, ns: , asm: Assembly-CSharp}
+    - rid: 6222298054940950625
+      type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
