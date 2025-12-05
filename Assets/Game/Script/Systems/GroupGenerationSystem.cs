@@ -60,8 +60,13 @@ namespace Game.Script.Systems
                 var authoring = go.GetComponent<CustomAuthoring>();
 
                 authoring.ProcessAuthoring();
+                var entity = authoring.Entity();
+                entity.TryUnpack(out _, out var unpackedEntity);
+                
+                ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Add(unpackedEntity);
+                goRef.GameObject = go;
 
-                guests.Add(authoring.Entity());
+                guests.Add(entity);
             }
             return guests;
         }

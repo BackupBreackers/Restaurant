@@ -13,6 +13,7 @@ namespace Game.Script.Systems
         [DI] readonly BaseAspect _baseAspect;
         [DI] readonly GuestAspect _guestAspect;
         [DI] readonly WorkstationsAspect _workstationsAspect;
+        [DI] readonly GuestGroupAspect _guestGroupAspect;
 
         private ProtoItExc _startWaitingTakeOrderIt;
         private ProtoItExc _startWaitingOrderIt;
@@ -21,13 +22,13 @@ namespace Game.Script.Systems
         {
             _startWaitingTakeOrderIt = new(new[]
             {
-                typeof(GuestTag), typeof(ReachedTargetPositionEvent) // Переделать здесь на проверку системы, а не отдельных гостей
+                typeof(GroupArrivedEvent)
             }, new[] { typeof(TimerComponent), typeof(WaitingTakeOrderTag), typeof(WaitingOrderTag),
                 typeof(GuestServicedTag) });
 
             _startWaitingOrderIt = new(new[]
             {
-                typeof(GuestTag), typeof(WaitingTakeOrderTag), typeof(InteractedEvent)
+                typeof(GuestGroupTag), typeof(WaitingTakeOrderTag), typeof(InteractedEvent)
             }, new[] { typeof(WaitingOrderTag) });
 
             _startWaitingTakeOrderIt.Init(_world);
@@ -36,18 +37,20 @@ namespace Game.Script.Systems
 
         public void Run()
         {
-            foreach (var guestEntity in _startWaitingTakeOrderIt)
+            foreach (var groupEntity in _startWaitingTakeOrderIt)
             {
-                _guestAspect.WaitingTakeOrderTagPool.Add(guestEntity);
-                _playerAspect.InteractablePool.Add(guestEntity);
-                ref var timer = ref _baseAspect.TimerPool.Add(guestEntity);
+                Debug.Log("Старт ожидания");
+                _guestGroupAspect.WaitingTakeOrderTagPool.Add(groupEntity);
+                _guestGroupAspect.GroupIsWalkingPool.Del(groupEntity);
+                ref var timer = ref _baseAspect.TimerPool.Add(groupEntity);
                 timer.Duration = 10f;
             }
 
-            foreach (var guestEntity in _startWaitingOrderIt)
+            foreach (var groupEntity in _startWaitingOrderIt)
             {
-                _guestAspect.WaitingOrderTagPool.Add(guestEntity);
-                ref var timer = ref _baseAspect.TimerPool.GetOrAdd(guestEntity);
+                _guestGroupAspect.WaitingTakeOrderTagPool.Del(groupEntity);
+                _guestGroupAspect.WaitingOrderTagPool.Add(groupEntity);
+                ref var timer = ref _baseAspect.TimerPool.GetOrAdd(groupEntity);
                 timer.Elapsed = 0;
                 timer.Duration = 20f;
             }

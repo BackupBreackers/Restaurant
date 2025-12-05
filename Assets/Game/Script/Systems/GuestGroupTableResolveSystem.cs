@@ -12,6 +12,7 @@ namespace Game.Script.Systems
         [DI] private GuestAspect _guestAspect;
         [DI] private WorkstationsAspect _workstationsAspect;
         [DI] private GuestGroupAspect _guestGroupAspect;
+        [DI] private PhysicsAspect _physicsAspect;
         
         private ProtoIt _groupIterator;
         private ProtoIt _freeTablesIterator;
@@ -40,10 +41,14 @@ namespace Game.Script.Systems
                     ref var group = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
                     ref var table = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
                     group.table = _world.PackEntityWithWorld(tableEntity);
-                    table.Guests = group.includedGuests;
+                    table.GuestGroup = _world.PackEntityWithWorld(guestGroupEntity);
                     _guestAspect.GuestTableIsFreeTagPool.Del(tableEntity);
                     _guestGroupAspect.GroupNeedsTablePool.Del(guestGroupEntity);
                     _guestGroupAspect.GroupGotTableEventPool.Add(guestGroupEntity);
+                    _guestGroupAspect.GroupIsWalkingPool.Add(guestGroupEntity);
+                    
+                    ref var groupPos = ref _physicsAspect.PositionPool.Get(guestGroupEntity);
+                    groupPos.Position = _physicsAspect.PositionPool.Get(tableEntity).Position;
                     Debug.Log("Выдали группе стол");
                     break;
                 }   
