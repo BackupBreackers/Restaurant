@@ -39,7 +39,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
 
             //если игрок сейчас двигает мебель, то что-то подсвечивать не нужно
-            if (playerInput.IsInMoveState) continue;
+            if (playerInput.IsMoveFurnitureNow) continue;
 
             InteractableComponent interactableComponent = default;
             ProtoEntity targetEntity = default;
@@ -77,20 +77,23 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
                 if (playerInput.InteractPressed)
                 {
-                    if (!_workstationsAspect.PickPlaceEventPool.Has(targetEntity))
+                    if (!playerInput.IsInPlacementMode)
                     {
-                        _workstationsAspect.PickPlaceEventPool.Add(targetEntity);
-                        ref PickPlaceEvent r = ref _workstationsAspect.PickPlaceEventPool.Get(targetEntity);
-                        r.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        if (!_workstationsAspect.PickPlaceEventPool.Has(targetEntity))
+                        {
+                            _workstationsAspect.PickPlaceEventPool.Add(targetEntity);
+                            ref PickPlaceEvent r = ref _workstationsAspect.PickPlaceEventPool.Get(targetEntity);
+                            r.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        }
                     }
-                }
-                else if (playerInput.MoveFurniturePressed)
-                {
-                    if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
+                    else
                     {
-                        _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
-                        ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
-                        m.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
+                        {
+                            _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
+                            ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
+                            m.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        }
                     }
                 }
             }

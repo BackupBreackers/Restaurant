@@ -19,7 +19,7 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(SyncGridPositionEvent), typeof(PositionComponent) });
+        _iterator = new(new[] { typeof(SyncGridPositionEvent), typeof(PlacementTransformComponent) });
         _iterator.Init(_world);
     }
 
@@ -28,9 +28,10 @@ public class SyncGridPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoD
         foreach (var entity in _iterator)
         {
             ref var syncComponent = ref _placementAspect.SyncMyGridPositionEventPool.Get(entity);
-            ref var transformPosition = ref _physicsAspect.PositionPool.Get(entity);
-            var posInGrid = new Vector2Int((int)(transformPosition.Position.x / worldGrid.PlacementZoneCellSize.x),
-                (int)(transformPosition.Position.y / worldGrid.PlacementZoneCellSize.y));
+            ref var transformPosition = ref _placementAspect.PlacementTransformPool.Get(entity);
+            var posInGrid = new Vector2Int(Mathf.FloorToInt(transformPosition.transform.position.x / worldGrid.PlacementZoneCellSize.x),
+                Mathf.FloorToInt(transformPosition.transform.position.y / worldGrid.PlacementZoneCellSize.y))
+                - worldGrid.PlacementZoneIndexStart;
             worldGrid.AddElement(posInGrid);
             ref var gridPositionComponent = ref _physicsAspect.GridPositionPool.Get(entity);
             gridPositionComponent.Position = posInGrid;

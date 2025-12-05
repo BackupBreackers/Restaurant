@@ -42,6 +42,8 @@ public class PlacementGrid
     {
         AddElement(newPos);
         DeleteElement(lastPos);
+
+        Debug.Log(string.Join(" ", worldGrid));
     }
 
     public bool TryGetFurniturePrefab(Type type, out GameObject prefab)

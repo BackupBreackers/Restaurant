@@ -35,7 +35,7 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
             worldGrid.TryGetPivotDifference(component.furnitureType, out pivotDiff);
             var position2D = new Vector2(component.position.x*worldGrid.PlacementZoneCellSize.x,
                 component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2
-                + pivotDiff;
+                + worldGrid.PlacementZoneWorldStart + pivotDiff;
             var obj = GameObject.Instantiate(furn,new Vector3(position2D.x,position2D.y,0),Quaternion.identity);
             worldGrid.AddElement(component.position);
 

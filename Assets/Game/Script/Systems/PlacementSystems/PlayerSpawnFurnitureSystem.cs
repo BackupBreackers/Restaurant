@@ -30,6 +30,13 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
 
             Debug.Log("P была нажата");
 
+            if (playerInput.IsInPlacementMode)
+            {
+                playerInput.IsInPlacementMode = false;
+                continue;
+            }
+
+            playerInput.IsInPlacementMode = true;
             var emptyPlace = GetFirstEmptyCell();
             var currentType = typeof(Fridge); //временно спавню только холодильники
 
@@ -47,7 +54,7 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
         for (int x = 0; x < worldGrid.PlacementZoneSize.x; x++)
             for (int y = 0; y < worldGrid.PlacementZoneSize.y; y++)
             {
-                var v = new Vector2Int(x, y) + worldGrid.PlacementZoneIndexStart;
+                var v = new Vector2Int(x, y);
                 if (!worldGrid.IsContains(v))
                     return v;
             }

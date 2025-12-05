@@ -35,19 +35,20 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
             ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
             ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
 
-            if (playerInput.MoveFurniturePressed)
+            if (playerInput.InteractPressed)
             {
-                if (playerInput.IsInMoveState)
+                if (playerInput.IsMoveFurnitureNow)
                 {
-                    playerInput.IsInMoveState = false;
+                    playerInput.IsMoveFurnitureNow = false;
                     _placementAspect.MoveThisFurnitureEventPool.DelIfExists(furn);
                     continue;
                 }
-                playerInput.IsInMoveState = true;
+                playerInput.IsMoveFurnitureNow = true;
             }
 
             var newFurnPosition = GetNearestGridViewedCell(worldGrid, ref playerInput, playerPosition, gridPosition.Position);
             if (newFurnPosition == gridPosition.Position) continue; 
+            Debug.Log(gridPosition.Position + " " +  newFurnPosition);
             worldGrid.SwitchElement(gridPosition.Position,newFurnPosition);
             gridPosition.Position = newFurnPosition;
 
