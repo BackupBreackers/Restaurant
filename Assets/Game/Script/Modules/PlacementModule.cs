@@ -31,7 +31,8 @@ public class PlacementModule : IProtoModule
             .AddSystem(createGameObjectsSystem)
             .AddSystem(moveFurnitureSystem)
             .AddSystem(moveGameObjectSystem)
-            .AddSystem(syncGridPositionSystem);
+            .AddSystem(syncGridPositionSystem)
+            .AddSystem(new SpawnerInteractSystem());
     }
 
     public IProtoAspect[] Aspects()

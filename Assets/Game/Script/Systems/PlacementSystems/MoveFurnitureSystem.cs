@@ -10,7 +10,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
     [DI] readonly PhysicsAspect _physicsAspect;
 
     private PlacementGrid worldGrid;
-    private ProtoIt _iterator;
+    private ProtoIt _iteratorFurniture;
     private ProtoWorld _world;
 
     public MoveFurnitureSystem(PlacementGrid placementGrid) =>
@@ -19,32 +19,33 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
     public void Init(IProtoSystems systems)
     {
         _world = systems.World();
-        _iterator = new(new[] { typeof(MoveThisFurnitureTag), typeof(GridPositionComponent) });
-        _iterator.Init(_world);
+        _iteratorFurniture = new(new[] { typeof(MoveThisFurnitureTag), typeof(GridPositionComponent) });
+        _iteratorFurniture.Init(_world);
     }
 
     public void Run()
     {
-        foreach (var furn in _iterator)
+        foreach (var furn in _iteratorFurniture)
         {
-            ref var moveComponent = ref _placementAspect.MoveThisFurnitureEventPool.Get(furn);
+            ref var moveEvent = ref _placementAspect.MoveThisFurnitureEventPool.Get(furn);
             //получаем игрока
-            moveComponent.Invoker.TryUnpack(out _, out var playerEntity);
+            moveEvent.Invoker.TryUnpack(out _, out var playerEntity);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(playerEntity);
-            ref var furnComponent = ref _placementAspect.FurniturePool.Get(furn);
-            ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
-            ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
 
-            if (playerInput.MoveFurniturePressed)
+            if (playerInput.InteractPressed)
             {
-                if (playerInput.IsInMoveState)
+                if (playerInput.IsMoveFurnitureNow)
                 {
-                    playerInput.IsInMoveState = false;
+                    playerInput.IsMoveFurnitureNow = false;
                     _placementAspect.MoveThisFurnitureEventPool.DelIfExists(furn);
                     continue;
                 }
-                playerInput.IsInMoveState = true;
+                playerInput.IsMoveFurnitureNow = true;
             }
+
+            ref var furnComponent = ref _placementAspect.FurniturePool.Get(furn);
+            ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
+            ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
 
             var newFurnPosition = GetNearestGridViewedCell(worldGrid, ref playerInput, playerPosition, gridPosition.Position);
             if (newFurnPosition == gridPosition.Position) continue; 
@@ -70,7 +71,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
             {
                 var point = pos.Position - worldGrid.PlacementZoneWorldStart - worldGrid.PlacementZoneCellSize / 2;
                 var scaledPoint = new Vector2(point.x / worldGrid.PlacementZoneCellSize.x, point.y / worldGrid.PlacementZoneCellSize.y)
-                    + input.LookDirection / 2;
+                    + input.LookDirection * 5 / 8;
                 var foundPos = new Vector2Int(Mathf.RoundToInt(scaledPoint.x),Mathf.RoundToInt(scaledPoint.y));
                 var angle = Vector2.SignedAngle(new Vector2(1, 0), input.LookDirection);
                 var diff = SwitchLookAngle(angle);
@@ -104,6 +105,6 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
 
     public void Destroy()
     {
-        _iterator = null;
+        _iteratorFurniture = null;
     }
 }

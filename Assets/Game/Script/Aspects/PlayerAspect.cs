@@ -57,5 +57,6 @@ public struct PlayerInputComponent
     public bool RandomSpawnFurniturePressed;
 
     public bool MoveFurniturePressed;
-    public bool IsInMoveState;
+    public bool IsMoveFurnitureNow;
+    public bool IsInPlacementMode;
 }

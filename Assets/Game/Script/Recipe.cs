@@ -28,3 +28,27 @@ public class Stove : WorkstationItem
 {
     
 }
+
+[Serializable]
+public class Fridge : WorkstationItem
+{
+
+}
+
+[Serializable]
+public class Table : WorkstationItem
+{
+
+}
+
+[Serializable]
+public class Spawner : WorkstationItem
+{
+
+}
+
+[Serializable]
+public class FridgeSpawner : Spawner
+{
+
+}

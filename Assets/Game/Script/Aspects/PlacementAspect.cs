@@ -13,6 +13,8 @@ internal class PlacementAspect : ProtoAspectInject
     public ProtoPool<CreateGameObjectEvent> CreateGameObjectEventPool;
     public ProtoPool<MoveThisGameObjectEvent> MoveThisGameObjectEventPool;
     public ProtoPool<SyncGridPositionEvent> SyncMyGridPositionEventPool;
+    public ProtoPool<SpawnFurnitureEvent> SpawnFurnitureEventPool;
+    public ProtoPool<SpawnerTag> SpawnerTagPool;
 }
 
 [Serializable]
@@ -35,7 +37,8 @@ public struct MoveThisFurnitureTag
 internal struct CreateGameObjectEvent
 {
     public Type furnitureType;
-    public Vector2Int position;
+    public Vector2Int gridPosition;
+    public bool destroyInvoker;
 }
 
 internal struct MoveThisGameObjectEvent
@@ -46,5 +49,16 @@ internal struct MoveThisGameObjectEvent
 [Serializable]
 public struct SyncGridPositionEvent : IComponent
 {
-    public List<Vector2Int> entityGridPositions;
+    public Vector2Int entityGridPositions;
+}
+
+[Serializable]
+public struct SpawnerTag : IComponent
+{
+    [SerializeReference, SubclassSelector]
+    public WorkstationItem spawnObjectType;
+}
+
+internal struct SpawnFurnitureEvent
+{
 }
