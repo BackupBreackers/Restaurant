@@ -46,5 +46,5 @@ internal struct MoveThisGameObjectEvent
 [Serializable]
 public struct SyncGridPositionEvent : IComponent
 {
-    public List<Vector2Int> entityGridPositions;
+    public Vector2Int entityGridPositions;
 }

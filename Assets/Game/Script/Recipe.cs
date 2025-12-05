@@ -28,3 +28,15 @@ public class Stove : WorkstationItem
 {
     
 }
+
+[Serializable]
+public class Fridge : WorkstationItem
+{
+
+}
+
+[Serializable]
+public class Table : WorkstationItem
+{
+
+}

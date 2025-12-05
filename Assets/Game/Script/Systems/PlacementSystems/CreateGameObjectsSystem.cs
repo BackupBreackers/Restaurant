@@ -31,16 +31,13 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
         {
             ref var component = ref _placementAspect.CreateGameObjectEventPool.Get(createEvent);
             var furn = GetGameObject(component.furnitureType);
+            var pivotDiff = new Vector2(0, 0);
+            worldGrid.TryGetPivotDifference(component.furnitureType, out pivotDiff);
             var position2D = new Vector2(component.position.x*worldGrid.PlacementZoneCellSize.x,
-                component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2;
+                component.position.y*worldGrid.PlacementZoneCellSize.y) + worldGrid.PlacementZoneCellSize/2
+                + pivotDiff;
             var obj = GameObject.Instantiate(furn,new Vector3(position2D.x,position2D.y,0),Quaternion.identity);
-            worldGrid.AddElement(component.position, obj.GetComponent<CustomAuthoring>().Entity);
-
-            if (!_placementAspect.SyncMyGridPositionEventPool.Has(createEvent))
-                _placementAspect.SyncMyGridPositionEventPool.Add(createEvent);
-            ref var sync = ref _placementAspect.SyncMyGridPositionEventPool.Get(createEvent);
-            sync.entityGridPositions ??= new();
-            sync.entityGridPositions.Add(component.position);
+            worldGrid.AddElement(component.position);
 
             _placementAspect.CreateGameObjectEventPool.DelIfExists(createEvent);
         }
@@ -48,14 +45,8 @@ public class CreateGameObjectsSystem : IProtoInitSystem, IProtoRunSystem, IProto
 
     private GameObject GetGameObject(Type type)
     {
-        //GameObject go = WorkstationService.GetGO(type);
-        
-        // switch (type)
-        // {
-        //     case typeof(StoveComponent):
-                return gameResources.Fridge.gameObject;
-        //}
-        //throw new NotImplementedException("Остальные типы мебели пока не добавлены");
+        if (worldGrid.TryGetFurniturePrefab(type, out var furniture)) return furniture;
+        throw new NotImplementedException();
     }
 
     public void Destroy()

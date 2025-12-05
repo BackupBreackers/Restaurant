@@ -16,6 +16,13 @@ public class GameResources
     {
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
     }
+    public PlacementObjects PlacementObjectsLink;
+    public class PlacementObjects
+    {
+        public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
+        public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
+        public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
+    }
     public Recipes RecipesLink;
     public class Recipes
     {
@@ -49,6 +56,8 @@ public class GameResources
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
+    public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
+    public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public ProtoUnityAuthoring Player => Resources.Load<ProtoUnityAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public ProtoUnityAuthoring Refrigerator => Resources.Load<ProtoUnityAuthoring>("Refrigerator");
@@ -59,6 +68,7 @@ public class GameResources
     {
         LevelConfigsLink = new LevelConfigs();
         PickableItemsLink = new PickableItems();
+        PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
         VisualLink = new Visual();
     }

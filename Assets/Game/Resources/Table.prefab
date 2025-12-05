@@ -219,15 +219,20 @@ MonoBehaviour:
     - rid: 6222297960297791577
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:
-        type: 2
+        type:
+          rid: 6222298054940950610
     - rid: 6222297960297791578
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
-        entityGridPositions: []
+        entityGridPositions: {x: 0, y: 0}
     - rid: 6222297960297791579
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
+    - rid: 6222298054940950610
+      type: {class: Table, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
 --- !u!212 &1387410222696992548
 SpriteRenderer:
   m_ObjectHideFlags: 0
