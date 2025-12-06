@@ -37,6 +37,7 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
                 _guestAspect.GuestIsWalkingTagPool.Del(guestEntity);
                 agent.isStopped = true;
                 rb.Rigidbody2D.bodyType = RigidbodyType2D.Static;
+                Debug.Log("ало мы тут да");
             }
             else
             {

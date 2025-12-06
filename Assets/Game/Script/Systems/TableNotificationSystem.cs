@@ -38,6 +38,11 @@ namespace Game.Script.Systems
                 }
                 ref var holder = ref _playerAspect.HolderPool.Get(tableEntity);
                 var group = _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
+                if (!_guestGroupAspect.WaitingOrderTagPool.Has(guestGroupEntity))
+                {
+                    Debug.Log("Пока не пришли, не едим");
+                    continue;
+                }
                 var packedGuests = group.includedGuests;
 
                 foreach (var packedGuest in packedGuests)

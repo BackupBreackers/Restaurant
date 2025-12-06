@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3311472306648148635}
   - component: {fileID: 4727217602550835432}
   - component: {fileID: 1210621652090243018}
-  - component: {fileID: -737064774826100307}
+  - component: {fileID: 7674088672896622953}
   - component: {fileID: 7543198748488558046}
   - component: {fileID: 2738453777984708654}
   - component: {fileID: 2319433236381213680}
+  - component: {fileID: -6836185141013109645}
   m_Layer: 0
   m_Name: Stove
   m_TagString: Untagged
@@ -190,7 +191,7 @@ MonoBehaviour:
           m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
---- !u!114 &-737064774826100307
+--- !u!114 &7674088672896622953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,59 +202,47 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomAuthoring
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
   _worldName: 
   _authoringType: 0
   _destroyAfterAuthoring: 0
   Components:
-  - rid: 6222298054940950611
-  - rid: 6222298054940950612
-  - rid: 6222298054940950613
-  - rid: 6222298054940950614
-  - rid: 6222298054940950615
-  - rid: 6222298054940950616
-  - rid: 6222298054940950617
-  - rid: 6222298054940950619
-  - rid: 6222298054940950620
-  - rid: 6222298054940950621
-  - rid: 6222298054940950622
+  - rid: 8223375694890532942
+  - rid: 8223375694890532944
+  - rid: 8223375694890532945
+  - rid: 8223375694890532946
+  - rid: 8223375694890532947
+  - rid: 8223375694890532948
+  - rid: 8223375694890532949
+  - rid: 8223375694890532952
   references:
     version: 2
     RefIds:
-    - rid: 6222298054940950611
+    - rid: 8223375694890532942
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 0}
         OutlineController: {fileID: 7543198748488558046}
-    - rid: 6222298054940950612
+    - rid: 8223375694890532944
       type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
-    - rid: 6222298054940950613
+    - rid: 8223375694890532945
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
-    - rid: 6222298054940950614
+    - rid: 8223375694890532946
       type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
       data:
         Rigidbody2D: {fileID: 2738453777984708654}
-    - rid: 6222298054940950615
+    - rid: 8223375694890532947
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 6534712124160355901}
-    - rid: 6222298054940950616
+    - rid: 8223375694890532948
       type: {class: StoveComponent, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 6222298054940950617
-      type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
-      data:
-        workstationType:
-          rid: 6222298054940950618
-    - rid: 6222298054940950618
-      type: {class: Stove, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
-    - rid: 6222298054940950619
+    - rid: 8223375694890532949
       type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
       data:
         Image: {fileID: 2562313004503772247}
@@ -288,20 +277,12 @@ MonoBehaviour:
           m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
-    - rid: 6222298054940950620
-      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8223375694890532952
+      type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
       data:
-        transform: {fileID: 3311472306648148635}
-    - rid: 6222298054940950621
-      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
-      data:
-        entityGridPositions: {x: 0, y: 0}
-    - rid: 6222298054940950622
-      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
-      data:
-        type:
-          rid: 6222298054940950623
-    - rid: 6222298054940950623
+        workstationType:
+          rid: 8223375694890532953
+    - rid: 8223375694890532953
       type: {class: Stove, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
@@ -393,6 +374,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.26, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6836185141013109645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178823374488142866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &898031695439570723
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
         var val = context.ReadValue<Vector2>();
         var state = InputService.Instance.GetPlayerInputState(index);
         state.MoveDirection = val;
-        Debug.Log(state.MoveDirection);
+        //Debug.Log(state.MoveDirection);
         InputService.Instance.UpdateState(index, state);
     }
     

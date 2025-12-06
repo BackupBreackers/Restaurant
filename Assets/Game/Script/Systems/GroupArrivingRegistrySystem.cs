@@ -41,12 +41,14 @@ namespace Game.Script.Systems
                     }
 
                     if (_guestAspect.ReachedTargetPositionEventPool.Has(guest))
+                    {
+                        Debug.LogWarning("ало мы тут да");
                         _guestAspect.GuestDidArriveTagPool.Add(guest);
-                    
+                    }
+
                     if (!_guestAspect.GuestDidArriveTagPool.Has(guest))
                     {
                         isEveryGuestArrived = false;
-                        break;
                     }
                 }
 
