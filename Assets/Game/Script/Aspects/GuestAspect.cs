@@ -2,6 +2,7 @@ using System;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Script.Aspects
 {
@@ -12,6 +13,7 @@ namespace Game.Script.Aspects
         public ProtoPool<WantedItemComponent> WantedItemPool;
         public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
         public ProtoPool<GuestGameObjectRefComponent> GuestGameObjectRefComponentPool;
+        public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
         
         public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         
@@ -72,5 +74,11 @@ namespace Game.Script.Aspects
     public struct GuestGameObjectRefComponent : IComponent
     {
         public GameObject GameObject;
+    }
+
+    [Serializable]
+    public struct NavMeshAgentComponent : IComponent
+    {
+        public NavMeshAgent Agent;
     }
 }

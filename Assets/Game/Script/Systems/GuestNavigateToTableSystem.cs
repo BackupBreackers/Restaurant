@@ -44,9 +44,9 @@ namespace Game.Script.Systems
                     {
                         Debug.LogWarning("Гость не распакован!!");
                     }
-
-                    ref var targetPos = ref _guestAspect.TargetPositionComponentPool.Get(guest);
-                    targetPos.Position = tableComponent.guestPlaces[i];
+                        
+                    ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
+                    agent.SetDestination(tableComponent.guestPlaces[i]);
                     _guestAspect.GuestIsWalkingTagPool.Add(guest);
                     ++i;
                 }
