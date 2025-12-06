@@ -4,6 +4,7 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Script.Systems
 {
@@ -65,6 +66,12 @@ namespace Game.Script.Systems
                 
                 ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Add(unpackedEntity);
                 goRef.GameObject = go;
+                
+                var agent = go.GetComponent<NavMeshAgent>();
+                ref var agentComponent = ref _guestAspect.NavMeshAgentComponentPool.Add(unpackedEntity);
+                agentComponent.Agent = agent;
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
 
                 guests.Add(entity);
             }

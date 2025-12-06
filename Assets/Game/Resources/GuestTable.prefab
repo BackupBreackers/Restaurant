@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 3777577797370295754}
   - component: {fileID: 858956405033609419}
   - component: {fileID: 135783641706292557}
+  - component: {fileID: -5456378214734515099}
+  - component: {fileID: 7897483250592552872}
   m_Layer: 6
   m_Name: GuestTable
   m_TagString: Untagged
@@ -159,8 +161,7 @@ MonoBehaviour:
     - rid: 6709886293115404489
       type: {class: GuestTableComponent, ns: , asm: Assembly-CSharp}
       data:
-        guestPlaces:
-        - {x: 0, y: 0}
+        guestPlaces: []
     - rid: 6709886293115404490
       type: {class: PlaceWorkstationEvent, ns: , asm: Assembly-CSharp}
       data: 
@@ -364,3 +365,35 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.26, y: 1.04}
   m_EdgeRadius: 0
+--- !u!114 &-5456378214734515099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483289833465234307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
+--- !u!114 &7897483250592552872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483289833465234307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

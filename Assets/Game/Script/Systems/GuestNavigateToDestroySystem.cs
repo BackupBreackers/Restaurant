@@ -38,9 +38,9 @@ public class GuestNavigateToDestroySystem : IProtoInitSystem, IProtoRunSystem
                     Debug.LogWarning("Гость опять не распаковался тварь");
                     continue;
                 }
-                ref var targetPos = ref _guestAspect.TargetPositionComponentPool.Get(guest);
             
-                targetPos.Position = _exitTransform.position;
+                ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guest).Agent;
+                agent.SetDestination(_exitTransform.position);
                 _guestAspect.GuestIsWalkingTagPool.Add(guest);
             }
             _guestGroupAspect.GroupIsWalkingPool.Add(leavingGroupEntity);

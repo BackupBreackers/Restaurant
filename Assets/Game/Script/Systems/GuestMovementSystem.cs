@@ -28,25 +28,21 @@ public class GuestMovementSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
     {
         foreach (var guestEntity in _moveIterator)
         {
-            ref var guestPosition = ref _physicsAspect.PositionPool.Get(guestEntity).Position;
-            ref var targetPosition = ref _guestAspect.TargetPositionComponentPool.Get(guestEntity).Position;
+            ref var agent = ref _guestAspect.NavMeshAgentComponentPool.Get(guestEntity).Agent;
             ref var rb = ref _physicsAspect.Rigidbody2DPool.Get(guestEntity);
-            
 
-            if (Vector2.Distance(guestPosition, targetPosition) < 0.5f)
+            if (!agent.pathPending && agent.remainingDistance < 0.3f)
             {
                 _guestAspect.ReachedTargetPositionEventPool.Add(guestEntity);
                 _guestAspect.GuestIsWalkingTagPool.Del(guestEntity);
-                
+                agent.isStopped = true;
                 rb.Rigidbody2D.bodyType = RigidbodyType2D.Static;
-                continue;
             }
-
-            ref var movementSpeed = ref _physicsAspect.MovementSpeedPool.Get(guestEntity);
-
-            rb.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-            var direction = (targetPosition - guestPosition).normalized;
-            rb.Rigidbody2D.linearVelocity = direction * movementSpeed.Value;
+            else
+            {
+                agent.isStopped = false;
+                rb.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 
