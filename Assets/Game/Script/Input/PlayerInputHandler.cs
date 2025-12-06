@@ -48,4 +48,15 @@ public class PlayerInputHandler : MonoBehaviour
             InputService.Instance.UpdateState(index, state);
         }
     }
+    
+    public void OnEdit(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int index = _playerInput.playerIndex;
+            var state = InputService.Instance.GetPlayerInputState(index);
+            state.RandomSpawnFurniturePressed = true;
+            InputService.Instance.UpdateState(index, state);
+        }
+    }
 }

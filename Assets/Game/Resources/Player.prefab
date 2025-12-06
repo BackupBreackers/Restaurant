@@ -345,7 +345,19 @@ MonoBehaviour:
     m_ActionId: 0f9ce7f7-7676-4354-b2c3-2d5bdc2531a2
     m_ActionName: 'Game/Interact[/Keyboard/slash,/Keyboard/e]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7491341558457626327}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnEdit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fc4edfa0-eee4-4761-80e8-a88b7c0328b8
     m_ActionName: 'Game/RandomSpawnFurniture[/Keyboard/p]'
   - m_PersistentCalls:
@@ -370,7 +382,7 @@ MonoBehaviour:
     m_ActionName: 'Game/PickPlace[/Keyboard/period,/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: LeftControlScheme
-  m_DefaultActionMap: 44c8b74f-7094-4f36-b75e-e57061fad4c8
+  m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &8535414761407111096
