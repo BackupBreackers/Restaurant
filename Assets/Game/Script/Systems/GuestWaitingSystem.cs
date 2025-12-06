@@ -52,7 +52,7 @@ namespace Game.Script.Systems
                 _guestGroupAspect.WaitingOrderTagPool.Add(groupEntity);
                 ref var timer = ref _baseAspect.TimerPool.GetOrAdd(groupEntity);
                 timer.Elapsed = 0;
-                timer.Duration = 20f;
+                timer.Duration = 45f;
             }
         }
 

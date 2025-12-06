@@ -15,12 +15,27 @@ namespace Game.Script
     }
 
     [Serializable]
-    public class Empty : PickableItem
+    public class Meat : PickableItem
     {
     }
 
     [Serializable]
-    public class Meat : PickableItem
+    public class Fish0 : PickableItem
+    {
+    }
+
+    [Serializable]
+    public class Fish1 : PickableItem
+    {
+    }
+
+    [Serializable]
+    public class Fish2 : PickableItem
+    {
+    }
+
+    [Serializable]
+    public class Fish3 : PickableItem
     {
     }
 }

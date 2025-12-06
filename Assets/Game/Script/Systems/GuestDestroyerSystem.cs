@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Script.Systems
 {
-    public class GuestsDestroyerSystem : IProtoInitSystem, IProtoRunSystem
+    public class GuestDestroyerSystem : IProtoInitSystem, IProtoRunSystem
     {
         [DI] private GuestAspect _guestAspect;
         private ProtoWorld _world;

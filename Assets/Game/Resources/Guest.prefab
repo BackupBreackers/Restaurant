@@ -339,15 +339,15 @@ MonoBehaviour:
       type: {class: WantedItemComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         WantedItem:
-          rid: 6709886293115404486
-    - rid: 6709886293115404486
-      type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
-      data:
-        PickupItemSprite: {fileID: 0}
+          rid: 7346997319901118548
     - rid: 6709886293115404491
       type: {class: TargetPositionComponent, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data:
         Position: {x: -1.0925, y: -3.48}
+    - rid: 7346997319901118548
+      type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite: {fileID: 0}
     - rid: 8223375694890532954
       type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
       data:

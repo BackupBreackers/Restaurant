@@ -14,6 +14,10 @@ public class GameResources
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
+        public PickableItemSO Fish0 => Resources.Load<PickableItemSO>("PickableItems/Fish0");
+        public PickableItemSO Fish1 => Resources.Load<PickableItemSO>("PickableItems/Fish1");
+        public PickableItemSO Fish2 => Resources.Load<PickableItemSO>("PickableItems/Fish2");
+        public PickableItemSO Fish3 => Resources.Load<PickableItemSO>("PickableItems/Fish3");
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
     }
     public PlacementObjects PlacementObjectsLink;
@@ -27,6 +31,7 @@ public class GameResources
     public Recipes RecipesLink;
     public class Recipes
     {
+        public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
     }
     public Visual VisualLink;
@@ -40,6 +45,7 @@ public class GameResources
         public PickableItems PickableItemsLink;
         public class PickableItems
         {
+            public Sprite FishStates => Resources.Load<Sprite>("Visual/PickableItems/FishStates");
             public Sprite meat => Resources.Load<Sprite>("Visual/PickableItems/meat");
             public Sprite plate => Resources.Load<Sprite>("Visual/PickableItems/plate");
         }
@@ -69,7 +75,7 @@ public class GameResources
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
-    public ProtoUnityAuthoring Refrigerator => Resources.Load<ProtoUnityAuthoring>("Refrigerator");
+    public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
 

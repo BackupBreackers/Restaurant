@@ -23,7 +23,7 @@ namespace Game.Script.Modules
                 .AddSystem(new GuestMovementSystem())
                 .AddSystem(new GroupArrivingRegistrySystem())
                 .AddSystem(new GuestWaitingSystem())
-                .AddSystem(new GuestsDestroyerSystem())
+                .AddSystem(new GuestDestroyerSystem())
                 .AddSystem(new EndGameSystem())
                 .AddSystem(new GuestNavigateToDestroySystem())
                 .AddSystem(new PositionToTransformSystem());
