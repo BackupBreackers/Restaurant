@@ -33,7 +33,7 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var entityPlayer in _iteratorPlayer)
         {
-            var range = 5f;
+            var range = 2f;
 
             ref var playerPosition = ref _physicsAspect.PositionPool.Get(entityPlayer);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);

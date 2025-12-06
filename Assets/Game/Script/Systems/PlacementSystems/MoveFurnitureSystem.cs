@@ -43,7 +43,7 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
                 playerInput.IsMoveFurnitureNow = true;
             }
 
-            ref var furnComponent = ref _placementAspect.FurniturePool.Get(furn);
+            //ref var furnComponent = ref _placementAspect.FurniturePool.Get(furn);
             ref var playerPosition = ref _physicsAspect.PositionPool.Get(playerEntity);
             ref var gridPosition = ref _physicsAspect.GridPositionPool.Get(furn);
 

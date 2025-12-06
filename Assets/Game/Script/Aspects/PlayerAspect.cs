@@ -7,10 +7,26 @@ using UnityEngine;
 
 public class PlayerAspect : ProtoAspectInject
 {
+    public ProtoPool<PlayerIndexComponent> PlayerIndexPool;
     public ProtoPool<PlayerInputComponent> InputRawPool;
     public ProtoPool<InteractableComponent> InteractablePool;
     public ProtoPool<HolderComponent> HolderPool;
+    
     public ProtoPool<HasItemTag> HasItemTagPool;
+    
+    public ProtoPool<PlayerInitializeEvent> PlayerInitializeEventPool;
+}
+
+[Serializable]
+public struct PlayerIndexComponent : IComponent
+{
+    public int PlayerIndex;
+}
+
+[Serializable]
+public struct PlayerInitializeEvent : IComponent
+{
+    
 }
 
 [Serializable]
@@ -31,7 +47,7 @@ public struct HasItemTag
 }
 
 [Serializable]
-public struct PlayerInputComponent
+public struct PlayerInputComponent : IComponent
 {
     public Vector2 MoveDirection;
     private Vector2 LookDirectionOld;

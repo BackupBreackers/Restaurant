@@ -12,6 +12,7 @@ namespace Game.Script.Systems
         [DI] readonly BaseAspect _baseAspect;
         [DI] readonly GuestAspect _guestAspect;
         [DI] readonly GuestGroupAspect _guestGroupAspect;
+        [DI] readonly PlayerAspect _playerAspect;
 
         private ProtoIt _iteratorPick;
         private ProtoIt _iteratorPlace;
@@ -22,6 +23,7 @@ namespace Game.Script.Systems
         private ProtoIt _reachedTargetPositionEventIt;
         private ProtoIt _groupArrivedEventIt;
         private ProtoIt _guestGroupServedEventIt;
+        private ProtoIt _playerInitializeItEventIt;
 
         public void Init(IProtoSystems systems)
         {
@@ -34,6 +36,7 @@ namespace Game.Script.Systems
             _reachedTargetPositionEventIt = new (new[] {typeof(ReachedTargetPositionEvent) });
             _groupArrivedEventIt = new (new[] {typeof(GroupArrivedEvent) });
             _guestGroupServedEventIt = new (new[] {typeof(GuestGroupServedEvent) });
+            _playerInitializeItEventIt = new  (new[] {typeof(PlayerInitializeEvent) });
             
             _iteratorPick.Init(_world);
             _iteratorPlace.Init(_world);
@@ -44,6 +47,7 @@ namespace Game.Script.Systems
             _reachedTargetPositionEventIt.Init(_world);
             _groupArrivedEventIt.Init(_world);
             _guestGroupServedEventIt.Init(_world);
+            _playerInitializeItEventIt.Init(_world);
         }
 
         public void Run()
@@ -77,6 +81,9 @@ namespace Game.Script.Systems
             
             foreach (var item in _guestGroupServedEventIt)
                 _guestGroupAspect.GuestGroupServedEventPool.Del(item);
+            
+            foreach(var item in _playerInitializeItEventIt)
+                _playerAspect.PlayerInitializeEventPool.Del(item);
         }
     }
 }

@@ -8,6 +8,7 @@ class PlayerModule : IProtoModule
     {
         systems
             .AddSystem(new TimerSystem())
+            .AddSystem(new PlayerInitializeInputSystem())
             .AddSystem(new UpdateInputSystem())
             .AddSystem(new PlayerMovementSystem())
             .AddSystem(new PlayerTargetSystem());

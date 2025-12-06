@@ -32,6 +32,11 @@ public class GameResources
     public Visual VisualLink;
     public class Visual
     {
+        public Materials MaterialsLink;
+        public class Materials
+        {
+            public Material Group_140 => Resources.Load<Material>("Visual/Materials/Group 140");
+        }
         public PickableItems PickableItemsLink;
         public class PickableItems
         {
@@ -40,6 +45,7 @@ public class GameResources
         }
         public Sprite box => Resources.Load<Sprite>("Visual/box");
         public Sprite burner__2_ => Resources.Load<Sprite>("Visual/burner (2)");
+        public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
@@ -49,6 +55,7 @@ public class GameResources
 
         public Visual()
         {
+            MaterialsLink = new Materials();
             PickableItemsLink = new PickableItems();
         }
     }
@@ -60,7 +67,7 @@ public class GameResources
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
-    public ProtoUnityAuthoring Player => Resources.Load<ProtoUnityAuthoring>("Player");
+    public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public ProtoUnityAuthoring Refrigerator => Resources.Load<ProtoUnityAuthoring>("Refrigerator");
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
