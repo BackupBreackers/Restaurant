@@ -2,6 +2,7 @@ using System;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Script.Aspects
 {
@@ -11,19 +12,16 @@ namespace Game.Script.Aspects
         public ProtoPool<GuestTableComponent> GuestTablePool;
         public ProtoPool<WantedItemComponent> WantedItemPool;
         public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
+        public ProtoPool<GuestGameObjectRefComponent> GuestGameObjectRefComponentPool;
+        public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
+        
+        public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
         
         public ProtoPool<GuestTag> GuestTagPool;
-        public ProtoPool<WaitingTakeOrderTag>  WaitingTakeOrderTagPool;
-        public ProtoPool<WaitingOrderTag> WaitingOrderTagPool;
         public ProtoPool<GuestServicedTag> GuestServicedPool;
         public ProtoPool<GuestTableIsFreeTag> GuestTableIsFreeTagPool;
         public ProtoPool<GuestIsWalkingTag> GuestIsWalkingTagPool;
-        
-        public ProtoPool<ReachedTargetPositionEvent> ReachedTargetPositionEventPool;
-    }
-    
-    public struct WaitingOrderTag
-    {
+        public ProtoPool<GuestDidArriveTag>  GuestDidArriveTagPool;
     }
 
     [Serializable]
@@ -41,16 +39,15 @@ namespace Game.Script.Aspects
     {
     }
 
+    public struct GuestServicedTag :IComponent
+    {
+    }
+
+    public struct GuestDidArriveTag :IComponent
+    {
+    }
+
     public struct ReachedTargetPositionEvent
-    {
-    }
-
-    public struct GuestServicedTag
-    {
-    }
-
-    [Serializable]
-    public struct WaitingTakeOrderTag : IComponent
     {
     }
 
@@ -71,5 +68,17 @@ namespace Game.Script.Aspects
     public struct WantedItemComponent : IComponent
     {
         [SubclassSelector, SerializeReference] public PickableItem WantedItem;
+    }
+
+    [Serializable]
+    public struct GuestGameObjectRefComponent : IComponent
+    {
+        public GameObject GameObject;
+    }
+
+    [Serializable]
+    public struct NavMeshAgentComponent : IComponent
+    {
+        public NavMeshAgent Agent;
     }
 }

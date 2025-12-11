@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
 {
     [DI] GuestAspect _guestAspect;
+    [DI] GuestGroupAspect _guestGroupAspect;
     [DI] ProtoWorld _world;
     private ProtoIt _it;
     private ProtoIt _it2;
@@ -20,19 +21,46 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
 
     public void Run()
     {
-        foreach (var guest in _it)
+        foreach (var guestGroupEntity in _it)
         {
             Debug.LogError("ПРОЕБАЛИ ожидание заказа");
-            _guestAspect.WaitingOrderTagPool.Del(guest);
-            break;
+
+// Получаем компонент группы
+            ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
+
+// Проставляем каждому гостю тег обслуживания
+            foreach (var packedGuest in guestGroup.includedGuests)
+                if (packedGuest.TryUnpack(out _, out var guestEntity))
+                {
+                    if (!_guestAspect.GuestServicedPool.Has(guestEntity))
+                        _guestAspect.GuestServicedPool.Add(guestEntity);
+                }
+
+            _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
+            _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
+            _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
+
         }
 
-        foreach (var guest in _it2)
+        foreach (var guestGroupEntity in _it2)
         {
             Debug.LogError("ПРОЕБАЛИ не взял заказаз, сука тварь");
-            _guestAspect.GuestServicedPool.Add(guest);
-            _guestAspect.WaitingTakeOrderTagPool.Del(guest);
-            break;
+
+// Получаем компонент группы
+            ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
+
+// Проставляем каждому гостю тег обслуживания
+            foreach (var packedGuest in guestGroup.includedGuests)
+                if (packedGuest.TryUnpack(out _, out var guestEntity))
+                {
+                    if (!_guestAspect.GuestServicedPool.Has(guestEntity))
+                        _guestAspect.GuestServicedPool.Add(guestEntity);
+                }
+
+            _guestGroupAspect.WaitingTakeOrderTagPool.Del(guestGroupEntity);
+            _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
+            _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
+
         }
     }
 }

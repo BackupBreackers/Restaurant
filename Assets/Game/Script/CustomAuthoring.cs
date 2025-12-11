@@ -14,7 +14,7 @@ using Unity.IL2CPP.CompilerServices;
 public class CustomAuthoring : MonoBehaviour
 {
     [HideInInspector, SerializeField] string _worldName;
-    [HideInInspector, SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
+    [SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
     [HideInInspector, SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.None;
     
     [SerializeReference, SubclassSelector] public List<IComponent> Components = new List<IComponent>();

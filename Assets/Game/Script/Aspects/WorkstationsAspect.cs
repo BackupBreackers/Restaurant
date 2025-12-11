@@ -68,5 +68,5 @@ public struct ItemSourceComponent : IComponent
 public struct GuestTableComponent : IComponent
 {
     public Vector2[] guestPlaces;
-    public List<ProtoPackedEntityWithWorld> Guests;
+    public ProtoPackedEntityWithWorld GuestGroup;
 }

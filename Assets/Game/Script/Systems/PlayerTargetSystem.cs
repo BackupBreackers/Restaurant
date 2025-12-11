@@ -33,13 +33,13 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var entityPlayer in _iteratorPlayer)
         {
-            var range = 5f;
+            var range = 2f;
 
             ref var playerPosition = ref _physicsAspect.PositionPool.Get(entityPlayer);
             ref var playerInput = ref _playerAspect.InputRawPool.Get(entityPlayer);
 
             //если игрок сейчас двигает мебель, то что-то подсвечивать не нужно
-            if (playerInput.IsInMoveState) continue;
+            if (playerInput.IsMoveFurnitureNow) continue;
 
             InteractableComponent interactableComponent = default;
             ProtoEntity targetEntity = default;
@@ -77,43 +77,34 @@ internal class PlayerTargetSystem : IProtoInitSystem, IProtoRunSystem
 
                 if (playerInput.InteractPressed)
                 {
-                    if (!_workstationsAspect.PickPlaceEventPool.Has(targetEntity))
+                    if (!playerInput.IsInPlacementMode)
                     {
-                        _workstationsAspect.PickPlaceEventPool.Add(targetEntity);
-                        ref PickPlaceEvent r = ref _workstationsAspect.PickPlaceEventPool.Get(targetEntity);
-                        r.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        if (!_workstationsAspect.PickPlaceEventPool.Has(targetEntity))
+                        {
+                            _workstationsAspect.PickPlaceEventPool.Add(targetEntity);
+                            ref PickPlaceEvent r = ref _workstationsAspect.PickPlaceEventPool.Get(targetEntity);
+                            r.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        }
                     }
-                }
-                else if (playerInput.MoveFurniturePressed)
-                {
-                    if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
+                    else
                     {
-                        _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
-                        ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
-                        m.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        if (_placementAspect.SpawnerTagPool.Has(targetEntity))
+                        {
+                            if (!_placementAspect.SpawnFurnitureEventPool.Has(targetEntity))
+                            {
+                                _placementAspect.SpawnFurnitureEventPool.Add(targetEntity);
+                                ref var spawnEvent = ref _placementAspect.SpawnFurnitureEventPool.Get(targetEntity);                                
+                            }
+                        }
+                        else if (!_placementAspect.MoveThisFurnitureEventPool.Has(targetEntity))
+                        {
+                            _placementAspect.MoveThisFurnitureEventPool.Add(targetEntity);
+                            ref var m = ref _placementAspect.MoveThisFurnitureEventPool.Get(targetEntity);
+                            m.Invoker = _world.PackEntityWithWorld(entityPlayer);
+                        }
                     }
                 }
             }
-
-            // foreach (var entityGuest in _iteratorGuest)
-            // {
-            //     ref PositionComponent guestPosition = ref _physicsAspect.PositionPool.Get(entityGuest);
-            //     //ref InteractableComponent guestInteractable = ref _guestAspect.InteractableComponentPool.Get(entityGuest);
-            //
-            //     var distance = Vector2.Distance(guestPosition.Position, playerPosition.Position);
-            //     if (!(distance < range)) continue;
-            //     var vector = guestPosition.Position - playerPosition.Position;
-            //     var angle = Vector2.SignedAngle(vector, playerInput.LookDirection);
-            //     var absAngle = Mathf.Abs(angle);
-            //
-            //     if (!(absAngle < 60)) continue;
-            //     // guestInteractable.OutlineController.SetHighlight(true);
-            //
-            //     if (!playerInput.InteractPressed) continue;
-            //     
-            //     if (!_workstationsAspect.InteractedEventPool.Has(entityGuest))
-            //         _workstationsAspect.InteractedEventPool.Add(entityGuest);
-            // }
         }
     }
 }

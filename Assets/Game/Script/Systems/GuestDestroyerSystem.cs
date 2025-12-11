@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Script.Systems
 {
-    public class GuestsDestroyerSystem : IProtoInitSystem, IProtoRunSystem
+    public class GuestDestroyerSystem : IProtoInitSystem, IProtoRunSystem
     {
         [DI] private GuestAspect _guestAspect;
         private ProtoWorld _world;
@@ -23,6 +23,13 @@ namespace Game.Script.Systems
             foreach (var guest in _deadGuests)
             {
                 Debug.Log("кремируйте её быстрее");
+                ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Get(guest);
+                if (goRef.GameObject)
+                {
+                    Object.Destroy(goRef.GameObject);
+                    goRef.GameObject = null;
+                }
+
                 _world.DelEntity(guest);
             }
         }

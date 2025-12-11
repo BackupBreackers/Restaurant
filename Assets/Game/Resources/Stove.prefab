@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3311472306648148635}
   - component: {fileID: 4727217602550835432}
   - component: {fileID: 1210621652090243018}
+  - component: {fileID: 7674088672896622953}
   - component: {fileID: 7543198748488558046}
   - component: {fileID: 2738453777984708654}
   - component: {fileID: 2319433236381213680}
+  - component: {fileID: -6836185141013109645}
   m_Layer: 0
   m_Name: Stove
   m_TagString: Untagged
@@ -103,7 +105,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178823374488142866}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd2e3b9377ea4b6b9d83eb1bc17d15a7, type: 3}
   m_Name: 
@@ -123,6 +125,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 8425613207334027338
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -143,7 +147,6 @@ MonoBehaviour:
     - rid: 8425613207334027343
       type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
       data:
-        ItemType: 0
         SpriteRenderer: {fileID: 6534712124160355901}
     - rid: 8425613207334027346
       type: {class: StoveComponent, ns: , asm: Assembly-CSharp}
@@ -151,13 +154,138 @@ MonoBehaviour:
     - rid: 8425613221030265124
       type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
       data:
-        WorkstationType: 1
+        workstationType:
+          rid: -2
     - rid: 8425613231168159941
       type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
       data:
         Image: {fileID: 2562313004503772247}
-        StartColor: {r: 0.13378942, g: 1, b: 0, a: 0}
-        EndColor: {r: 1, g: 0, b: 0, a: 0}
+        IsActive: 0
+        Gradient:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 1, g: 1, b: 1, a: 1}
+          key2: {r: 0, g: 0, b: 0, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 2
+--- !u!114 &7674088672896622953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178823374488142866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
+  _worldName: 
+  _authoringType: 0
+  _destroyAfterAuthoring: 0
+  Components:
+  - rid: 8223375694890532942
+  - rid: 8223375694890532944
+  - rid: 8223375694890532945
+  - rid: 8223375694890532946
+  - rid: 8223375694890532947
+  - rid: 8223375694890532948
+  - rid: 8223375694890532949
+  - rid: 8223375694890532952
+  references:
+    version: 2
+    RefIds:
+    - rid: 8223375694890532942
+      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        SpriteRenderer: {fileID: 0}
+        OutlineController: {fileID: 7543198748488558046}
+    - rid: 8223375694890532944
+      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 8223375694890532945
+      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 8223375694890532946
+      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody2D: {fileID: 2738453777984708654}
+    - rid: 8223375694890532947
+      type: {class: HolderComponent, ns: , asm: Assembly-CSharp}
+      data:
+        SpriteRenderer: {fileID: 6534712124160355901}
+    - rid: 8223375694890532948
+      type: {class: StoveComponent, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8223375694890532949
+      type: {class: ProgressBarComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Image: {fileID: 2562313004503772247}
+        IsActive: 0
+        Gradient:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 1, g: 1, b: 1, a: 1}
+          key2: {r: 0, g: 0, b: 0, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 2
+    - rid: 8223375694890532952
+      type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
+      data:
+        workstationType:
+          rid: 8223375694890532953
+    - rid: 8223375694890532953
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
 --- !u!114 &7543198748488558046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +374,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.26, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6836185141013109645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178823374488142866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &898031695439570723
 GameObject:
   m_ObjectHideFlags: 0

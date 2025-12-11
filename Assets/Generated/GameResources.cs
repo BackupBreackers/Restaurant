@@ -7,27 +7,51 @@ using UnityEngine.UIElements;
 
 public class GameResources
 {
+    public LevelConfigs LevelConfigsLink;
+    public class LevelConfigs
+    {
+    }
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
+        public PickableItemSO Fish0 => Resources.Load<PickableItemSO>("PickableItems/Fish0");
+        public PickableItemSO Fish1 => Resources.Load<PickableItemSO>("PickableItems/Fish1");
+        public PickableItemSO Fish2 => Resources.Load<PickableItemSO>("PickableItems/Fish2");
+        public PickableItemSO Fish3 => Resources.Load<PickableItemSO>("PickableItems/Fish3");
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
+    }
+    public PlacementObjects PlacementObjectsLink;
+    public class PlacementObjects
+    {
+        public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
+        public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
+        public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
+        public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
     }
     public Recipes RecipesLink;
     public class Recipes
     {
+        public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
     }
     public Visual VisualLink;
     public class Visual
     {
+        public Materials MaterialsLink;
+        public class Materials
+        {
+            public Material Group_140 => Resources.Load<Material>("Visual/Materials/Group 140");
+        }
         public PickableItems PickableItemsLink;
         public class PickableItems
         {
+            public Sprite FishStates => Resources.Load<Sprite>("Visual/PickableItems/FishStates");
             public Sprite meat => Resources.Load<Sprite>("Visual/PickableItems/meat");
             public Sprite plate => Resources.Load<Sprite>("Visual/PickableItems/plate");
         }
         public Sprite box => Resources.Load<Sprite>("Visual/box");
         public Sprite burner__2_ => Resources.Load<Sprite>("Visual/burner (2)");
+        public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
@@ -37,22 +61,29 @@ public class GameResources
 
         public Visual()
         {
+            MaterialsLink = new Materials();
             PickableItemsLink = new PickableItems();
         }
     }
     public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
+    public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
+    public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
-    public ProtoUnityAuthoring Player => Resources.Load<ProtoUnityAuthoring>("Player");
+    public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
+    public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
+    public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
-    public ProtoUnityAuthoring Refrigerator => Resources.Load<ProtoUnityAuthoring>("Refrigerator");
+    public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
 
     public GameResources()
     {
+        LevelConfigsLink = new LevelConfigs();
         PickableItemsLink = new PickableItems();
+        PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
         VisualLink = new Visual();
     }

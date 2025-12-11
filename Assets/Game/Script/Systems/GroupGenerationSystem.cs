@@ -4,6 +4,7 @@ using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Script.Systems
 {
@@ -60,8 +61,19 @@ namespace Game.Script.Systems
                 var authoring = go.GetComponent<CustomAuthoring>();
 
                 authoring.ProcessAuthoring();
+                var entity = authoring.Entity();
+                entity.TryUnpack(out _, out var unpackedEntity);
+                
+                ref var goRef = ref _guestAspect.GuestGameObjectRefComponentPool.Add(unpackedEntity);
+                goRef.GameObject = go;
+                
+                var agent = go.GetComponent<NavMeshAgent>();
+                ref var agentComponent = ref _guestAspect.NavMeshAgentComponentPool.Add(unpackedEntity);
+                agentComponent.Agent = agent;
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
 
-                guests.Add(authoring.Entity());
+                guests.Add(entity);
             }
             return guests;
         }

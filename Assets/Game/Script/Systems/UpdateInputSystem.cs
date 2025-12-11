@@ -1,5 +1,6 @@
 ﻿using Leopotam.EcsProto;
 using Leopotam.EcsProto.Unity;
+using UnityEngine;
 
 class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem    
 {
@@ -13,7 +14,7 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
         ProtoWorld world = systems.World();
         _playerAspect = (PlayerAspect)world.Aspect(typeof(PlayerAspect));
         
-        _iterator = new(new[] { typeof(PlayerInputComponent) });
+        _iterator = new(new[] { typeof(PlayerInputComponent), typeof(PlayerIndexComponent) });
         _iterator.Init(world);
     }
 
@@ -22,11 +23,22 @@ class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
         foreach (ProtoEntity entity in _iterator)
         {
             ref PlayerInputComponent playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
-            playerInputComponent.MoveDirection = _inputService.MoveDirection;
-            playerInputComponent.InteractPressed = _inputService.InteractPressed;
-            playerInputComponent.RandomSpawnFurniturePressed = _inputService.RandomSpawnFurniturePressed;
-            playerInputComponent.MoveFurniturePressed = _inputService.MoveFurniturePressed;
-            playerInputComponent.PickPlacePressed = _inputService.PickPlacePressed;
+            ref var index = ref _playerAspect.PlayerIndexPool.Get(entity).PlayerIndex;
+            
+            ref var playerIndex = ref _playerAspect.PlayerIndexPool.Get(entity);
+            
+            var playerInputData = _inputService.GetPlayerInputState(playerIndex.PlayerIndex);
+            if (index == 1)
+            {
+                Debug.Log(playerInputData.MoveDirection);
+            }
+            
+                
+            playerInputComponent.MoveDirection = playerInputData.MoveDirection;
+            playerInputComponent.InteractPressed = playerInputData.InteractPressed;
+            playerInputComponent.RandomSpawnFurniturePressed = playerInputData.RandomSpawnFurniturePressed;
+            playerInputComponent.MoveFurniturePressed = playerInputData.MoveFurniturePressed;
+            playerInputComponent.PickPlacePressed = playerInputData.PickPlacePressed;
         }
     }
 

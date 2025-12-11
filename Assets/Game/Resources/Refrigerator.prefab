@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1054248671866341028}
-  - component: {fileID: 4873740613458450594}
+  - component: {fileID: 4209521617226859820}
   - component: {fileID: 953960432156074640}
   - component: {fileID: 3099150523018045937}
   - component: {fileID: 7602770201713671413}
@@ -31,12 +31,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.11, y: -5.6, z: 0}
-  m_LocalScale: {x: 6.03, y: 6.03, z: 6.03}
+  m_LocalScale: {x: 1.9999999, y: 1.9999999, z: 1.9999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4873740613458450594
+--- !u!114 &4209521617226859820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,37 +45,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 6379796919024635054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2e3b9377ea4b6b9d83eb1bc17d15a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 65818240a510495eb6ea29cdaf49a433, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityAuthoring
+  m_EditorClassIdentifier: Assembly-CSharp::MyAuthoring
   _worldName: 
   _authoringType: 0
   _destroyAfterAuthoring: 0
   Components:
-  - rid: 8425613062871187541
-  - rid: 8425613062871187542
-  - rid: 8425613062871187543
-  - rid: 8425613083015381065
+  - rid: 8425613255053148380
+  - rid: 8425613255053148383
+  - rid: 8425613255053148384
+  - rid: 8425613255053148385
+  - rid: 8223375694890532961
   references:
     version: 2
     RefIds:
-    - rid: 8425613062871187541
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8223375694890532961
+      type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
+      data:
+        workstationType:
+          rid: -2
+    - rid: 8425613255053148380
+      type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
+      data:
+        resourceItemType:
+          rid: 8425613255053148382
+    - rid: 8425613255053148382
+      type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite: {fileID: 0}
+    - rid: 8425613255053148383
       type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
-    - rid: 8425613062871187542
+    - rid: 8425613255053148384
+      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Rigidbody2D: {fileID: 7602770201713671413}
+    - rid: 8425613255053148385
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
         SpriteRenderer: {fileID: 0}
         OutlineController: {fileID: 3099150523018045937}
-    - rid: 8425613062871187543
-      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Rigidbody2D: {fileID: 7602770201713671413}
-    - rid: 8425613083015381065
-      type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
-      data:
-        ResourceType: 1
 --- !u!212 &953960432156074640
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -210,7 +223,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.007958069, y: 0}
+  m_Offset: {x: 0.007958055, y: -0.304548}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -220,5 +233,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.57025766, y: 1}
+  m_Size: {x: 0.57025766, y: 0.390904}
   m_EdgeRadius: 0

@@ -5,9 +5,10 @@ namespace Game.Script.Factories
 {
     public class GroupGenerationSystemFactory
     {
-        private readonly GameObject _guestPrefab;
-        public GroupGenerationSystemFactory(GameObject guestPrefab) => this._guestPrefab = guestPrefab;
+        private readonly GameResources _gameResources;
+        public GroupGenerationSystemFactory(GameResources gameResources) =>
+            _gameResources = gameResources;
         
-        public GroupGenerationSystem CreateProtoSystem() => new(this._guestPrefab);
+        public GroupGenerationSystem CreateProtoSystem() => new(_gameResources.Guest.gameObject);
     }
 }

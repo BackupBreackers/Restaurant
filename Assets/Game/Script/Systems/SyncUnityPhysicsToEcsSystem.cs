@@ -1,4 +1,5 @@
 ﻿using Leopotam.EcsProto;
+using UnityEngine;
 
 public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
 {
@@ -19,8 +20,10 @@ public class SyncUnityPhysicsToEcsSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var entity in _iterator)
         {
             ref var rb = ref _physics.Rigidbody2DPool.Get(entity);
+            if (!rb.Rigidbody2D)
+                continue;
             ref var pos = ref _physics.PositionPool.Get(entity);
-
+            
             pos.Position = rb.Rigidbody2D.position;
         }
     }
