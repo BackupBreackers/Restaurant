@@ -62,15 +62,31 @@ public class GameResources
             public Sprite Сloud2 => Resources.Load<Sprite>("Visual/UI/Сloud2");
             public Sprite Сloud3 => Resources.Load<Sprite>("Visual/UI/Сloud3");
         }
+        public Sprite barrel => Resources.Load<Sprite>("Visual/barrel");
         public Sprite box => Resources.Load<Sprite>("Visual/box");
-        public Sprite burner__2_ => Resources.Load<Sprite>("Visual/burner (2)");
+        public Sprite burner => Resources.Load<Sprite>("Visual/burner");
+        public Sprite dirtyPlates => Resources.Load<Sprite>("Visual/dirtyPlates");
+        public Sprite fridge => Resources.Load<Sprite>("Visual/fridge");
         public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
+        public Sprite GuestBackIsTurned => Resources.Load<Sprite>("Visual/GuestBackIsTurned");
+        public Sprite GuestIsSittingInFrontOf => Resources.Load<Sprite>("Visual/GuestIsSittingInFrontOf");
+        public Sprite GuestIsSittingSideways => Resources.Load<Sprite>("Visual/GuestIsSittingSideways");
+        public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
+        public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
+        public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
+        public Sprite MouseCookBefore => Resources.Load<Sprite>("Visual/MouseCookBefore");
+        public Sprite MouseCookSideways => Resources.Load<Sprite>("Visual/MouseCookSideways");
+        public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
+        public Sprite plate => Resources.Load<Sprite>("Visual/plate");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
-        public Sprite stove => Resources.Load<Sprite>("Visual/stove");
-        public Sprite tablet__2_ => Resources.Load<Sprite>("Visual/tablet (2)");
+        public Sprite sidePlate => Resources.Load<Sprite>("Visual/sidePlate");
+        public Sprite sink => Resources.Load<Sprite>("Visual/sink");
+        public Sprite table => Resources.Load<Sprite>("Visual/table");
+        public Sprite TableWithPlates => Resources.Load<Sprite>("Visual/TableWithPlates");
         public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
+        public Sprite мышь_повар_перед_8_ => Resources.Load<Sprite>("Visual/мышь-повар перед(8)");
 
         public Visual()
         {
