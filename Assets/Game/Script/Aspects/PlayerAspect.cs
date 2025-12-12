@@ -41,7 +41,10 @@ public struct HolderComponent : IComponent
         PickableItemVisual.PickableItemSprite = null;
         PickableItemVisual.PlateItemSprite = null;
         PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
-        PickableItemVisual.PlateItemSpriteRenderer.sprite = null;
+        if (PickableItemVisual.PlateItemSpriteRenderer)
+        {
+            PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
+        }
     }
 }
 

@@ -46,7 +46,7 @@ public class ItemSourceGeneratorSystem : IProtoInitSystem, IProtoRunSystem, IPro
                     generatorHolder.PickableItemVisual.PickableItemSprite = pickableItem.PickupItemSprite.PickableItemSprite;
                     generatorHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite
                         = pickableItem.PickupItemSprite.PickableItemSprite;
-                    _playerAspect.HasItemTagPool.Add(generatorEntity);
+                    _playerAspect.HasItemTagPool.GetOrAdd(generatorEntity);
                 }
             }
         }

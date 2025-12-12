@@ -18,11 +18,12 @@ public static class Helper
         toHolder.Item = fromHolder.Item;
 
         //fromHolder.Entity = default;
-        fromHolder.PickableItemVisual.PickableItemSprite = null;
-        fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
-        if (fromHolder.PickableItemVisual.PlateItemSpriteRenderer)
-            fromHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
-        fromHolder.Item = null;
+        fromHolder.Clear();
+        // fromHolder.PickableItemVisual.PickableItemSprite = null;
+        // fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
+        // if (fromHolder.PickableItemVisual.PlateItemSpriteRenderer)
+        //     fromHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
+        // fromHolder.Item = null;
 
         // 2. Обновляем теги
         playerAspect.HasItemTagPool.Add(to);
@@ -40,6 +41,7 @@ public static class Helper
     public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder, PlayerAspect playerAspect, PickableItem itemPick)
     {
         playerHolder.PickableItemVisual.PickableItemSprite = itemPick.PickupItemSprite.PickableItemSprite;
+        playerHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = itemPick.PickupItemSprite.PickableItemSprite;
         playerHolder.Item = itemPick.GetType();
         
         playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
@@ -55,11 +57,19 @@ public static class Helper
         toHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled = true;
         toHolder.Item = fromHolder.Item;
 
-        fromHolder.PickableItemVisual.PickableItemSprite = null;
-        fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
-        fromHolder.Item = null;
+        fromHolder.Clear();
+        // fromHolder.PickableItemVisual.PickableItemSprite = null;
+        // fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
+        // fromHolder.Item = null;
         
         playerAspect.HasItemTagPool.GetOrAdd(to);
         playerAspect.HasItemTagPool.DelIfExists(from);
+    }
+
+    public static void ReturnItemToGenerator(ProtoEntity from, ProtoEntity to, ref HolderComponent fromHolder,
+        ref HolderComponent toHolder, PlayerAspect playerAspect)
+    {
+        fromHolder.Clear();
+        playerAspect.HasItemTagPool.Del(from);
     }
 }

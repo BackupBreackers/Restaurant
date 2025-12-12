@@ -65,11 +65,21 @@ namespace Game.Script.Systems
                         Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
                         ref var playerItem = ref _playerAspect.HolderPool.Get(playerEntity);
                         ref var tableItem = ref _playerAspect.HolderPool.Get(interactedEntity);
-                        Debug.Log(tableItem.Item);
-                        Debug.Log(playerItem.Item);
 
-                        if (!(tableItem.Item == typeof(Plate)) ||
-                            playerItem.Item == typeof(Plate) || playerItem.Item  == typeof(DirtyPlate))
+                        if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
+                            && playerItem.Item == tableItem.Item
+                            && !_workstationsAspect.GuestTablePool.Has(interactedEntity)
+                            && !playerItem.PickableItemVisual.PlateItemSpriteRenderer.enabled)
+                        {
+                            Helper.ReturnItemToGenerator(from: playerEntity, to: interactedEntity,
+                                ref playerHolder, ref interactedHolder, _playerAspect);
+                            break;
+                        }
+                        
+                        if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
+                            || !(tableItem.Item == typeof(Plate))
+                            || playerItem.Item == typeof(Plate)
+                            || playerItem.Item  == typeof(DirtyPlate))
                             break;
                         Helper.PutItemOnPlate(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
                             _playerAspect);

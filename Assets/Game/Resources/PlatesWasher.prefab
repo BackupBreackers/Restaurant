@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2319433236381213680}
   - component: {fileID: -6836185141013109645}
   m_Layer: 0
-  m_Name: Stove
+  m_Name: PlatesWasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -207638713585046208, guid: 888d6127c3b691a4988cd0a9f324d3b0, type: 3}
+  m_Sprite: {fileID: 1944054995938551939, guid: 22af24170f6060d4f914898d01b89dae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,30 +122,16 @@ MonoBehaviour:
   - rid: 7346997453272383581
   - rid: 8223375694890532949
   - rid: 8223375694890532952
-  - rid: 6222298215309639765
-  - rid: 6222298215309639766
   references:
     version: 2
     RefIds:
-<<<<<<< HEAD
-    - rid: 6222298215309639765
-      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
-      data:
-        transform: {fileID: 3311472306648148635}
-    - rid: 6222298215309639766
-      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
-      data:
-        type:
-          rid: 6222298215309639767
-    - rid: 6222298215309639767
-      type: {class: Stove, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
-=======
     - rid: 7346997453272383581
       type: {class: ReceiptProcessorComponent, ns: , asm: Assembly-CSharp}
       data: 
->>>>>>> 64c078c (some more interaction magic)
+    - rid: 7346997453272383585
+      type: {class: PlatesWasher, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
     - rid: 8223375694890532942
       type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -210,11 +196,7 @@ MonoBehaviour:
       type: {class: WorkstationsTypeComponent, ns: , asm: Assembly-CSharp}
       data:
         workstationType:
-          rid: 8223375694890532953
-    - rid: 8223375694890532953
-      type: {class: Stove, ns: , asm: Assembly-CSharp}
-      data:
-        workstationSprite: {fileID: 0}
+          rid: 7346997453272383585
 --- !u!114 &7543198748488558046
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b82b15923f6b438a862559f58c05689e, type: 3}
-  m_Name: fish0-fish1
+  m_Name: WashPlate
   m_EditorClassIdentifier: Assembly-CSharp::ItemProcessor
   inputItemType:
-    rid: 7346997319901118541
+    rid: 7346997453272383582
   outputItemType:
-    rid: 7346997319901118542
+    rid: 7346997453272383583
   workstationType:
-    rid: 6709886309644107851
-  Duration: 3
+    rid: 7346997453272383584
+  Duration: 4
   references:
     version: 2
     RefIds:
-    - rid: 6709886309644107851
-      type: {class: Stove, ns: , asm: Assembly-CSharp}
+    - rid: 7346997453272383582
+      type: {class: DirtyPlate, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite:
+          PickableItemSpriteRenderer: {fileID: 0}
+          PlateItemSpriteRenderer: {fileID: 0}
+          PickableItemSprite: {fileID: 0}
+          PlateItemSprite: {fileID: 0}
+    - rid: 7346997453272383583
+      type: {class: Plate, ns: Game.Script, asm: Assembly-CSharp}
+      data:
+        PickupItemSprite:
+          PickableItemSpriteRenderer: {fileID: 0}
+          PlateItemSpriteRenderer: {fileID: 0}
+          PickableItemSprite: {fileID: 0}
+          PlateItemSprite: {fileID: 0}
+    - rid: 7346997453272383584
+      type: {class: PlatesWasher, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
-    - rid: 7346997319901118541
-      type: {class: Fish0, ns: Game.Script, asm: Assembly-CSharp}
-      data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}
-    - rid: 7346997319901118542
-      type: {class: Fish1, ns: Game.Script, asm: Assembly-CSharp}
-      data:
-        PickupItemSprite:
-          PickableItemSpriteRenderer: {fileID: 0}
-          PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 0}
-          PlateItemSprite: {fileID: 0}

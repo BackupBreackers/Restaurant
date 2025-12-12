@@ -365,7 +365,11 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< HEAD
   m_SortingOrder: 5
+=======
+  m_SortingOrder: 2
+>>>>>>> 64c078c (some more interaction magic)
   m_Sprite: {fileID: -406356527201391241, guid: 0262b1353b59f6049b252f5a91376e07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -374,7 +378,7 @@ SpriteRenderer:
   m_Size: {x: 1.26, y: 1.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3777577797370295754
@@ -417,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 5
+  m_Priority: 2
   m_ComponentVersion: 5
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
@@ -495,12 +499,17 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
     oldSize: {x: 1.26, y: 1.48}
     newSize: {x: 1.26, y: 1.48}
 =======
     oldSize: {x: 3, y: 3}
     newSize: {x: 3, y: 3}
 >>>>>>> 9c10e10 (plates magic)
+=======
+    oldSize: {x: 1.26, y: 1.48}
+    newSize: {x: 1.26, y: 1.48}
+>>>>>>> 64c078c (some more interaction magic)
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

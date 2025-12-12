@@ -9,7 +9,7 @@ public class WorkstationsAspect : ProtoAspectInject
 {
     public ProtoPool<WorkstationsTypeComponent> WorkstationsTypePool;
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
-    public ProtoPool<StoveComponent> StovePool;
+    public ProtoPool<ReceiptProcessorComponent> StovePool;
     public ProtoPool<GuestTableComponent> GuestTablePool;
     public ProtoPool<PlatesOnWorkstationComponent> PlatesOnTablePool;
     
@@ -56,7 +56,7 @@ public struct InteractableComponent : IComponent
 
 
 [Serializable]
-public struct StoveComponent : IComponent
+public struct ReceiptProcessorComponent : IComponent
 {
 }
 

@@ -40,6 +40,7 @@ public class GameResources
     {
         public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
+        public Recipe WashPlate => Resources.Load<Recipe>("Recipes/WashPlate");
     }
     public Visual VisualLink;
     public class Visual
@@ -132,6 +133,7 @@ public class GameResources
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
     public CustomAuthoring PlatesStand => Resources.Load<CustomAuthoring>("PlatesStand");
+    public CustomAuthoring PlatesWasher => Resources.Load<CustomAuthoring>("PlatesWasher");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");

@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Name: Guest Group Spawn Event Marker
   m_EditorClassIdentifier: Assembly-CSharp::GuestGroupSpawnEventMarker
   m_Time: 0.23333333333333334
-  count: 1
+  count: 2
