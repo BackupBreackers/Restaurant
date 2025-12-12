@@ -1,6 +1,7 @@
 using Game.Script;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UIElements;
 
 // This file is auto-generated. Do not modify manually.
@@ -74,9 +75,11 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
-        public Sprite MouseCookBefore => Resources.Load<Sprite>("Visual/MouseCookBefore");
-        public Sprite MouseCookSideways => Resources.Load<Sprite>("Visual/MouseCookSideways");
-        public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
+        //public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
+        //public SpriteSkin MouseCook => Resources.Load<SpriteSkin>("Visual/MouseCook");
+        //public Sprite MouseCookBefore => Resources.Load<Sprite>("Visual/MouseCookBefore");
+        //public Sprite MouseCookSideways => Resources.Load<Sprite>("Visual/MouseCookSideways");
+        //public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite plate => Resources.Load<Sprite>("Visual/plate");
@@ -86,7 +89,6 @@ public class GameResources
         public Sprite table => Resources.Load<Sprite>("Visual/table");
         public Sprite TableWithPlates => Resources.Load<Sprite>("Visual/TableWithPlates");
         public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
-        public Sprite мышь_повар_перед_8_ => Resources.Load<Sprite>("Visual/мышь-повар перед(8)");
 
         public Visual()
         {
