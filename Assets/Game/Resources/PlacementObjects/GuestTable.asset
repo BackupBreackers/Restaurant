@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: GuestTable
   m_EditorClassIdentifier: Assembly-CSharp::PlacementObject
   workstationType:
-    rid: -2
-  prefab: {fileID: 0}
+    rid: 6222298218394812500
+  prefab: {fileID: 7483289833465234307, guid: 5e02571656fc7254196e7996e33940d9, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 6222298218394812500
+      type: {class: GuestTable, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}

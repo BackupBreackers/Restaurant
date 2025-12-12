@@ -31,6 +31,12 @@ MonoBehaviour:
   - item:
       rid: 6222298215309639764
     pivotToRealPositionDifference: {x: 0, y: 0}
+  - item:
+      rid: 6222298218394812501
+    pivotToRealPositionDifference: {x: 0, y: 0.22}
+  - item:
+      rid: 6222298218394812502
+    pivotToRealPositionDifference: {x: 0, y: 0}
   references:
     version: 2
     RefIds:
@@ -56,5 +62,13 @@ MonoBehaviour:
         workstationSprite: {fileID: 0}
     - rid: 6222298215309639764
       type: {class: TableSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298218394812501
+      type: {class: GuestTable, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298218394812502
+      type: {class: GuestTableSpawner, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
