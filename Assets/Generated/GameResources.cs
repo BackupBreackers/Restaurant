@@ -94,10 +94,7 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
-<<<<<<< HEAD
         public Sprite GuestTableSpawner => Resources.Load<Sprite>("Visual/GuestTableSpawner");
-=======
->>>>>>> 9c10e10 (plates magic)
         public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
         public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
@@ -137,12 +134,8 @@ public class GameResources
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
-<<<<<<< HEAD
-    public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
-    public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
-=======
     public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
->>>>>>> 9c10e10 (plates magic)
+    public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
     public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 

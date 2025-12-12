@@ -60,7 +60,6 @@ public class FridgeSpawner : Spawner
 }
 
 [Serializable]
-<<<<<<< HEAD
 public class TableSpawner : Spawner
 {
 
@@ -76,18 +75,14 @@ public class GuestTableSpawner : Spawner
 public class StoveSpawner : Spawner
 {
 
-=======
+}
 public class PlatesSpawner : Spawner
 {
     
-<<<<<<< HEAD
->>>>>>> 9c10e10 (plates magic)
-=======
 }
 
 [Serializable]
 public class PlatesWasher : WorkstationItem
 {
     
->>>>>>> 64c078c (some more interaction magic)
 }

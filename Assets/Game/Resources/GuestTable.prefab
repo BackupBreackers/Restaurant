@@ -243,14 +243,11 @@ MonoBehaviour:
   - rid: 6709886293115404488
   - rid: 6709886293115404489
   - rid: 6709886293115404490
-<<<<<<< HEAD
   - rid: 6222298218394812493
   - rid: 6222298218394812494
   - rid: 6222298218394812495
   - rid: 6222298218394812496
-=======
   - rid: 7346997453272383569
->>>>>>> 9c10e10 (plates magic)
   references:
     version: 2
     RefIds:
@@ -365,11 +362,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< HEAD
-  m_SortingOrder: 5
-=======
   m_SortingOrder: 2
->>>>>>> 64c078c (some more interaction magic)
   m_Sprite: {fileID: -406356527201391241, guid: 0262b1353b59f6049b252f5a91376e07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -498,18 +491,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
     oldSize: {x: 1.26, y: 1.48}
     newSize: {x: 1.26, y: 1.48}
-=======
-    oldSize: {x: 3, y: 3}
-    newSize: {x: 3, y: 3}
->>>>>>> 9c10e10 (plates magic)
-=======
-    oldSize: {x: 1.26, y: 1.48}
-    newSize: {x: 1.26, y: 1.48}
->>>>>>> 64c078c (some more interaction magic)
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
