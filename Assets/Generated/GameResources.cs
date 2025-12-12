@@ -38,6 +38,10 @@ public class GameResources
     public Visual VisualLink;
     public class Visual
     {
+        public Animatiion AnimatiionLink;
+        public class Animatiion
+        {
+        }
         public Materials MaterialsLink;
         public class Materials
         {
@@ -49,6 +53,13 @@ public class GameResources
             public Sprite FishStates => Resources.Load<Sprite>("Visual/PickableItems/FishStates");
             public Sprite meat => Resources.Load<Sprite>("Visual/PickableItems/meat");
             public Sprite plate => Resources.Load<Sprite>("Visual/PickableItems/plate");
+        }
+        public Prefab PrefabLink;
+        public class Prefab
+        {
+            public SpriteSkin MouseCook => Resources.Load<SpriteSkin>("Visual/Prefab/MouseCook");
+            public SpriteSkin MouseWithItsBack => Resources.Load<SpriteSkin>("Visual/Prefab/MouseWithItsBack");
+            public SpriteSkin MouseWithLeft => Resources.Load<SpriteSkin>("Visual/Prefab/MouseWithLeft");
         }
         public UI UILink;
         public class UI
@@ -68,6 +79,7 @@ public class GameResources
         public Sprite burner => Resources.Load<Sprite>("Visual/burner");
         public Sprite dirtyPlates => Resources.Load<Sprite>("Visual/dirtyPlates");
         public Sprite fridge => Resources.Load<Sprite>("Visual/fridge");
+        public Sprite fridgeSpawner => Resources.Load<Sprite>("Visual/fridgeSpawner");
         public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
         public Sprite GuestBackIsTurned => Resources.Load<Sprite>("Visual/GuestBackIsTurned");
         public Sprite GuestIsSittingInFrontOf => Resources.Load<Sprite>("Visual/GuestIsSittingInFrontOf");
@@ -75,25 +87,26 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
-        //public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
-        //public SpriteSkin MouseCook => Resources.Load<SpriteSkin>("Visual/MouseCook");
-        //public Sprite MouseCookBefore => Resources.Load<Sprite>("Visual/MouseCookBefore");
-        //public Sprite MouseCookSideways => Resources.Load<Sprite>("Visual/MouseCookSideways");
-        //public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
+        public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
+        public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
+        public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite plate => Resources.Load<Sprite>("Visual/plate");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
         public Sprite sidePlate => Resources.Load<Sprite>("Visual/sidePlate");
         public Sprite sink => Resources.Load<Sprite>("Visual/sink");
+        public Sprite spawner_back => Resources.Load<Sprite>("Visual/spawner-back");
         public Sprite table => Resources.Load<Sprite>("Visual/table");
         public Sprite TableWithPlates => Resources.Load<Sprite>("Visual/TableWithPlates");
         public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
 
         public Visual()
         {
+            AnimatiionLink = new Animatiion();
             MaterialsLink = new Materials();
             PickableItemsLink = new PickableItems();
+            PrefabLink = new Prefab();
             UILink = new UI();
         }
     }
@@ -109,7 +122,9 @@ public class GameResources
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
+    public GameObject StoveSpawner => Resources.Load<GameObject>("StoveSpawner");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
+    public GameObject TableSpawner => Resources.Load<GameObject>("TableSpawner");
 
     public GameResources()
     {

@@ -35,6 +35,7 @@ namespace Game.Script.DISystem
             builder.Register<MoveGameObjectSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncGridPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
+            builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             
             builder.RegisterFactory<RefrigeratorSystem>(container =>
                 container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -71,6 +72,9 @@ namespace Game.Script.DISystem
             
             builder.RegisterFactory<GroupGenerationSystem>(container =>
                 container.Resolve<GroupGenerationSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+
+            builder.RegisterFactory<RandomSpawnerPositionSystem>(container =>
+                container.Resolve<RandomSpawnerPositionSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.Register<WorkstationsModule>(Lifetime.Singleton);
             builder.Register<PlacementModule>(Lifetime.Singleton);

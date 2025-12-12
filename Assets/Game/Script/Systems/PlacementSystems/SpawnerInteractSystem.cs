@@ -27,8 +27,10 @@ public class SpawnerInteractSystem : IProtoInitSystem, IProtoRunSystem, IProtoDe
             if (!_placementAspect.CreateGameObjectEventPool.Has(spawner))
                 _placementAspect.CreateGameObjectEventPool.Add(spawner);
             ref var createComponent = ref _placementAspect.CreateGameObjectEventPool.Get(spawner);
-            createComponent.gridPosition = gridPosition.Position;
-            createComponent.furnitureType = spawnerTag.spawnObjectType.GetType();
+            createComponent.objects = new()
+            {
+                (spawnerTag.spawnObjectType.GetType(), gridPosition.Position)
+            };
             createComponent.destroyInvoker = true;
 
             _placementAspect.SpawnFurnitureEventPool.DelIfExists(spawner);
