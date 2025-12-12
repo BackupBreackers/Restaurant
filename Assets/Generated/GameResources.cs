@@ -49,6 +49,19 @@ public class GameResources
             public Sprite meat => Resources.Load<Sprite>("Visual/PickableItems/meat");
             public Sprite plate => Resources.Load<Sprite>("Visual/PickableItems/plate");
         }
+        public UI UILink;
+        public class UI
+        {
+            public Sprite Birds => Resources.Load<Sprite>("Visual/UI/Birds");
+            public Sprite CastleDown => Resources.Load<Sprite>("Visual/UI/CastleDown");
+            public Sprite CastleUP => Resources.Load<Sprite>("Visual/UI/CastleUP");
+            public Sprite MenuBackground => Resources.Load<Sprite>("Visual/UI/MenuBackground");
+            public Sprite miceahoy => Resources.Load<Sprite>("Visual/UI/miceahoy");
+            public Sprite ship => Resources.Load<Sprite>("Visual/UI/ship");
+            public Sprite Сloud1 => Resources.Load<Sprite>("Visual/UI/Сloud1");
+            public Sprite Сloud2 => Resources.Load<Sprite>("Visual/UI/Сloud2");
+            public Sprite Сloud3 => Resources.Load<Sprite>("Visual/UI/Сloud3");
+        }
         public Sprite box => Resources.Load<Sprite>("Visual/box");
         public Sprite burner__2_ => Resources.Load<Sprite>("Visual/burner (2)");
         public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
@@ -63,6 +76,7 @@ public class GameResources
         {
             MaterialsLink = new Materials();
             PickableItemsLink = new PickableItems();
+            UILink = new UI();
         }
     }
     public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
