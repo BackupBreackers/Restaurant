@@ -7,9 +7,7 @@ using System.Linq;
 
 public class RandomSpawnerPositionSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem
 {
-    [DI] readonly PlayerAspect _playerAspect;
     [DI] readonly PlacementAspect _placementAspect;
-    [DI] readonly PhysicsAspect _physicsAspect;
 
     private PlacementGrid worldGrid;
     private ProtoIt _iteratorEvent;

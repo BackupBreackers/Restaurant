@@ -16,6 +16,7 @@ internal class PlacementAspect : ProtoAspectInject
     public ProtoPool<SpawnFurnitureEvent> SpawnFurnitureEventPool;
     public ProtoPool<SpawnerTag> SpawnerTagPool;
     public ProtoPool<CreateSpawnersEvent> CreateSpawnersEventPool;
+    public ProtoPool<DestroyAllSpawnersEvent> DestroyAllSpawnersEventPool;
 }
 
 [Serializable]
@@ -65,4 +66,9 @@ internal struct SpawnFurnitureEvent
 
 internal struct CreateSpawnersEvent
 {
+}
+
+internal struct DestroyAllSpawnersEvent
+{
+
 }

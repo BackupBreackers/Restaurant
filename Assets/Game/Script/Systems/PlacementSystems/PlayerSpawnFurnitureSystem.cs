@@ -33,6 +33,8 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             if (playerInput.IsInPlacementMode)
             {
                 playerInput.IsInPlacementMode = false;
+                if (!_placementAspect.DestroyAllSpawnersEventPool.Has(entityPlayer))
+                    _placementAspect.DestroyAllSpawnersEventPool.Add(entityPlayer);
                 continue;
             }
 

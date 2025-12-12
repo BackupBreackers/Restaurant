@@ -42,6 +42,12 @@ public class Table : WorkstationItem
 }
 
 [Serializable]
+public class GuestTable : WorkstationItem
+{
+
+}
+
+[Serializable]
 public class Spawner : WorkstationItem
 {
 
@@ -55,6 +61,12 @@ public class FridgeSpawner : Spawner
 
 [Serializable]
 public class TableSpawner : Spawner
+{
+
+}
+
+[Serializable]
+public class GuestTableSpawner : Spawner
 {
 
 }

@@ -26,6 +26,8 @@ public class GameResources
     {
         public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
         public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
+        public PlacementObject GuestTable => Resources.Load<PlacementObject>("PlacementObjects/GuestTable");
+        public PlacementObject GuestTableSpawner => Resources.Load<PlacementObject>("PlacementObjects/GuestTableSpawner");
         public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
         public PlacementObject StoveSpawner => Resources.Load<PlacementObject>("PlacementObjects/StoveSpawner");
         public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
@@ -89,6 +91,7 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
+        public Sprite GuestTableSpawner => Resources.Load<Sprite>("Visual/GuestTableSpawner");
         public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
         public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
@@ -119,6 +122,7 @@ public class GameResources
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
+    public CustomAuthoring GuestTableSpawner => Resources.Load<CustomAuthoring>("GuestTableSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");

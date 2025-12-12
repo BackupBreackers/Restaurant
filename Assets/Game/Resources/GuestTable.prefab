@@ -152,9 +152,34 @@ MonoBehaviour:
   - rid: 6709886293115404488
   - rid: 6709886293115404489
   - rid: 6709886293115404490
+  - rid: 6222298218394812493
+  - rid: 6222298218394812494
+  - rid: 6222298218394812495
+  - rid: 6222298218394812496
   references:
     version: 2
     RefIds:
+    - rid: 6222298218394812493
+      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
+      data:
+        type:
+          rid: 6222298218394812497
+    - rid: 6222298218394812494
+      type: {class: GridPositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+    - rid: 6222298218394812495
+      type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 1139622382474583493}
+    - rid: 6222298218394812496
+      type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
+      data:
+        entityGridPositions: {x: 0, y: 0}
+    - rid: 6222298218394812497
+      type: {class: GuestTable, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
     - rid: 6709886293115404488
       type: {class: GuestTableIsFreeTag, ns: Game.Script.Aspects, asm: Assembly-CSharp}
       data: 
@@ -229,12 +254,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: dbc3395099105684e889de3b9f387fc0, type: 3}
+  m_Sprite: {fileID: -406356527201391241, guid: 0262b1353b59f6049b252f5a91376e07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.66, y: 1.88}
+  m_Size: {x: 1.26, y: 1.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -358,7 +383,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.26, y: 1.48}
-    newSize: {x: 1.66, y: 1.88}
+    newSize: {x: 1.26, y: 1.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
