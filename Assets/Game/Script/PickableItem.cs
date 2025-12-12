@@ -6,7 +6,7 @@ namespace Game.Script
     [Serializable]
     public class PickableItem
     {
-        public Sprite PickupItemSprite;
+        public PickableItemWrapper PickupItemSprite;
 
         public bool Is(Type type)
         {
@@ -36,6 +36,16 @@ namespace Game.Script
 
     [Serializable]
     public class Fish3 : PickableItem
+    {
+    }
+
+    [Serializable]
+    public class Plate : PickableItem
+    {
+    }
+
+    [Serializable]
+    public class DirtyPlate : PickableItem
     {
     }
 }

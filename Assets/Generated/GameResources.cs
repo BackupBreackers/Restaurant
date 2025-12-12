@@ -15,11 +15,13 @@ public class GameResources
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
+        public PickableItemSO DirtyPlate => Resources.Load<PickableItemSO>("PickableItems/DirtyPlate");
         public PickableItemSO Fish0 => Resources.Load<PickableItemSO>("PickableItems/Fish0");
         public PickableItemSO Fish1 => Resources.Load<PickableItemSO>("PickableItems/Fish1");
         public PickableItemSO Fish2 => Resources.Load<PickableItemSO>("PickableItems/Fish2");
         public PickableItemSO Fish3 => Resources.Load<PickableItemSO>("PickableItems/Fish3");
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
+        public PickableItemSO Plate => Resources.Load<PickableItemSO>("PickableItems/Plate");
     }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
@@ -91,7 +93,10 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
+<<<<<<< HEAD
         public Sprite GuestTableSpawner => Resources.Load<Sprite>("Visual/GuestTableSpawner");
+=======
+>>>>>>> 9c10e10 (plates magic)
         public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
         public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
@@ -126,11 +131,16 @@ public class GameResources
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
+    public CustomAuthoring PlatesStand => Resources.Load<CustomAuthoring>("PlatesStand");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
+<<<<<<< HEAD
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
     public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
+=======
+    public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
+>>>>>>> 9c10e10 (plates magic)
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
     public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 

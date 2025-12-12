@@ -77,6 +77,7 @@ namespace Game.Script.Systems
                     {
                         Debug.Log("Получен заказ от гостя");
                         _workstationsAspect.InteractedEventPool.Add(guestEntity);
+                        _guestAspect.WantedItemVisualizationPool.Get(guestEntity).Visualization.SetActive(true);
                     }
                     else
                     {

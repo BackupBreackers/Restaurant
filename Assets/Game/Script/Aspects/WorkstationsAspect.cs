@@ -11,6 +11,9 @@ public class WorkstationsAspect : ProtoAspectInject
     public ProtoPool<ItemSourceComponent> ItemSourcePool;
     public ProtoPool<StoveComponent> StovePool;
     public ProtoPool<GuestTableComponent> GuestTablePool;
+    public ProtoPool<PlatesOnWorkstationComponent> PlatesOnTablePool;
+    
+    public ProtoPool<ItemGenerationAvailableTag> ItemGenerationAvailablePool;
     
     public ProtoPool<PickPlaceEvent> PickPlaceEventPool;
     public ProtoPool<ItemPlaceEvent> ItemPlaceEventPool;
@@ -26,12 +29,6 @@ public struct PlaceWorkstationEvent : IComponent
 {
 }
 
-[Serializable]
-public struct WorkstationsTypeComponent : IComponent
-{
-    [SerializeReference, SubclassSelector] public WorkstationItem workstationType;
-}
-
 public struct PickPlaceEvent
 {
     public ProtoPackedEntityWithWorld Invoker;
@@ -42,6 +39,11 @@ public struct ItemPickEvent
 }
 
 public struct ItemPlaceEvent
+{
+}
+
+[Serializable]
+public struct ItemGenerationAvailableTag : IComponent
 {
 }
 
@@ -69,4 +71,17 @@ public struct GuestTableComponent : IComponent
 {
     public Vector2[] guestPlaces;
     public ProtoPackedEntityWithWorld GuestGroup;
+    // public GameObject Plates;
+}
+
+[Serializable]
+public struct WorkstationsTypeComponent : IComponent
+{
+    [SerializeReference, SubclassSelector] public WorkstationItem workstationType;
+}
+
+[Serializable]
+public struct PlatesOnWorkstationComponent : IComponent
+{
+    public int PlatesOnTable;
 }

@@ -15,7 +15,7 @@ namespace Game.Script.Systems
         [DI] private PhysicsAspect _physicsAspect;
         
         private ProtoIt _groupIterator;
-        private ProtoIt _freeTablesIterator;
+        private ProtoItExc _freeTablesIterator;
         
         public void Init(IProtoSystems systems)
         {
@@ -27,6 +27,9 @@ namespace Game.Script.Systems
             _freeTablesIterator = new(new[]
             {
                 typeof(GuestTableComponent), typeof(GuestTableIsFreeTag)
+            }, new[]
+            {
+                typeof(PlatesOnWorkstationComponent)
             });
             _groupIterator.Init(_world);
             _freeTablesIterator.Init(_world);
@@ -36,8 +39,10 @@ namespace Game.Script.Systems
         {
             foreach (var guestGroupEntity in _groupIterator)
             {
+                Debug.Log("поиск");
                 foreach (var tableEntity in _freeTablesIterator)
                 {
+                    Debug.Log("стол существует");
                     ref var group = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
                     ref var table = ref _workstationsAspect.GuestTablePool.Get(tableEntity);
                     group.table = _world.PackEntityWithWorld(tableEntity);

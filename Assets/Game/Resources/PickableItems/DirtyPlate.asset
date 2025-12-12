@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c53bc166abe24032beb849173501ddc9, type: 3}
-  m_Name: Meat
+  m_Name: DirtyPlate
   m_EditorClassIdentifier: Assembly-CSharp::Game.Script.PickableItemSO
   PickableItem:
-    rid: 8425613255053148357
+    rid: 7346997453272383578
   references:
     version: 2
     RefIds:
-    - rid: 8425613255053148357
-      type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
+    - rid: 7346997453272383578
+      type: {class: DirtyPlate, ns: Game.Script, asm: Assembly-CSharp}
       data:
         PickupItemSprite:
           PickableItemSpriteRenderer: {fileID: 0}
           PlateItemSpriteRenderer: {fileID: 0}
-          PickableItemSprite: {fileID: 21300000, guid: 398ca5c382e4e8e40989c12ab3bcdba7, type: 3}
-          PlateItemSprite: {fileID: -4795573259988461060, guid: 321135aa99c5aa34ab1f362fe85a077c, type: 3}
+          PickableItemSprite: {fileID: -3877705869567704825, guid: f236eb621a88cb44a86ce4e8425005f3, type: 3}
+          PlateItemSprite: {fileID: 0}

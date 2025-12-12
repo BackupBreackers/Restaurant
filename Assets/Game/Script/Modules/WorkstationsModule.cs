@@ -6,7 +6,7 @@ using UnityEngine;
 
 internal class WorkstationsModule : IProtoModule
 {
-    RefrigeratorSystem _refrigeratorSystem;
+    ItemSourceGeneratorSystem _itemSourceGeneratorSystem;
     StoveSystem _stoveSystem;
     PickPlaceSystem _pickPlaceSystem;
     ClearSystem _clearSystem;
@@ -17,7 +17,7 @@ internal class WorkstationsModule : IProtoModule
         ClearSystemFactory clearSystemFactory
         )
     {
-        _refrigeratorSystem = refrigeratorSystemFactory.CreateProtoSystem();
+        _itemSourceGeneratorSystem = refrigeratorSystemFactory.CreateProtoSystem();
         _stoveSystem = stoveSystemFactory.CreateProtoSystem();
         _pickPlaceSystem = pickPlaceSystemFactory.CreateProtoSystem();
         _clearSystem = clearSystemFactory.CreateProtoSystem();
@@ -30,7 +30,8 @@ internal class WorkstationsModule : IProtoModule
             .AddSystem(new GuestTableSetupSystem())
             .AddSystem(new AcceptOrderSystem())
             .AddSystem(new TableNotificationSystem())
-            .AddSystem(_refrigeratorSystem)
+            .AddSystem(new DirtyPlatePickupSystem())
+            .AddSystem(_itemSourceGeneratorSystem)
             .AddSystem(_stoveSystem)
             .AddSystem(new ProgressBarSystem())
             .AddSystem(_clearSystem, 999);

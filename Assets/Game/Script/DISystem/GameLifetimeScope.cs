@@ -38,7 +38,7 @@ namespace Game.Script.DISystem
             builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
             
-            builder.RegisterFactory<RefrigeratorSystem>(container =>
+            builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
                 container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
             
             builder.RegisterFactory<StoveSystem>(container =>

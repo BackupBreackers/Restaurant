@@ -60,6 +60,7 @@ public class FridgeSpawner : Spawner
 }
 
 [Serializable]
+<<<<<<< HEAD
 public class TableSpawner : Spawner
 {
 
@@ -75,4 +76,9 @@ public class GuestTableSpawner : Spawner
 public class StoveSpawner : Spawner
 {
 
+=======
+public class PlatesSpawner : Spawner
+{
+    
+>>>>>>> 9c10e10 (plates magic)
 }

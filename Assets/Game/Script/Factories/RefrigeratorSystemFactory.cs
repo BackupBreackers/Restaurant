@@ -6,9 +6,9 @@ namespace Game.Script.Factories
         
         public RefrigeratorSystemFactory(PickableService pickableService) => this._pickableService = pickableService;
         
-        public RefrigeratorSystem CreateProtoSystem()
+        public ItemSourceGeneratorSystem CreateProtoSystem()
         {
-            return new RefrigeratorSystem(_pickableService);
+            return new ItemSourceGeneratorSystem(_pickableService);
         }
     }
 }
