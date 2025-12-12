@@ -33,6 +33,8 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             if (playerInput.IsInPlacementMode)
             {
                 playerInput.IsInPlacementMode = false;
+                if (!_placementAspect.DestroyAllSpawnersEventPool.Has(entityPlayer))
+                    _placementAspect.DestroyAllSpawnersEventPool.Add(entityPlayer);
                 continue;
             }
 
@@ -41,12 +43,8 @@ public class PlayerSpawnFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IPr
             var currentType = typeof(FridgeSpawner); //временно спавню только холодильники
 
             //добавляю event на игрока
-            if (!_placementAspect.CreateGameObjectEventPool.Has(entityPlayer))
-                _placementAspect.CreateGameObjectEventPool.Add(entityPlayer);
-            ref var createComponent = ref _placementAspect.CreateGameObjectEventPool.Get(entityPlayer);
-            createComponent.gridPosition = emptyPlace;
-            createComponent.furnitureType = currentType;
-            createComponent.destroyInvoker = false;
+            if (!_placementAspect.CreateSpawnersEventPool.Has(entityPlayer))
+                _placementAspect.CreateSpawnersEventPool.Add(entityPlayer);
         }
     }
 

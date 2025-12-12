@@ -16,25 +16,32 @@ public class GameResources
     public PickableItems PickableItemsLink;
     public class PickableItems
     {
+        public PickableItemSO DirtyPlate => Resources.Load<PickableItemSO>("PickableItems/DirtyPlate");
         public PickableItemSO Fish0 => Resources.Load<PickableItemSO>("PickableItems/Fish0");
         public PickableItemSO Fish1 => Resources.Load<PickableItemSO>("PickableItems/Fish1");
         public PickableItemSO Fish2 => Resources.Load<PickableItemSO>("PickableItems/Fish2");
         public PickableItemSO Fish3 => Resources.Load<PickableItemSO>("PickableItems/Fish3");
         public PickableItemSO Meat => Resources.Load<PickableItemSO>("PickableItems/Meat");
+        public PickableItemSO Plate => Resources.Load<PickableItemSO>("PickableItems/Plate");
     }
     public PlacementObjects PlacementObjectsLink;
     public class PlacementObjects
     {
         public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
         public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
+        public PlacementObject GuestTable => Resources.Load<PlacementObject>("PlacementObjects/GuestTable");
+        public PlacementObject GuestTableSpawner => Resources.Load<PlacementObject>("PlacementObjects/GuestTableSpawner");
         public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
+        public PlacementObject StoveSpawner => Resources.Load<PlacementObject>("PlacementObjects/StoveSpawner");
         public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
+        public PlacementObject TableSpawner => Resources.Load<PlacementObject>("PlacementObjects/TableSpawner");
     }
     public Recipes RecipesLink;
     public class Recipes
     {
         public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
+        public Recipe WashPlate => Resources.Load<Recipe>("Recipes/WashPlate");
     }
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs
@@ -87,6 +94,7 @@ public class GameResources
         public Sprite burner => Resources.Load<Sprite>("Visual/burner");
         public Sprite dirtyPlates => Resources.Load<Sprite>("Visual/dirtyPlates");
         public Sprite fridge => Resources.Load<Sprite>("Visual/fridge");
+        public Sprite fridgeSpawner => Resources.Load<Sprite>("Visual/fridgeSpawner");
         public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
         public Sprite GuestBackIsTurned => Resources.Load<Sprite>("Visual/GuestBackIsTurned");
         public Sprite GuestIsSittingInFrontOf => Resources.Load<Sprite>("Visual/GuestIsSittingInFrontOf");
@@ -94,6 +102,10 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
+<<<<<<< HEAD
+=======
+        public Sprite GuestTableSpawner => Resources.Load<Sprite>("Visual/GuestTableSpawner");
+>>>>>>> a9296302ccb2b4e1fe58ee161647d66cd48bcffd
         public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
         public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
@@ -103,7 +115,10 @@ public class GameResources
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
         public Sprite sidePlate => Resources.Load<Sprite>("Visual/sidePlate");
         public Sprite sink => Resources.Load<Sprite>("Visual/sink");
+        public Sprite spawner_back => Resources.Load<Sprite>("Visual/spawner-back");
+        public Sprite stoveSpawner => Resources.Load<Sprite>("Visual/stoveSpawner");
         public Sprite table => Resources.Load<Sprite>("Visual/table");
+        public Sprite tableSpawner => Resources.Load<Sprite>("Visual/tableSpawner");
         public Sprite TableWithPlates => Resources.Load<Sprite>("Visual/TableWithPlates");
         public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
 
@@ -121,14 +136,19 @@ public class GameResources
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
     public CustomAuthoring GuestTable => Resources.Load<CustomAuthoring>("GuestTable");
+    public CustomAuthoring GuestTableSpawner => Resources.Load<CustomAuthoring>("GuestTableSpawner");
     public PickableItemsDB Pickable_Items_DB => Resources.Load<PickableItemsDB>("Pickable_Items_DB");
     public PivotToRealPositionDifferences PivotToRealPositionDifferences => Resources.Load<PivotToRealPositionDifferences>("PivotToRealPositionDifferences");
     public PlacementObjectsDB PlacementObjects_DB => Resources.Load<PlacementObjectsDB>("PlacementObjects_DB");
+    public CustomAuthoring PlatesStand => Resources.Load<CustomAuthoring>("PlatesStand");
+    public CustomAuthoring PlatesWasher => Resources.Load<CustomAuthoring>("PlatesWasher");
     public CustomAuthoring Player => Resources.Load<CustomAuthoring>("Player");
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
-    public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
+    public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
+    public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
+    public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 
     public GameResources()
     {

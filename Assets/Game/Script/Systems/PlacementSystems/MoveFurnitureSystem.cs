@@ -76,10 +76,8 @@ public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDest
                 var angle = Vector2.SignedAngle(new Vector2(1, 0), input.LookDirection);
                 var diff = SwitchLookAngle(angle);
                 var res = foundPos + diff;
-                if (res.x >= 0 && res.x < grid.PlacementZoneSize.x)
-                    if (res.y >= 0 && res.y < grid.PlacementZoneSize.y)
-                        if (!worldGrid.IsContains(res))
-                            return res;
+                if (worldGrid.IsValidEmptyCell(res))
+                    return res;
             }
         }
         return defaultVector;

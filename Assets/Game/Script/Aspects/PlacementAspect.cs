@@ -15,6 +15,8 @@ internal class PlacementAspect : ProtoAspectInject
     public ProtoPool<SyncGridPositionEvent> SyncMyGridPositionEventPool;
     public ProtoPool<SpawnFurnitureEvent> SpawnFurnitureEventPool;
     public ProtoPool<SpawnerTag> SpawnerTagPool;
+    public ProtoPool<CreateSpawnersEvent> CreateSpawnersEventPool;
+    public ProtoPool<DestroyAllSpawnersEvent> DestroyAllSpawnersEventPool;
 }
 
 [Serializable]
@@ -36,8 +38,7 @@ public struct MoveThisFurnitureTag
 
 internal struct CreateGameObjectEvent
 {
-    public Type furnitureType;
-    public Vector2Int gridPosition;
+    public List<(Type furnitureType, Vector2Int gridPosition)> objects;
     public bool destroyInvoker;
 }
 
@@ -61,4 +62,13 @@ public struct SpawnerTag : IComponent
 
 internal struct SpawnFurnitureEvent
 {
+}
+
+internal struct CreateSpawnersEvent
+{
+}
+
+internal struct DestroyAllSpawnersEvent
+{
+
 }

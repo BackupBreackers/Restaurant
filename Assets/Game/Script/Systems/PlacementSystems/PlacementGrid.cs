@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -26,6 +27,15 @@ public class PlacementGrid
     }
 
     public bool IsContains(Vector2Int v) => worldGrid.Contains(v);
+
+    public bool IsValidEmptyCell(Vector2Int v)
+    {
+        if (v.x >= 0 && v.x < PlacementZoneSize.x)
+            if (v.y >= 0 && v.y < PlacementZoneSize.y)
+                if (!IsContains(v))
+                    return true;
+        return false;
+    }
 
     public void DeleteElement(Vector2Int v)
     {
@@ -66,6 +76,14 @@ public class PlacementGrid
         pivotDifference = default;
         Debug.LogError($"Проверьте PivotToRealPositionDifferences. Такого типа мебели в словаре нет: {type}");
         return false;
+    }
+
+    public IEnumerable<Type> GetWorkStationTypes()
+    {
+        foreach (Type type in workstationItems.Keys) 
+        { 
+            yield return type; 
+        }
     }
 
     private Dictionary<Type, GameObject> GetWorkstationDict()

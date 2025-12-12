@@ -11,6 +11,7 @@ namespace Game.Script.Aspects
         public ProtoPool<TargetPositionComponent> TargetPositionComponentPool;
         public ProtoPool<GuestTableComponent> GuestTablePool;
         public ProtoPool<WantedItemComponent> WantedItemPool;
+        public ProtoPool<WantedItemVisualizationComponent> WantedItemVisualizationPool;
         public ProtoPool<GuestGroupComponent> GuestGroupComponentPool;
         public ProtoPool<GuestGameObjectRefComponent> GuestGameObjectRefComponentPool;
         public ProtoPool<NavMeshAgentComponent> NavMeshAgentComponentPool;
@@ -68,6 +69,12 @@ namespace Game.Script.Aspects
     public struct WantedItemComponent : IComponent
     {
         [SubclassSelector, SerializeReference] public PickableItem WantedItem;
+    }
+
+    [Serializable]
+    public struct WantedItemVisualizationComponent : IComponent
+    {
+        public GameObject Visualization;
     }
 
     [Serializable]

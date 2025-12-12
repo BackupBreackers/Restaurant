@@ -15,5 +15,9 @@ MonoBehaviour:
   furnitures:
   - {fileID: 11400000, guid: 0582f5fbaf36c314ba3d6732decce5a4, type: 2}
   - {fileID: 11400000, guid: f00dfe18e4e7bae459aec6e2f963c877, type: 2}
+  - {fileID: 11400000, guid: 6172ac206e7f7b84eacca99f7d2a99d0, type: 2}
+  - {fileID: 11400000, guid: 8945a5036fbc2d04b85bbc39dfc74af6, type: 2}
   - {fileID: 11400000, guid: 27c41246504f39849b19fa10e20bb877, type: 2}
+  - {fileID: 11400000, guid: 6d184cc09bc46b44cbfc33da1f301f06, type: 2}
   - {fileID: 11400000, guid: dd3eb506d4ad44549ba2b0a18529843c, type: 2}
+  - {fileID: 11400000, guid: 0e77c970e3f077648b092f12aac078ed, type: 2}

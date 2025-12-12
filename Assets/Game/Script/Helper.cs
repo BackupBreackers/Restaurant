@@ -9,12 +9,21 @@ public static class Helper
     {
         // 1. Перекидываем ссылку на Entity предмета
         //toHolder.Entity = fromHolder.Entity;
-        toHolder.SpriteRenderer.sprite = fromHolder.SpriteRenderer.sprite;
+        toHolder.PickableItemVisual.PickableItemSprite = fromHolder.PickableItemVisual.PickableItemSprite;
+        toHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite
+            = fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite;
+        if (fromHolder.PickableItemVisual.PlateItemSpriteRenderer)
+            toHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled
+                = fromHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled;
         toHolder.Item = fromHolder.Item;
 
         //fromHolder.Entity = default;
-        fromHolder.SpriteRenderer.sprite = null;
-        fromHolder.Item = null;
+        fromHolder.Clear();
+        // fromHolder.PickableItemVisual.PickableItemSprite = null;
+        // fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
+        // if (fromHolder.PickableItemVisual.PlateItemSpriteRenderer)
+        //     fromHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
+        // fromHolder.Item = null;
 
         // 2. Обновляем теги
         playerAspect.HasItemTagPool.Add(to);
@@ -31,10 +40,36 @@ public static class Helper
     }
     public static void CreateItem(ProtoEntity playerEntity, ref HolderComponent playerHolder, PlayerAspect playerAspect, PickableItem itemPick)
     {
-        playerHolder.SpriteRenderer.sprite = itemPick.PickupItemSprite;
+        playerHolder.PickableItemVisual.PickableItemSprite = itemPick.PickupItemSprite.PickableItemSprite;
+        playerHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = itemPick.PickupItemSprite.PickableItemSprite;
         playerHolder.Item = itemPick.GetType();
         
         playerAspect.HasItemTagPool.GetOrAdd(playerEntity);
         
+    }
+
+    public static void PutItemOnPlate(ProtoEntity from, ProtoEntity to, ref HolderComponent fromHolder,
+        ref HolderComponent toHolder, PlayerAspect playerAspect)
+    {
+        toHolder.PickableItemVisual.PickableItemSprite = fromHolder.PickableItemVisual.PickableItemSprite;
+        toHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite
+            = fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite;
+        toHolder.PickableItemVisual.PlateItemSpriteRenderer.enabled = true;
+        toHolder.Item = fromHolder.Item;
+
+        fromHolder.Clear();
+        // fromHolder.PickableItemVisual.PickableItemSprite = null;
+        // fromHolder.PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
+        // fromHolder.Item = null;
+        
+        playerAspect.HasItemTagPool.GetOrAdd(to);
+        playerAspect.HasItemTagPool.DelIfExists(from);
+    }
+
+    public static void ReturnItemToGenerator(ProtoEntity from, ProtoEntity to, ref HolderComponent fromHolder,
+        ref HolderComponent toHolder, PlayerAspect playerAspect)
+    {
+        fromHolder.Clear();
+        playerAspect.HasItemTagPool.Del(from);
     }
 }

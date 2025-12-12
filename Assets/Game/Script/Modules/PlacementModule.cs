@@ -10,18 +10,24 @@ public class PlacementModule : IProtoModule
     private MoveFurnitureSystem moveFurnitureSystem;
     private MoveGameObjectSystem moveGameObjectSystem;
     private SyncGridPositionSystem syncGridPositionSystem;
+    private RandomSpawnerPositionSystem randomSpawnerPositionSystem;
+    private DestroySpawnersSystem destroySpawnersSystem;
 
     public PlacementModule(PlayerSpawnFurnitureSystemFactory playerSpawnFurnitureSystem,
         CreateGameObjectsSystemFactory createGameObjectsSystem,
         MoveGameObjectSystemFactory moveGameObjectSystem,
         MoveFurnitureSystemFactory moveFurnitureSystem,
-        SyncGridPositionSystemFactory syncGridPositionSystem)
+        SyncGridPositionSystemFactory syncGridPositionSystem,
+        RandomSpawnerPositionSystemFactory randomSpawnerPositionSystem,
+        DestroySpawnersSystemFactory destroySpawnersSystem)
     {
         this.playerSpawnFurnitureSystem = playerSpawnFurnitureSystem.CreateProtoSystem();
         this.createGameObjectsSystem = createGameObjectsSystem.CreateProtoSystem();
         this.moveFurnitureSystem = moveFurnitureSystem.CreateProtoSystem();
         this.moveGameObjectSystem = moveGameObjectSystem.CreateProtoSystem();
         this.syncGridPositionSystem = syncGridPositionSystem.CreateProtoSystem();
+        this.randomSpawnerPositionSystem = randomSpawnerPositionSystem.CreateProtoSystem();
+        this.destroySpawnersSystem = destroySpawnersSystem.CreateProtoSystem();
     }
 
     public void Init(IProtoSystems systems)
@@ -32,7 +38,9 @@ public class PlacementModule : IProtoModule
             .AddSystem(moveFurnitureSystem)
             .AddSystem(moveGameObjectSystem)
             .AddSystem(syncGridPositionSystem)
-            .AddSystem(new SpawnerInteractSystem());
+            .AddSystem(randomSpawnerPositionSystem)
+            .AddSystem(new SpawnerInteractSystem())
+            .AddSystem(destroySpawnersSystem);
     }
 
     public IProtoAspect[] Aspects()

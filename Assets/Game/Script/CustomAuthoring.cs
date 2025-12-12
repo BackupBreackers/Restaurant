@@ -15,7 +15,7 @@ public class CustomAuthoring : MonoBehaviour
 {
     [HideInInspector, SerializeField] string _worldName;
     [SerializeField] AuthoringType _authoringType = AuthoringType.OnStart;
-    [HideInInspector, SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.None;
+    [SerializeField] DestroyType _destroyAfterAuthoring = DestroyType.None;
     
     [SerializeReference, SubclassSelector] public List<IComponent> Components = new List<IComponent>();
 

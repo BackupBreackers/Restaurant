@@ -56,14 +56,33 @@ namespace Game.Script.Systems
 
                     case (true, false):
                         Debug.Log("Кладем на стол!");
-                        _workstationsAspect.ItemPlaceEventPool.Add(interactedEntity);
+                        _workstationsAspect.ItemPlaceEventPool.GetOrAdd(interactedEntity);
                         Helper.TransferItem(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
                             _playerAspect);
                         break;
 
                     case (true, true):
                         Debug.Log("И в руках, и на столе что-то есть! (Свап или запрет)");
-                        // Тут можно реализовать логику замены предметов или объединения (как в PlateUP с тарелками)
+                        ref var playerItem = ref _playerAspect.HolderPool.Get(playerEntity);
+                        ref var tableItem = ref _playerAspect.HolderPool.Get(interactedEntity);
+
+                        if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
+                            && playerItem.Item == tableItem.Item
+                            && !_workstationsAspect.GuestTablePool.Has(interactedEntity)
+                            && !playerItem.PickableItemVisual.PlateItemSpriteRenderer.enabled)
+                        {
+                            Helper.ReturnItemToGenerator(from: playerEntity, to: interactedEntity,
+                                ref playerHolder, ref interactedHolder, _playerAspect);
+                            break;
+                        }
+                        
+                        if (_workstationsAspect.ItemSourcePool.Has(interactedEntity)
+                            || !(tableItem.Item == typeof(Plate))
+                            || playerItem.Item == typeof(Plate)
+                            || playerItem.Item  == typeof(DirtyPlate))
+                            break;
+                        Helper.PutItemOnPlate(from: playerEntity, to: interactedEntity, ref playerHolder, ref interactedHolder,
+                            _playerAspect);
                         break;
                 }
             }

@@ -30,21 +30,21 @@ public class StoveSystem : IProtoInitSystem, IProtoRunSystem
             typeof(WorkstationsTypeComponent),
             typeof(InteractableComponent),
             typeof(HolderComponent),
-            typeof(StoveComponent),
+            typeof(ReceiptProcessorComponent),
             typeof(ItemPlaceEvent),
         });
         _completedIt = new(new[]
         {
             typeof(WorkstationsTypeComponent),
             typeof(InteractableComponent),
-            typeof(StoveComponent),
+            typeof(ReceiptProcessorComponent),
             typeof(TimerCompletedEvent),
         });
         _abortIt = new(new[]
         {
             typeof(WorkstationsTypeComponent),
             typeof(InteractableComponent),
-            typeof(StoveComponent),
+            typeof(ReceiptProcessorComponent),
             typeof(ItemPickEvent),
             typeof(TimerComponent)
         });

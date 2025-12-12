@@ -33,16 +33,23 @@ public struct PlayerInitializeEvent : IComponent
 public struct HolderComponent : IComponent
 {
     public Type Item;
-    public SpriteRenderer SpriteRenderer;
+    public PickableItemWrapper PickableItemVisual;
 
     public void Clear()
     {
         Item = null;
-        SpriteRenderer.sprite = null;
+        PickableItemVisual.PickableItemSprite = null;
+        PickableItemVisual.PlateItemSprite = null;
+        PickableItemVisual.PickableItemSpriteRenderer.sprite = null;
+        if (PickableItemVisual.PlateItemSpriteRenderer)
+        {
+            PickableItemVisual.PlateItemSpriteRenderer.enabled = false;
+        }
     }
 }
 
-public struct HasItemTag
+[Serializable]
+public struct HasItemTag : IComponent
 {
 }
 

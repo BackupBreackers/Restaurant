@@ -73,6 +73,10 @@ namespace Game.Script.Systems
                     _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
                     _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
                     _baseAspect.TimerCompletedPool.Add(guestGroupEntity);
+                    ref var plates = ref _workstationsAspect.PlatesOnTablePool.Add(tableEntity);
+                    plates.PlatesOnTable = packedGuests.Count;
+                    _workstationsAspect.ItemGenerationAvailablePool.Add(tableEntity);
+                    _playerAspect.HasItemTagPool.Add(tableEntity);
                 }
             }
         }
@@ -81,11 +85,14 @@ namespace Game.Script.Systems
         {
             ref var wantedItem = ref _guestAspect.WantedItemPool.Get(guestEntity).WantedItem;
 
-            if (!wantedItem.Is(holder.Item))
+            if (!wantedItem.Is(holder.Item) || !holder.PickableItemVisual.PlateItemSpriteRenderer.enabled)
                 return false;
 
             if (_guestAspect.GuestServicedPool.Has(guestEntity))
                 return false;
+            
+            ref var wantedItemVisualization = ref _guestAspect.WantedItemVisualizationPool.Get(guestEntity);
+            wantedItemVisualization.Visualization.SetActive(false);
             _guestAspect.GuestServicedPool.Add(guestEntity);
             
             Helper.EatItem(tableEntity, ref holder, _playerAspect);
