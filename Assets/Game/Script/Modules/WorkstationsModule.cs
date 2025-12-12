@@ -4,7 +4,7 @@ using Game.Script.Systems;
 using Leopotam.EcsProto;
 using UnityEngine;
 
-internal class WorkstationsModule : IProtoModule
+public class WorkstationsModule : IProtoModule
 {
     RefrigeratorSystem _refrigeratorSystem;
     StoveSystem _stoveSystem;

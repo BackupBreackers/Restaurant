@@ -2,6 +2,7 @@ using Game.Script;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 // This file is auto-generated. Do not modify manually.
@@ -35,9 +36,18 @@ public class GameResources
         public Recipe fish0_fish1 => Resources.Load<Recipe>("Recipes/fish0-fish1");
         public Recipe meet1 => Resources.Load<Recipe>("Recipes/meet1");
     }
+    public UIPrefabs UIPrefabsLink;
+    public class UIPrefabs
+    {
+        public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
+    }
     public Visual VisualLink;
     public class Visual
     {
+        public Animatiion AnimatiionLink;
+        public class Animatiion
+        {
+        }
         public Materials MaterialsLink;
         public class Materials
         {
@@ -50,6 +60,13 @@ public class GameResources
             public Sprite meat => Resources.Load<Sprite>("Visual/PickableItems/meat");
             public Sprite plate => Resources.Load<Sprite>("Visual/PickableItems/plate");
         }
+        public Prefab PrefabLink;
+        public class Prefab
+        {
+            public SpriteSkin MouseCook => Resources.Load<SpriteSkin>("Visual/Prefab/MouseCook");
+            public SpriteSkin MouseWithItsBack => Resources.Load<SpriteSkin>("Visual/Prefab/MouseWithItsBack");
+            public SpriteSkin MouseWithLeft => Resources.Load<SpriteSkin>("Visual/Prefab/MouseWithLeft");
+        }
         public UI UILink;
         public class UI
         {
@@ -58,7 +75,9 @@ public class GameResources
             public Sprite CastleUP => Resources.Load<Sprite>("Visual/UI/CastleUP");
             public Sprite MenuBackground => Resources.Load<Sprite>("Visual/UI/MenuBackground");
             public Sprite miceahoy => Resources.Load<Sprite>("Visual/UI/miceahoy");
+            public Sprite PauseMenuBack => Resources.Load<Sprite>("Visual/UI/PauseMenuBack");
             public Sprite ship => Resources.Load<Sprite>("Visual/UI/ship");
+            public Sprite SuperHint => Resources.Load<Sprite>("Visual/UI/SuperHint");
             public Sprite Сloud1 => Resources.Load<Sprite>("Visual/UI/Сloud1");
             public Sprite Сloud2 => Resources.Load<Sprite>("Visual/UI/Сloud2");
             public Sprite Сloud3 => Resources.Load<Sprite>("Visual/UI/Сloud3");
@@ -75,11 +94,9 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
-        //public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
-        //public SpriteSkin MouseCook => Resources.Load<SpriteSkin>("Visual/MouseCook");
-        //public Sprite MouseCookBefore => Resources.Load<Sprite>("Visual/MouseCookBefore");
-        //public Sprite MouseCookSideways => Resources.Load<Sprite>("Visual/MouseCookSideways");
-        //public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
+        public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
+        public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
+        public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
         public Shader Outline => Resources.Load<Shader>("Visual/Outline");
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite plate => Resources.Load<Sprite>("Visual/plate");
@@ -92,8 +109,10 @@ public class GameResources
 
         public Visual()
         {
+            AnimatiionLink = new Animatiion();
             MaterialsLink = new Materials();
             PickableItemsLink = new PickableItems();
+            PrefabLink = new Prefab();
             UILink = new UI();
         }
     }
@@ -117,6 +136,7 @@ public class GameResources
         PickableItemsLink = new PickableItems();
         PlacementObjectsLink = new PlacementObjects();
         RecipesLink = new Recipes();
+        UIPrefabsLink = new UIPrefabs();
         VisualLink = new Visual();
     }
 }

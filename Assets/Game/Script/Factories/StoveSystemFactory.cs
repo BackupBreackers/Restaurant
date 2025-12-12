@@ -1,6 +1,6 @@
 ﻿namespace Game.Script.Factories
 {
-    internal class StoveSystemFactory
+    public class StoveSystemFactory
     {
         private RecipeService _recipeService;
         private PickableService  _pickableService;

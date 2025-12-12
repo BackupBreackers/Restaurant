@@ -3,7 +3,7 @@ using Game.Script.Factories;
 using Leopotam.EcsProto;
 using UnityEngine;
 
-internal class PhysicsModule : IProtoModule
+public class PhysicsModule : IProtoModule
 {
     private PhysicsEventsHandlerSystem _physicsEventsHandlerSystem;
     private SyncUnityPhysicsToEcsSystem _syncUnityPhysicsToEcsSystem;

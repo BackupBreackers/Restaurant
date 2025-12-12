@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput _playerInput;
-    
+    private int _playerIndex;
+    private bool _isPressHandled = false;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -13,50 +16,88 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Start()
     {
-        InputService.Instance.RegisterPlayer(_playerInput.playerIndex);
+        _playerIndex = _playerInput.playerIndex;
+        InputService.Instance.RegisterPlayer(_playerIndex, _playerInput);
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    private void OnEnable()
     {
-        int index = _playerInput.playerIndex;
-        
-        var val = context.ReadValue<Vector2>();
-        var state = InputService.Instance.GetPlayerInputState(index);
-        state.MoveDirection = val;
-        //Debug.Log(state.MoveDirection);
-        InputService.Instance.UpdateState(index, state);
+        _playerInput.onActionTriggered += HandleInput;
     }
+
+    private void HandleInput(InputAction.CallbackContext context)
+    {
+        var state = InputService.Instance.GetPlayerInputState(_playerIndex);
+
+        switch (context.action.name)
+        {
+            case "Move":
+                OnMove(context, ref state);
+                break;
+            case "PickPlace":
+                OnPickPlace(context, ref state);
+                break;
+            case "Interact":
+                OnInteract(context, ref state);
+                break;
+            case "Edit":
+                OnEdit(context, ref state);
+                break;
+            case "Pause":
+                OnPause(context, ref state);
+                break;
+        }
+
+        InputService.Instance.UpdateState(_playerIndex, state);
+    }
+
+    private void OnPause(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        // 1. Проверяем, что кнопка нажата и мы еще не обработали это нажатие
+        if (context.performed && !_isPressHandled)
+        {
+            _isPressHandled = true; // Блокируем дальнейшие срабатывания
+            InputService.Instance.OnPausePressed.Invoke();
+        }
     
-    public void OnPickPlace(InputAction.CallbackContext context)
+        // 2. Сбрасываем флаг, когда кнопка отпущена
+        if (context.canceled) 
+        {
+            _isPressHandled = false; // Разрешаем следующее нажатие
+        }
+    }
+
+    private void OnMove(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
+    {
+        state.MoveDirection = context.ReadValue<Vector2>();
+    }
+
+    private void OnPickPlace(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
         if (context.performed)
         {
-            int index = _playerInput.playerIndex;
-            var state = InputService.Instance.GetPlayerInputState(index);
             state.PickPlacePressed = true;
-            InputService.Instance.UpdateState(index, state);
         }
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    private void OnInteract(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
         if (context.performed)
         {
-            int index = _playerInput.playerIndex;
-            var state = InputService.Instance.GetPlayerInputState(index);
             state.InteractPressed = true;
-            InputService.Instance.UpdateState(index, state);
         }
     }
-    
-    public void OnEdit(InputAction.CallbackContext context)
+
+    private void OnEdit(InputAction.CallbackContext context, ref InputService.PlayerInputData state)
     {
         if (context.performed)
         {
-            int index = _playerInput.playerIndex;
-            var state = InputService.Instance.GetPlayerInputState(index);
             state.RandomSpawnFurniturePressed = true;
-            InputService.Instance.UpdateState(index, state);
         }
+    }
+
+    private void OnDisable()
+    {
+        _playerInput.onActionTriggered -= HandleInput;
     }
 }

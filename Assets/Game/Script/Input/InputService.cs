@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class InputService : MonoBehaviour
 {
@@ -12,12 +14,12 @@ public class InputService : MonoBehaviour
         public bool InteractPressed;
         public bool PickPlacePressed;
         public bool RandomSpawnFurniturePressed;
-        public bool MoveFurniturePressed; 
+        public bool MoveFurniturePressed;
     }
 
+    private Dictionary<int, PlayerInput> _playerComponents = new(); // <--- НОВОЕ: Для хранения ссылок на PlayerInput
     private Dictionary<int, PlayerInputData> _playerInputs = new();
-    
-    // Очередь для передачи индексов от Unity к ECS при спавне
+
     private Queue<int> _pendingPlayerIndices = new();
 
     private void Awake()
@@ -27,22 +29,35 @@ public class InputService : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
-    // Вызываем это из PlayerInputHandler при старте
-    public void RegisterPlayer(int playerIndex)
+    public Action OnPausePressed;
+
+    public void RegisterPlayer(int playerIndex, PlayerInput playerInput) // <--- ИЗМЕНЕНО: Принимает PlayerInput
     {
         if (!_playerInputs.ContainsKey(playerIndex))
         {
             _playerInputs[playerIndex] = new PlayerInputData();
-            // Добавляем индекс в очередь на инициализацию для ECS
+            _playerComponents[playerIndex] = playerInput; // <--- НОВОЕ: Сохраняем компонент
             _pendingPlayerIndices.Enqueue(playerIndex);
             Debug.Log($"Player {playerIndex} registered in InputService.");
         }
     }
-    
-    // ECS система будет забирать индекс отсюда
+
+    public void SwitchAllActionMapsTo(string mapName) // <--- НОВОЕ: Метод для переключения
+    {
+        Debug.Log($"Switching all players to Action Map: {mapName}");
+        foreach (var playerInput in _playerComponents.Values)
+        {
+            if (playerInput != null)
+            {
+                playerInput.SwitchCurrentActionMap(mapName);
+            }
+        }
+    }
+
     public bool TryGetPendingPlayerIndex(out int index)
     {
         if (_pendingPlayerIndices.Count > 0)
@@ -50,21 +65,20 @@ public class InputService : MonoBehaviour
             index = _pendingPlayerIndices.Dequeue();
             return true;
         }
+
         index = -1;
         return false;
     }
 
     public void UpdateState(int playerIndex, PlayerInputData newData)
     {
-        // Убрали создание ключа здесь, так как RegisterPlayer это уже сделал.
-        // Но для надежности можно оставить проверку.
         if (!_playerInputs.ContainsKey(playerIndex))
         {
-            RegisterPlayer(playerIndex); 
+            var playerInput = _playerComponents[playerIndex];
+            RegisterPlayer(playerIndex, playerInput);
         }
-        
+
         var currentData = _playerInputs[playerIndex];
-        // ... (остальная логика без изменений)
         if (newData.InteractPressed) currentData.InteractPressed = true;
         if (newData.PickPlacePressed) currentData.PickPlacePressed = true;
         if (newData.RandomSpawnFurniturePressed) currentData.RandomSpawnFurniturePressed = true;
@@ -79,15 +93,14 @@ public class InputService : MonoBehaviour
         {
             return state;
         }
-        // Убрал лог, чтобы не спамил, если индекс еще не инициализирован
-        return new PlayerInputData(); 
+
+        return new PlayerInputData();
     }
 
     public int CountActivePlayerIndices() => _playerInputs.Count;
 
     private void LateUpdate()
     {
-        // Тут без изменений, сброс флагов
         var keys = _playerInputs.Keys.ToList();
         foreach (var playerIndex in keys)
         {
@@ -95,7 +108,7 @@ public class InputService : MonoBehaviour
             state.InteractPressed = false;
             state.PickPlacePressed = false;
             state.RandomSpawnFurniturePressed = false;
-            state.MoveFurniturePressed = false; 
+            state.MoveFurniturePressed = false;
             _playerInputs[playerIndex] = state;
         }
     }
