@@ -25,6 +25,12 @@ MonoBehaviour:
   - item:
       rid: 6222298054940950626
     pivotToRealPositionDifference: {x: 0, y: 0}
+  - item:
+      rid: 6222298215309639763
+    pivotToRealPositionDifference: {x: 0, y: 0}
+  - item:
+      rid: 6222298215309639764
+    pivotToRealPositionDifference: {x: 0, y: 0}
   references:
     version: 2
     RefIds:
@@ -42,5 +48,13 @@ MonoBehaviour:
         workstationSprite: {fileID: 0}
     - rid: 6222298054940950626
       type: {class: FridgeSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298215309639763
+      type: {class: StoveSpawner, ns: , asm: Assembly-CSharp}
+      data:
+        workstationSprite: {fileID: 0}
+    - rid: 6222298215309639764
+      type: {class: TableSpawner, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}

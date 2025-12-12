@@ -27,7 +27,9 @@ public class GameResources
         public PlacementObject Fridge => Resources.Load<PlacementObject>("PlacementObjects/Fridge");
         public PlacementObject FridgeSpawner => Resources.Load<PlacementObject>("PlacementObjects/FridgeSpawner");
         public PlacementObject Stove => Resources.Load<PlacementObject>("PlacementObjects/Stove");
+        public PlacementObject StoveSpawner => Resources.Load<PlacementObject>("PlacementObjects/StoveSpawner");
         public PlacementObject Table => Resources.Load<PlacementObject>("PlacementObjects/Table");
+        public PlacementObject TableSpawner => Resources.Load<PlacementObject>("PlacementObjects/TableSpawner");
     }
     public Recipes RecipesLink;
     public class Recipes
@@ -97,7 +99,9 @@ public class GameResources
         public Sprite sidePlate => Resources.Load<Sprite>("Visual/sidePlate");
         public Sprite sink => Resources.Load<Sprite>("Visual/sink");
         public Sprite spawner_back => Resources.Load<Sprite>("Visual/spawner-back");
+        public Sprite stoveSpawner => Resources.Load<Sprite>("Visual/stoveSpawner");
         public Sprite table => Resources.Load<Sprite>("Visual/table");
+        public Sprite tableSpawner => Resources.Load<Sprite>("Visual/tableSpawner");
         public Sprite TableWithPlates => Resources.Load<Sprite>("Visual/TableWithPlates");
         public Sprite TileMap => Resources.Load<Sprite>("Visual/TileMap");
 
@@ -122,9 +126,9 @@ public class GameResources
     public RecipesDB Recipes_DB => Resources.Load<RecipesDB>("Recipes_DB");
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public ProtoUnityAuthoring Stove => Resources.Load<ProtoUnityAuthoring>("Stove");
-    public GameObject StoveSpawner => Resources.Load<GameObject>("StoveSpawner");
+    public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
     public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
-    public GameObject TableSpawner => Resources.Load<GameObject>("TableSpawner");
+    public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 
     public GameResources()
     {

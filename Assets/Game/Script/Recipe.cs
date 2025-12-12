@@ -52,3 +52,15 @@ public class FridgeSpawner : Spawner
 {
 
 }
+
+[Serializable]
+public class TableSpawner : Spawner
+{
+
+}
+
+[Serializable]
+public class StoveSpawner : Spawner
+{
+
+}
