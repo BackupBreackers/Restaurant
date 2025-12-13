@@ -68,6 +68,7 @@ namespace Game.Script.Systems
 
                 if (isEverybodyServed)
                 {
+                    
                     Debug.Log("Гости поели, щяс уйдут");
                     _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
                     _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);

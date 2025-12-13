@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 532959154327911370}
-  - component: {fileID: 6473110481244454949}
   - component: {fileID: 4116833319232833429}
   - component: {fileID: 7402408901365943067}
   - component: {fileID: 7593671318826805493}
@@ -39,55 +38,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6473110481244454949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766884320135700761}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2e3b9377ea4b6b9d83eb1bc17d15a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Leopotam.EcsProto.Unity::Leopotam.EcsProto.Unity.ProtoUnityAuthoring
-  _worldName: 
-  _authoringType: 0
-  _destroyAfterAuthoring: 0
-  Components:
-  - rid: 8425613062871187541
-  - rid: 8425613062871187542
-  - rid: 8425613062871187543
-  - rid: 8425613083015381065
-  - rid: 5322463640679874637
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5322463640679874637
-      type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
-      data:
-        type:
-          rid: -2
-    - rid: 8425613062871187541
-      type: {class: PositionComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Position: {x: 0, y: 0}
-    - rid: 8425613062871187542
-      type: {class: InteractableComponent, ns: , asm: Assembly-CSharp}
-      data:
-        SpriteRenderer: {fileID: 7402408901365943067}
-        OutlineController: {fileID: 7593671318826805493}
-    - rid: 8425613062871187543
-      type: {class: Rigidbody2DComponent, ns: , asm: Assembly-CSharp}
-      data:
-        Rigidbody2D: {fileID: 4761429192973698094}
-    - rid: 8425613083015381065
-      type: {class: ItemSourceComponent, ns: , asm: Assembly-CSharp}
-      data:
-        resourceItemType:
-          rid: -2
 --- !u!114 &4116833319232833429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,12 +86,16 @@ MonoBehaviour:
     - rid: 6222297960297791567
       type: {class: Meat, ns: Game.Script, asm: Assembly-CSharp}
       data:
-        PickupItemSprite: {fileID: 0}
+        PickupItemSprite:
+          PickableItemSpriteRenderer: {fileID: 0}
+          PlateItemSpriteRenderer: {fileID: 0}
+          PickableItemSprite: {fileID: 0}
+          PlateItemSprite: {fileID: 0}
     - rid: 6222297960297791568
       type: {class: FurnitureComponent, ns: , asm: Assembly-CSharp}
       data:
         type:
-          rid: 6222298054940950609
+          rid: 6709886310357663818
     - rid: 6222297960297791569
       type: {class: PlacementTransformComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -154,8 +108,8 @@ MonoBehaviour:
       type: {class: SyncGridPositionEvent, ns: , asm: Assembly-CSharp}
       data:
         entityGridPositions: {x: 0, y: 0}
-    - rid: 6222298054940950609
-      type: {class: Fridge, ns: , asm: Assembly-CSharp}
+    - rid: 6709886310357663818
+      type: {class: Stove, ns: , asm: Assembly-CSharp}
       data:
         workstationSprite: {fileID: 0}
 --- !u!212 &7402408901365943067

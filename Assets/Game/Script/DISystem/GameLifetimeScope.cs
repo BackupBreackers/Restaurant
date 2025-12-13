@@ -40,7 +40,7 @@ namespace Game.Script.DISystem
 
 
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
-            builder.Register<RefrigeratorSystemFactory>(Lifetime.Singleton);
+            builder.Register<ItemSourceGeneratorSystemFactory>(Lifetime.Singleton);
             builder.Register<PhysicsEventsHandlerSystemFactory>(Lifetime.Singleton);
             builder.Register<SyncUnityPhysicsToEcsSystemFactory>(Lifetime.Singleton);
             builder.Register<PickPlaceSystemFactory>(Lifetime.Singleton);
@@ -53,11 +53,13 @@ namespace Game.Script.DISystem
             builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
             builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
+            builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
             
-            builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
+            builder.RegisterFactory<EndGameSystem>(container =>
+                container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
-            builder.RegisterFactory<RefrigeratorSystem>(container =>
-                container.Resolve<RefrigeratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
+                container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
 
             builder.RegisterFactory<StoveSystem>(container =>
                 container.Resolve<StoveSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -109,12 +111,14 @@ namespace Game.Script.DISystem
             builder.Register<IProtoSystems>(container =>
                     container.Resolve<MainGameECSWorldFactory>().MainSystemsECSFactory(), Lifetime.Singleton)
                 .Keyed(IProtoSystemsType.MainSystem);
-            
+
             builder.Register<IProtoSystems>(container =>
                     container.Resolve<MainGameECSWorldFactory>().PhysicsSystemsECSFactory(), Lifetime.Singleton)
                 .Keyed(IProtoSystemsType.PhysicsSystem);
 
             builder.RegisterEntryPoint<GameStateManager>();
+
+           
         }
     }
 }

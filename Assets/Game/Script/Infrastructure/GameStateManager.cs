@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace Game.Script.Infrastructure
 {
-    public class GameStateManager : IStartable, ITickable, IFixedTickable
+    public class GameStateManager : IStartable, ITickable, IFixedTickable, IDisposable
     {
         private IProtoSystems _mainSystems;
         private IProtoSystems _physicsSystems;
@@ -35,6 +35,12 @@ namespace Game.Script.Infrastructure
             Debug.Log("START FROM GameStateManager");
             
             _inputService.OnPausePressed += OnPausePressed;
+            
+        }
+
+        private void LoseGameHandler()
+        {
+            _uiController.ShowLose();
         }
 
         private void OnPausePressed()
@@ -67,6 +73,13 @@ namespace Game.Script.Infrastructure
         {
             if (IsPaused) return;
             _physicsSystems.Run();
+        }
+
+        public void Dispose()
+        {
+            _mainSystems.Destroy();
+            _physicsSystems.Destroy();
+            _inputService.OnPausePressed -= OnPausePressed;
         }
     }
 }

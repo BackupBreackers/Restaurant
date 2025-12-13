@@ -6,7 +6,8 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-public class ResourceClassGenerator : AssetPostprocessor
+
+internal class ResourceClassGenerator : AssetPostprocessor
 {
     public const string PATH_TO_RESOURCES_FOLDER = "Game/Resources";
     public const string PATH_TO_OUTPUT = "Generated";
@@ -94,10 +95,12 @@ public class ResourceClassGenerator : AssetPostprocessor
             string folderName = EscapeToValidIdentifier(Path.GetFileName(subFolder));
 
             // поле
-            classBuilder.AppendLine($"{indent}public {folderName} {folderName}Link;"); // "Меня "Link" не устраивает (C) Артём #TODO переименовать
+            classBuilder.AppendLine(
+                $"{indent}public {folderName} {folderName}Link;"); // "Меня "Link" не устраивает (C) Артём #TODO переименовать
 
             // конструктор родителя
-            constructorAssignments.Add($"{folderName}Link = new {folderName}();"); // "Меня "Link" не устраивает (C) Артём #TODO переименовать
+            constructorAssignments.Add(
+                $"{folderName}Link = new {folderName}();"); // "Меня "Link" не устраивает (C) Артём #TODO переименовать
 
             // вложенный класс
             classBuilder.AppendLine($"{indent}public class {folderName}");
@@ -172,6 +175,7 @@ public class ResourceClassGenerator : AssetPostprocessor
                 return null;
         }
     }
+
     private static string GetScriptableObjectType(string filePath, HashSet<string> namespaces)
     {
         string assetPath = filePath.Substring(Application.dataPath.Length - "Assets".Length);
@@ -187,6 +191,7 @@ public class ResourceClassGenerator : AssetPostprocessor
         {
             namespaces.Add(type.Namespace);
         }
+
         return type.Name;
     }
 
@@ -210,6 +215,7 @@ public class ResourceClassGenerator : AssetPostprocessor
                 {
                     namespaces.Add(type.Namespace);
                 }
+
                 return type.Name;
             }
         }
@@ -249,7 +255,8 @@ public class ResourceClassGenerator : AssetPostprocessor
 
     private static bool IsCSharpKeyword(string word)
     {
-        string[] keywords = {
+        string[] keywords =
+        {
             "abstract", "as", "base", "bool", "break", "byte", "case", "catch", "char", "checked", "class", "const",
             "continue", "decimal", "default", "delegate", "do", "double", "else", "enum", "event", "explicit",
             "extern", "false", "finally", "fixed", "float", "for", "foreach", "goto", "if", "implicit", "in",

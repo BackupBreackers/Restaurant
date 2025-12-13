@@ -1,8 +1,6 @@
 using Game.Script;
-using Leopotam.EcsProto.Unity;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 // This file is auto-generated. Do not modify manually.
@@ -46,7 +44,8 @@ public class GameResources
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs
     {
-        public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
+        public GameObject HUD => Resources.Load<GameObject>("UIPrefabs/HUD");
+        public UIController UIConroller => Resources.Load<UIController>("UIPrefabs/UIConroller");
     }
     public Visual VisualLink;
     public class Visual
@@ -58,6 +57,7 @@ public class GameResources
         public Materials MaterialsLink;
         public class Materials
         {
+            public Material barrel => Resources.Load<Material>("Visual/Materials/barrel");
             public Material Group_140 => Resources.Load<Material>("Visual/Materials/Group 140");
         }
         public PickableItems PickableItemsLink;
@@ -77,14 +77,19 @@ public class GameResources
         public UI UILink;
         public class UI
         {
+            public Sprite _8foot => Resources.Load<Sprite>("Visual/UI/8foot");
             public Sprite Birds => Resources.Load<Sprite>("Visual/UI/Birds");
             public Sprite CastleDown => Resources.Load<Sprite>("Visual/UI/CastleDown");
             public Sprite CastleUP => Resources.Load<Sprite>("Visual/UI/CastleUP");
+            public Sprite LevelProgressBar => Resources.Load<Sprite>("Visual/UI/LevelProgressBar");
+            public Sprite LoseLose => Resources.Load<Sprite>("Visual/UI/LoseLose");
             public Sprite MenuBackground => Resources.Load<Sprite>("Visual/UI/MenuBackground");
             public Sprite miceahoy => Resources.Load<Sprite>("Visual/UI/miceahoy");
+            public Sprite money => Resources.Load<Sprite>("Visual/UI/money");
             public Sprite PauseMenuBack => Resources.Load<Sprite>("Visual/UI/PauseMenuBack");
             public Sprite ship => Resources.Load<Sprite>("Visual/UI/ship");
             public Sprite SuperHint => Resources.Load<Sprite>("Visual/UI/SuperHint");
+            public Sprite WinWin => Resources.Load<Sprite>("Visual/UI/WinWin");
             public Sprite Сloud1 => Resources.Load<Sprite>("Visual/UI/Сloud1");
             public Sprite Сloud2 => Resources.Load<Sprite>("Visual/UI/Сloud2");
             public Sprite Сloud3 => Resources.Load<Sprite>("Visual/UI/Сloud3");
@@ -95,6 +100,7 @@ public class GameResources
         public Sprite dirtyPlates => Resources.Load<Sprite>("Visual/dirtyPlates");
         public Sprite fridge => Resources.Load<Sprite>("Visual/fridge");
         public Sprite fridgeSpawner => Resources.Load<Sprite>("Visual/fridgeSpawner");
+        public Sprite GG => Resources.Load<Sprite>("Visual/GG");
         public Sprite Group_140 => Resources.Load<Sprite>("Visual/Group 140");
         public Sprite GuestBackIsTurned => Resources.Load<Sprite>("Visual/GuestBackIsTurned");
         public Sprite GuestIsSittingInFrontOf => Resources.Load<Sprite>("Visual/GuestIsSittingInFrontOf");
@@ -102,10 +108,7 @@ public class GameResources
         public Sprite GuestIsSittingWithHisBack => Resources.Load<Sprite>("Visual/GuestIsSittingWithHisBack");
         public Sprite guestsTable => Resources.Load<Sprite>("Visual/guestsTable");
         public Sprite GuestStandsSideways => Resources.Load<Sprite>("Visual/GuestStandsSideways");
-<<<<<<< HEAD
-=======
         public Sprite GuestTableSpawner => Resources.Load<Sprite>("Visual/GuestTableSpawner");
->>>>>>> a9296302ccb2b4e1fe58ee161647d66cd48bcffd
         public Sprite MouseCook => Resources.Load<Sprite>("Visual/MouseCook");
         public Sprite MouseWithItsBack => Resources.Load<Sprite>("Visual/MouseWithItsBack");
         public Sprite MouseWithLeft => Resources.Load<Sprite>("Visual/MouseWithLeft");
@@ -113,6 +116,9 @@ public class GameResources
         public Material OutlineMat => Resources.Load<Material>("Visual/OutlineMat");
         public Sprite plate => Resources.Load<Sprite>("Visual/plate");
         public Sprite refrigerator => Resources.Load<Sprite>("Visual/refrigerator");
+        public Sprite shadow => Resources.Load<Sprite>("Visual/shadow");
+        public Sprite shadow2 => Resources.Load<Sprite>("Visual/shadow2");
+        public Sprite shadowBox => Resources.Load<Sprite>("Visual/shadowBox");
         public Sprite sidePlate => Resources.Load<Sprite>("Visual/sidePlate");
         public Sprite sink => Resources.Load<Sprite>("Visual/sink");
         public Sprite spawner_back => Resources.Load<Sprite>("Visual/spawner-back");
@@ -131,7 +137,10 @@ public class GameResources
             UILink = new UI();
         }
     }
-    public ProtoUnityAuthoring Fridge => Resources.Load<ProtoUnityAuthoring>("Fridge");
+    public GameObject barrel => Resources.Load<GameObject>("barrel");
+    public AudioClip button_click_clear_soft => Resources.Load<AudioClip>("button-click-clear-soft");
+    public AudioClip fonovyy_zvuk_krik_chaek_shum_vody => Resources.Load<AudioClip>("fonovyy-zvuk-krik-chaek-shum-vody");
+    public CustomAuthoring Fridge => Resources.Load<CustomAuthoring>("Fridge");
     public CustomAuthoring FridgeSpawner => Resources.Load<CustomAuthoring>("FridgeSpawner");
     public CustomAuthoring Guest => Resources.Load<CustomAuthoring>("Guest");
     public CustomAuthoring GuestGroup => Resources.Load<CustomAuthoring>("GuestGroup");
@@ -147,7 +156,7 @@ public class GameResources
     public CustomAuthoring Refrigerator => Resources.Load<CustomAuthoring>("Refrigerator");
     public CustomAuthoring Stove => Resources.Load<CustomAuthoring>("Stove");
     public CustomAuthoring StoveSpawner => Resources.Load<CustomAuthoring>("StoveSpawner");
-    public ProtoUnityAuthoring Table => Resources.Load<ProtoUnityAuthoring>("Table");
+    public CustomAuthoring Table => Resources.Load<CustomAuthoring>("Table");
     public CustomAuthoring TableSpawner => Resources.Load<CustomAuthoring>("TableSpawner");
 
     public GameResources()

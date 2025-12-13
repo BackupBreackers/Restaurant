@@ -11,13 +11,13 @@ public class WorkstationsModule : IProtoModule
     PickPlaceSystem _pickPlaceSystem;
     ClearSystem _clearSystem;
 
-    public WorkstationsModule(RefrigeratorSystemFactory refrigeratorSystemFactory,
+    public WorkstationsModule(ItemSourceGeneratorSystemFactory itemSourceGeneratorSystemFactory,
         StoveSystemFactory stoveSystemFactory,
         PickPlaceSystemFactory pickPlaceSystemFactory,
         ClearSystemFactory clearSystemFactory
         )
     {
-        _itemSourceGeneratorSystem = refrigeratorSystemFactory.CreateProtoSystem();
+        _itemSourceGeneratorSystem = itemSourceGeneratorSystemFactory.CreateProtoSystem();
         _stoveSystem = stoveSystemFactory.CreateProtoSystem();
         _pickPlaceSystem = pickPlaceSystemFactory.CreateProtoSystem();
         _clearSystem = clearSystemFactory.CreateProtoSystem();

@@ -1,6 +1,5 @@
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class MoveFurnitureSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem

@@ -1,4 +1,6 @@
-﻿using Game.Script.Aspects;
+﻿using System;
+using Game.Script.Aspects;
+using Game.Script.Infrastructure;
 using Leopotam.EcsProto;
 using Leopotam.EcsProto.QoL;
 using UnityEngine;
@@ -10,21 +12,38 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
     [DI] ProtoWorld _world;
     private ProtoIt _it;
     private ProtoIt _it2;
+    private ProtoIt _itWin;
 
+    private UIController _uiController;
+    
+    public EndGameSystem(UIController uiController)
+    {
+        _uiController = uiController;
+    }
+    
     public void Init(IProtoSystems systems)
     {
         _it = new(new[] { typeof(WaitingOrderTag), typeof(TimerCompletedEvent)});
         _it2 = new(new[] { typeof(WaitingTakeOrderTag), typeof(TimerCompletedEvent)});
+        _itWin = new(new[] { typeof(GuestGroupServedEvent) });
         _it.Init(_world);
         _it2.Init(_world);
+        _itWin.Init(_world);
     }
 
     public void Run()
     {
+        foreach (var group in _itWin)
+        {
+            _uiController.ShowWin();
+        }
+        
         foreach (var guestGroupEntity in _it)
         {
             Debug.LogError("ПРОЕБАЛИ ожидание заказа");
-
+            
+            _uiController.ShowLose();
+            
 // Получаем компонент группы
             ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
 
@@ -39,13 +58,12 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
             _guestGroupAspect.WaitingOrderTagPool.Del(guestGroupEntity);
             _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
             _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
-
         }
 
         foreach (var guestGroupEntity in _it2)
         {
             Debug.LogError("ПРОЕБАЛИ не взял заказаз, сука тварь");
-
+            _uiController.ShowLose();
 // Получаем компонент группы
             ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
 
@@ -60,7 +78,6 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
             _guestGroupAspect.WaitingTakeOrderTagPool.Del(guestGroupEntity);
             _guestGroupAspect.GuestGroupServedEventPool.Add(guestGroupEntity);
             _guestGroupAspect.GuestGroupServedTagPool.Add(guestGroupEntity);
-
         }
     }
 }

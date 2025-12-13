@@ -208,7 +208,7 @@
                 {
                     "name": "",
                     "id": "e7510c38-1beb-4a7c-848b-be60929c96d6",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -382,6 +382,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "66a49b69-d844-408c-9c61-f4f29f8cf18b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AnyKey",
+                    "type": "Value",
+                    "id": "567760b6-fdbe-49ae-bdc4-3ab2ab899419",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -815,6 +824,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71d913b9-fea4-4d42-b2c5-32457f0f6b21",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "AnyKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
