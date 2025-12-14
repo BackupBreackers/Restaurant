@@ -14,6 +14,8 @@ namespace Game.Script.Infrastructure
         private InputService _inputService;
         
         private UIController _uiController;
+        
+        private bool IsPaused = true;
 
         public GameStateManager(
             [Key(GameLifetimeScope.IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
@@ -27,15 +29,11 @@ namespace Game.Script.Infrastructure
             _uiController = uiController;
         }
         
-        public bool IsPaused { get; private set; }
-        
-        
         public void Start()
         {
             Debug.Log("START FROM GameStateManager");
-            
+            IsPaused =  false;
             _inputService.OnPausePressed += OnPausePressed;
-            
         }
 
         private void LoseGameHandler()

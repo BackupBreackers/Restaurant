@@ -12,12 +12,13 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _playerIndex = _playerInput.playerIndex;
+        InputService.Instance.RegisterPlayer(_playerIndex, _playerInput);
     }
 
     private void Start()
     {
-        _playerIndex = _playerInput.playerIndex;
-        InputService.Instance.RegisterPlayer(_playerIndex, _playerInput);
+        
     }
 
     private void OnEnable()
