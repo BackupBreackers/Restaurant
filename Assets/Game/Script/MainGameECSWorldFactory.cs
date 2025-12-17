@@ -20,7 +20,6 @@ public class MainGameECSWorldFactory
     private ProtoModules _physicsSystemModules;
     private ProtoModules _mainSystemModules;
 
-
     public MainGameECSWorldFactory(PhysicsModule physicsModule, WorkstationsModule workstationsModule,
         PlacementModule placementModule, GuestModule guestModule)
     {
@@ -35,7 +34,6 @@ public class MainGameECSWorldFactory
         BuildWorld();
         _mainSystems = new ProtoSystems(_world);
         _mainSystems.AddModule(_mainSystemModules.BuildModule());
-        _mainSystems.Init();
 
         return _mainSystems;
     }
@@ -46,7 +44,6 @@ public class MainGameECSWorldFactory
         BuildWorld();
         _physicsSystems = new ProtoSystems(_world);
         _physicsSystems.AddModule(_physicsSystemModules.BuildModule());
-        _physicsSystems.Init();
         
         return _physicsSystems;
     }

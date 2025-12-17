@@ -1,28 +1,29 @@
 ﻿using Leopotam.EcsProto;
+using Leopotam.EcsProto.QoL;
 using Leopotam.EcsProto.Unity;
 using UnityEngine;
 
 class UpdateInputSystem : IProtoInitSystem, IProtoRunSystem, IProtoDestroySystem    
 {
     [DIUnity ("InputService")] readonly InputService _inputService = default;
+    [DI] readonly ProtoWorld _world = default;
     
     private PlayerAspect _playerAspect;
     private ProtoIt _iterator;
 
     public void Init(IProtoSystems systems)
     {
-        ProtoWorld world = systems.World();
-        _playerAspect = (PlayerAspect)world.Aspect(typeof(PlayerAspect));
+        _playerAspect = (PlayerAspect)_world.Aspect(typeof(PlayerAspect));
         
         _iterator = new(new[] { typeof(PlayerInputComponent), typeof(PlayerIndexComponent) });
-        _iterator.Init(world);
+        _iterator.Init(_world);
     }
 
     public void Run()
     {
-        foreach (ProtoEntity entity in _iterator)
+        foreach (var entity in _iterator)
         {
-            ref PlayerInputComponent playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
+            ref var playerInputComponent = ref _playerAspect.InputRawPool.Get(entity);
             ref var index = ref _playerAspect.PlayerIndexPool.Get(entity).PlayerIndex;
             
             ref var playerIndex = ref _playerAspect.PlayerIndexPool.Get(entity);

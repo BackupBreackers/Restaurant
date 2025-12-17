@@ -1,31 +1,32 @@
-﻿using System.Collections;
-using UnityEngine;
-using PrimeTween;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController
+namespace Game.Script.Infrastructure
 {
-    public void LoadMainGameScene()
+    public class SceneController
     {
-        Debug.Log("Loading Main Game Scene");
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Game/Scenes/Main");
-    }
+        public void LoadMainGameScene()
+        {
+            Debug.Log("Loading Main Game Scene");
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Game/Scenes/Main");
+        }
     
-    public void LoadTutorialScene()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Game/Scenes/Tutorial");
-    }
+        public void LoadTutorialScene()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Game/Scenes/Tutorial");
+        }
     
-    public void LoadMainMenuScene()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Game/Scenes/Main Menu");
-    }
+        public void LoadMainMenuScene()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Game/Scenes/Main Menu");
+        }
     
-    public void LoadExitScene()
-    {
-        Application.Quit();
+        public void LoadExitScene()
+        {
+            Application.Quit();
+        }
     }
 }

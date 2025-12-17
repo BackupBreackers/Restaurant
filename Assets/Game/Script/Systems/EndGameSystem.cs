@@ -14,12 +14,7 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
     private ProtoIt _it2;
     private ProtoIt _itWin;
 
-    private UIController _uiController;
-    
-    public EndGameSystem(UIController uiController)
-    {
-        _uiController = uiController;
-    }
+    public event Action<GameState> EndGame;
     
     public void Init(IProtoSystems systems)
     {
@@ -35,14 +30,14 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
     {
         foreach (var group in _itWin)
         {
-            _uiController.ShowWin();
+            EndGame?.Invoke(GameState.Win);
         }
         
         foreach (var guestGroupEntity in _it)
         {
             Debug.LogError("ПРОЕБАЛИ ожидание заказа");
             
-            _uiController.ShowLose();
+            EndGame?.Invoke(GameState.Lose);
             
 // Получаем компонент группы
             ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
@@ -63,7 +58,9 @@ public class EndGameSystem : IProtoInitSystem, IProtoRunSystem
         foreach (var guestGroupEntity in _it2)
         {
             Debug.LogError("ПРОЕБАЛИ не взял заказаз, сука тварь");
-            _uiController.ShowLose();
+            
+            EndGame?.Invoke(GameState.Lose);
+            
 // Получаем компонент группы
             ref var guestGroup = ref _guestGroupAspect.GuestGroupPool.Get(guestGroupEntity);
 

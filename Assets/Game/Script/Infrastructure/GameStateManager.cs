@@ -7,38 +7,56 @@ using VContainer.Unity;
 
 namespace Game.Script.Infrastructure
 {
+    public enum GameState
+    {
+        Lose,
+        Win
+    }
+    
     public class GameStateManager : IStartable, ITickable, IFixedTickable, IDisposable
     {
         private IProtoSystems _mainSystems;
         private IProtoSystems _physicsSystems;
         private InputService _inputService;
         
+        private EndGameSystem  _endGameSystem;
         private UIController _uiController;
         
         private bool IsPaused = true;
+        
+        public Action<GameState> EndGame;
 
         public GameStateManager(
-            [Key(GameLifetimeScope.IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
-            [Key(GameLifetimeScope.IProtoSystemsType.PhysicsSystem)] IProtoSystems physicsSystems,
+            [Key(IProtoSystemsType.MainSystem)] IProtoSystems mainSystems,
+            [Key(IProtoSystemsType.PhysicsSystem)] IProtoSystems physicsSystems,
             InputService inputService,
-            UIController uiController)
+            UIController uiController,
+            EndGameSystem endGameSystem)
         {
             _mainSystems = mainSystems;
             _physicsSystems = physicsSystems;
             _inputService = inputService;
             _uiController = uiController;
+            _endGameSystem = endGameSystem;
         }
         
         public void Start()
         {
-            Debug.Log("START FROM GameStateManager");
-            IsPaused =  false;
+            _mainSystems.Init();
+            _physicsSystems.Init();
+
+            _endGameSystem.EndGame += EndGameHandler;
             _inputService.OnPausePressed += OnPausePressed;
+            
+            IsPaused = false;
         }
 
-        private void LoseGameHandler()
+        private void EndGameHandler(GameState gameState)
         {
-            _uiController.ShowLose();
+            if (gameState == GameState.Lose)
+                _uiController.ShowLose();
+            else if (gameState == GameState.Win)
+                _uiController.ShowWin();
         }
 
         private void OnPausePressed()
@@ -78,6 +96,7 @@ namespace Game.Script.Infrastructure
             _mainSystems.Destroy();
             _physicsSystems.Destroy();
             _inputService.OnPausePressed -= OnPausePressed;
+            IsPaused = true;
         }
     }
 }

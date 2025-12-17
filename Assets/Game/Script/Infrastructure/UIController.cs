@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Game.Script.Infrastructure;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;

@@ -10,14 +10,14 @@ using VContainer.Unity;
 
 namespace Game.Script.DISystem
 {
+    public enum IProtoSystemsType
+    {
+        MainSystem,
+        PhysicsSystem
+    }
+
     public class GameLifetimeScope : LifetimeScope
     {
-        public enum IProtoSystemsType
-        {
-            MainSystem,
-            PhysicsSystem
-        }
-
         [SerializeField] private Grid grid;
         [SerializeField] private PlayableDirector playableDirector;
         [SerializeField] private InputService inputService;
@@ -25,20 +25,48 @@ namespace Game.Script.DISystem
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterEntryPoint<GameStateManager>();
+            
             builder.Register<GameResources>(Lifetime.Singleton);
             builder.Register<RecipeService>(Lifetime.Singleton);
             builder.Register<PickableService>(Lifetime.Singleton);
-
-            builder.RegisterInstance(playableDirector).AsSelf();
+            
+            builder.RegisterComponent(playableDirector).AsSelf();
             builder.RegisterComponent(uiController).AsSelf();
-
+            builder.RegisterComponent(inputService).AsSelf();
             builder.RegisterComponent(grid);
-            builder.RegisterInstance(inputService).AsSelf();
-
-
+            
             builder.Register<PlacementGrid>(Lifetime.Singleton);
+            
+            RegisterSystemFactories(builder);
+            RegisterProtoSystems(builder);
+            RegisterModules(builder);
+            RegisterECSWorldAndSystems(builder);
+        }
+        
+        private void RegisterECSWorldAndSystems(IContainerBuilder builder)
+        {
+            builder.Register<MainGameECSWorldFactory>(Lifetime.Singleton);
 
+            builder.Register<IProtoSystems>(container =>
+                    container.Resolve<MainGameECSWorldFactory>().MainSystemsECSFactory(), Lifetime.Singleton)
+                .Keyed(IProtoSystemsType.MainSystem);
 
+            builder.Register<IProtoSystems>(container =>
+                    container.Resolve<MainGameECSWorldFactory>().PhysicsSystemsECSFactory(), Lifetime.Singleton)
+                .Keyed(IProtoSystemsType.PhysicsSystem);
+        }
+        
+        private void RegisterModules(IContainerBuilder builder)
+        {
+            builder.Register<WorkstationsModule>(Lifetime.Singleton);
+            builder.Register<PlacementModule>(Lifetime.Singleton);
+            builder.Register<PhysicsModule>(Lifetime.Singleton);
+            builder.Register<GuestModule>(Lifetime.Singleton);
+        }
+
+        private void RegisterSystemFactories(IContainerBuilder builder)
+        {
             builder.Register<StoveSystemFactory>(Lifetime.Singleton);
             builder.Register<ItemSourceGeneratorSystemFactory>(Lifetime.Singleton);
             builder.Register<PhysicsEventsHandlerSystemFactory>(Lifetime.Singleton);
@@ -53,10 +81,12 @@ namespace Game.Script.DISystem
             builder.Register<GroupGenerationSystemFactory>(Lifetime.Singleton);
             builder.Register<RandomSpawnerPositionSystemFactory>(Lifetime.Singleton);
             builder.Register<DestroySpawnersSystemFactory>(Lifetime.Singleton);
-            builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
-            
-            builder.RegisterFactory<EndGameSystem>(container =>
-                container.Resolve<EndGameSystemSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
+            //builder.Register<EndGameSystemSystemFactory>(Lifetime.Singleton);
+        }
+
+        private void RegisterProtoSystems(IContainerBuilder builder)
+        {
+            builder.Register<EndGameSystem>(Lifetime.Singleton);
 
             builder.RegisterFactory<ItemSourceGeneratorSystem>(container =>
                 container.Resolve<ItemSourceGeneratorSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
@@ -99,26 +129,6 @@ namespace Game.Script.DISystem
 
             builder.RegisterFactory<DestroySpawnersSystem>(container =>
                 container.Resolve<DestroySpawnersSystemFactory>().CreateProtoSystem, Lifetime.Singleton);
-
-            builder.Register<WorkstationsModule>(Lifetime.Singleton);
-            builder.Register<PlacementModule>(Lifetime.Singleton);
-            builder.Register<PhysicsModule>(Lifetime.Singleton);
-            builder.Register<GuestModule>(Lifetime.Singleton);
-
-
-            builder.Register<MainGameECSWorldFactory>(Lifetime.Singleton);
-
-            builder.Register<IProtoSystems>(container =>
-                    container.Resolve<MainGameECSWorldFactory>().MainSystemsECSFactory(), Lifetime.Singleton)
-                .Keyed(IProtoSystemsType.MainSystem);
-
-            builder.Register<IProtoSystems>(container =>
-                    container.Resolve<MainGameECSWorldFactory>().PhysicsSystemsECSFactory(), Lifetime.Singleton)
-                .Keyed(IProtoSystemsType.PhysicsSystem);
-
-            builder.RegisterEntryPoint<GameStateManager>();
-
-           
         }
     }
 }

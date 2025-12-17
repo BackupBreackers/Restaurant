@@ -1,4 +1,5 @@
-﻿using VContainer;
+﻿using Game.Script.Infrastructure;
+using VContainer;
 using VContainer.Unity;
 
 namespace Game.Script.DISystem

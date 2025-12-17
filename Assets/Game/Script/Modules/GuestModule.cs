@@ -10,10 +10,11 @@ namespace Game.Script.Modules
     {
         private readonly GroupGenerationSystem _groupGenerationSystem;
         private readonly EndGameSystem _endGameSystem;
-        public GuestModule(GroupGenerationSystemFactory groupGenerationSystemFactory, EndGameSystemSystemFactory endGameSystemSystemFactory)
+        public GuestModule(GroupGenerationSystemFactory groupGenerationSystemFactory, EndGameSystem  endGameSystem)
         {
             this._groupGenerationSystem = groupGenerationSystemFactory.CreateProtoSystem();
-            this._endGameSystem = endGameSystemSystemFactory.CreateProtoSystem();
+            _endGameSystem = endGameSystem;
+            //this._endGameSystem = endGameSystemSystemFactory.CreateProtoSystem();
         }
         
         public void Init(IProtoSystems systems)

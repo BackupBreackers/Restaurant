@@ -1,6 +1,7 @@
 using Game.Script;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 // This file is auto-generated. Do not modify manually.
@@ -44,7 +45,7 @@ public class GameResources
     public UIPrefabs UIPrefabsLink;
     public class UIPrefabs
     {
-        public GameObject HUD => Resources.Load<GameObject>("UIPrefabs/HUD");
+        public CanvasScaler HUD => Resources.Load<CanvasScaler>("UIPrefabs/HUD");
         public UIController UIConroller => Resources.Load<UIController>("UIPrefabs/UIConroller");
     }
     public Visual VisualLink;

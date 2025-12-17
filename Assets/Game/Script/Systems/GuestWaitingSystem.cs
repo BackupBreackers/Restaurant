@@ -58,7 +58,7 @@ namespace Game.Script.Systems
 
         public void Destroy()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }
